@@ -66,26 +66,27 @@ void SPreview::keyReleased(int key){
 //- + - MOUSE - + -
 void SPreview::mouseMoved(int x, int y){
 	for (int i = 0; i < t.size(); i++) {
-		t[i]->cursor(x, y, 0);
+		t[i]->setCursorType(x, y);
 	}
 }
 
 void SPreview::mouseDragged(int x, int y, int button){
 	for (int i = 0; i < t.size(); i++) {
-		t[i]->cursor(x, y, ++button);
+		t[i]->cursor(x, y);
 	}
 }
 
 void SPreview::mousePressed(int x, int y, int button){
 	for (int i = 0; i < t.size(); i++) {
-		t[i]->cursor(x, y, ++button);
-		//t->mouseDown();
+		t[i]->setCurrentParams(x, y);
+		t[i]->setCursorType(x, y);
+		t[i]->setActionType(x, y, ++button);
 	}
 }
 
 void SPreview::mouseReleased(int x, int y, int button){
 	for (int i = 0; i < t.size(); i++) {
-		t[i]->mouseUp();
+		t[i]->resetCursorType();
 	}
 }
 

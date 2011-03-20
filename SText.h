@@ -34,6 +34,13 @@ class SText {
 	int resizeMargin;
 	bool focus;
 	
+	enum cursorTypes {
+		NONE,
+		MOVE,
+		RESIZE
+	};
+	
+	cursorTypes cursorType;
 		
 	vector<ofPoint> refPoints;
 	
@@ -55,10 +62,12 @@ class SText {
 
 	void setText(string s);
 	
-	void cursor(int x, int y, int b);
-	void setMouseOffset(int x, int y);
-	void setMouseType();
-	void resetMouse();
+	void cursor(int x, int y);
+	void setCurrentParams(int x, int y);
+	void setCursorType(int x, int y);
+	void setActionType(int x, int y, int b);
+	void resetCursorType();
+	void mouseActions(int x, int y);
 	
 	void wrapLines();
 	void setYDim();

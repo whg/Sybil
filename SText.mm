@@ -23,6 +23,7 @@ SText::SText(int i) {
 	resizeMargin = 5;
 	mdown = 'n';
 	focus = false;
+	cursorType = NONE;
 		
 	//pointer to preview
 	//previewPtr = (SPreview*) ofGetAppPtr();
@@ -62,6 +63,8 @@ void SText::draw() {
 	ofPushMatrix();
 	ofTranslate(pos.x, pos.y);
 	
+	ofCircle(0, 0, 2);
+	
 	if(focus) drawBoundingBox();
 	
 	wrapLines();
@@ -70,6 +73,9 @@ void SText::draw() {
 	ofNoFill();
 	ofSetColor(0, 0, 0);
 	
+	//do place the characters nicely, we have to draw each character...
+	//...character by character, one by one 
+	//and place each character where wrapLines() says
 	int j = 0;
 	for (int i = 0; i < text.length(); i++) {
 
@@ -91,7 +97,7 @@ void SText::drawBoundingBox() {
 	//simple rectangle
 	ofNoFill();
 	ofSetColor(0, 250, 200);
-	ofRect(0, -lineHeight, dim.x, dim.y);
+	ofRect(0, 0, dim.x, dim.y);
 }
 
 void SText::drawBoundingLines() {
@@ -107,46 +113,12 @@ void SText::setText(string s) {
 	text = s;
 }
 
-void SText::mouseUp() {
-	mdown = 'n';
-}
-//
-//void SText::mouseDown() {
-//	mdown = true;
-//}
-
-void SText::cursor(int x, int y, int b) {
+void SText::cursor(int x, int y) {
 	
-	setMouseOffset(x, y);
+	setCursorType(x, y);
 	
-	//for moving, this shows a crosshair
-	if ((x > pos.x && x < pos.x+dim.x - resizeMargin &&
-			 y > pos.y && y < pos.y+dim.y - resizeMargin) && mdown != 'x') {
-		glutSetCursor(GLUT_CURSOR_CROSSHAIR); 		
-		if (b) {
-			focus = true;
-			mdown = 'm';
-			pos.set(x-xOffset, y-yOffset);
-		}
-	} 
+	mouseActions(x, y);
 	
-	//this is for increasing x, ie right border
-	else if ((x > pos.x+dim.x - resizeMargin && 
-					  x < pos.x+dim.x + resizeMargin) || mdown != 'm') {
-		glutSetCursor(GLUT_CURSOR_LEFT_RIGHT);		
-		if (b) {
-			focus = true;
-			mdown = 'x';
-			dim.x = xDimS + x - initMX;
-			//text = textStart;
-			wrapLines();
-		}
-	}
-	
-	//normal cursor
-	else {
-		glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
-	}
 	
 	if (focus) {
 		//previewPtr->setFocus(uid);
@@ -154,7 +126,7 @@ void SText::cursor(int x, int y, int b) {
 	
 }
 
-void SText::setMouseOffset(int x, int y) {
+void SText::setCurrentParams(int x, int y) {
 	xOffset = x - pos.x;
 	yOffset = y - pos.y;
 	xDimS = dim.x;
@@ -163,19 +135,85 @@ void SText::setMouseOffset(int x, int y) {
 	initMY = y;
 }
 
+void SText::setCursorType(int x, int y) {
+	
+	//for moving, this shows a crosshair
+	if (x > pos.x && x < pos.x + dim.x &&
+			y > pos.y && y < pos.y + dim.y) {
+		glutSetCursor(GLUT_CURSOR_CROSSHAIR); 		
+	} 
+	
+	//this is for increasing x, ie right border
+	else if (x > pos.x + dim.x - resizeMargin && x < pos.x + dim.x + resizeMargin &&
+					 y > pos.y && y < pos.y + dim.y) {
+		glutSetCursor(GLUT_CURSOR_LEFT_RIGHT);		
+	}
+
+	//normal cursor
+	else {
+		glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
+	}
+	
+}
+
+void SText::setActionType(int x, int y, int b) {
+	
+	//for moving
+	if (x > pos.x && x < pos.x + dim.x &&
+			y > pos.y && y < pos.y + dim.y) {
+		if (b) { // if mousepressed
+			cursorType = MOVE;
+			focus = true;
+		}
+	} 
+	
+	//this is for increasing x, ie right border
+	else if (x > pos.x + dim.x - resizeMargin && x < pos.x + dim.x + resizeMargin &&
+					 y > pos.y && y < pos.y + dim.y) {
+		if (b) { // if mousepressed
+			cursorType = RESIZE;
+			focus = true;
+		}
+	}
+	
+}
+
+void SText::resetCursorType() {
+	cursorType = NONE;
+}
+
+void SText::mouseActions(int x, int y) {
+	
+	//this is to move
+	if (cursorType == MOVE) { 
+		printf("move move move\n");
+		pos.set(x-xOffset, y-yOffset); //do the move
+	}
+	
+	//this is to resize
+	if (cursorType == RESIZE) {
+		dim.x = xDimS + x - initMX;
+		//do the line wrapping as well
+		wrapLines();
+	}
+}
+
+
+//this method wraps lines around a given box: given by the ofPoint: dim
+//it wraps a word (i.e. places on the next line) if the first letter of
+//the next word is over the x dimension of the box + a generic character width (lineHeight/3)
 void SText::wrapLines() {
 		
 	int lus = 0; //letters until space
 	int tll = 0; //temp letter length
 	int ls = 0; //last space
-	string tempText = text;
 	
 	//get the reference points
-	int li = ttf.getReferencePoints(tempText, refPoints);
+	ttf.getReferencePoints(text, refPoints);
 	
-	for (int i = 0; i < tempText.size(); i++) {
+	for (int i = 0; i < text.size(); i++) {
 		
-		if (refPoints[lus].x > dim.x) {
+		if (refPoints[lus].x > (dim.x + genCharWidth)) {
 			
 			int k = refPoints[ls].x;
 			//reset the new lines to spaces
@@ -185,16 +223,19 @@ void SText::wrapLines() {
 			}
 		} //end if				
 		
-		if (tempText[i] == ' ') {
+		
+		if (text[i] == ' ') {
 			ls = lus; //set position of last space
 		} 
 		else {
-			lus++;
+			//add a lineHeight to all characters so the origin for each text box is the 
+			//top left corner, not the top left corner plus a lineHeight
+			refPoints[lus].y += lineHeight;
+			lus++; //only increment if the character isn't a space
 		}
 	}
 	
 	
-	text = tempText;
 	
 }
 	
@@ -203,6 +244,6 @@ void SText::setYDim() {
 		dim.y = lineHeight*1.2;
 	}
 	else {
-		dim.y = refPoints.back().y + (lineHeight*1.2); 
+		dim.y = refPoints.back().y + (lineHeight*0.2); 
 	}
 }

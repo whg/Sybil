@@ -2,8 +2,8 @@
 
 // - + - DECONSRUCTOR - + -
 SPreview::~SPreview() {
-	for (int i = 0; i < t.size(); i++) {
-		delete t[i];
+	for (int i = 0; i < items.size(); i++) {
+		delete items[i];
 	}
 }
 
@@ -18,9 +18,11 @@ void SPreview::setup(){
 	
 	idc = 0;
 	
-	t.push_back(new SText(idc++));
+	items.push_back(new SText(idc++));
+	
+	items.push_back(new SText(idc++));
 		
-	t[0]->setText("hello hello hello hello");
+//	items[0]->setText("hello hello hello hello");
 	
 	//set up interface - do this last
 	NSApplicationMain(0, NULL);
@@ -35,14 +37,18 @@ void SPreview::update(){
 void SPreview::draw(){
 	
 	ofSetColor(0, 0, 0);
-	for (int i = 0; i < t.size(); i++) {
-		t[i]->draw();
+	for (int i = 0; i < items.size(); i++) {
+		items[i]->draw();
 	}
 
 }
 
 void SPreview::setFocus(int i) {
 	fid = i;
+}
+
+int SPreview::getFocus() {
+	return fid;
 }
 
 
@@ -65,29 +71,32 @@ void SPreview::keyReleased(int key){
 
 //- + - MOUSE - + -
 void SPreview::mouseMoved(int x, int y){
-	for (int i = 0; i < t.size(); i++) {
-		t[i]->setCursorType(x, y);
+	for (int i = 0; i < items.size(); i++) {
+		items[i]->setCursorType(x, y);
 	}
 }
 
 void SPreview::mouseDragged(int x, int y, int button){
-	for (int i = 0; i < t.size(); i++) {
-		t[i]->cursor(x, y);
+	for (int i = 0; i < items.size(); i++) {
+		items[i]->cursor(x, y);
 	}
 }
 
 void SPreview::mousePressed(int x, int y, int button){
-	for (int i = 0; i < t.size(); i++) {
-		t[i]->setCurrentParams(x, y);
-		t[i]->setCursorType(x, y);
-		t[i]->setActionType(x, y, ++button);
+	for (int i = 0; i < items.size(); i++) {
+		items[i]->setCurrentParams(x, y);
+		items[i]->setCursorType(x, y);
+		items[i]->setActionType(x, y, ++button);
 	}
 }
 
 void SPreview::mouseReleased(int x, int y, int button){
-	for (int i = 0; i < t.size(); i++) {
-		t[i]->resetCursorType();
+	for (int i = 0; i < items.size(); i++) {
+		items[i]->resetCursorType();
 	}
 }
 
+void SPreview::hello() {
+	printf("hello\n");
+}
 

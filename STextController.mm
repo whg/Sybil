@@ -12,13 +12,22 @@
 
 @implementation STextController
 
-- (id) init {
+//
+//- (id) init {
+//	
+//	if(self = [super init]) {
+//		//previewPtr = (SPreview*) ofGetAppPtr();
+//		[textfield sizeToFit]; //this doesn't work
+//	}
+//
+//	
+//	return self;
+//}
+
+- (void) loadWindow {
+
+	[super loadWindow];
 	
-	if(self = [super init]) {
-		previewPtr = (SPreview*) ofGetAppPtr();
-	}
-	
-	return self;
 }
 
 - (IBAction) textFieldChanged: (id) sender {
@@ -30,6 +39,19 @@
 
 - (IBAction) setFont: (id) sender {
 	NSLog(@"set text and value = %@", sender);
+}
+
+- (int) uid {
+	return uid;
+}
+
+- (void) set_uid: (int) i {
+	uid = i;
+}
+
+- (void) dealloc {
+	
+	[super dealloc];
 }
 
 @end

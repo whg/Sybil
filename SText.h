@@ -12,40 +12,20 @@
 
 
 #include "ofMain.h"
-#include "SPreview.h"
+#include "SItem.h"
+#import <Cocoa/Cocoa.h>
+#import "STextController.h"
 
-
-class SText {
+class SText : public SItem {
 	
 	private: 
-	
-	int uid;
-	ofPoint pos, dim;
-	string text, textStart;
-	char mdown;
+
+	string text;
+	vector<ofPoint> refPoints;
 	
 	ofTrueTypeFont ttf;
 	float lineHeight, genCharWidth;
 	
-	int xOffset, yOffset;
-	int initMX, initMY;
-	int xDimS, yDimS;
-	
-	int resizeMargin;
-	bool focus;
-	
-	enum cursorTypes {
-		NONE,
-		MOVE,
-		RESIZE
-	};
-	
-	cursorTypes cursorType;
-		
-	vector<ofPoint> refPoints;
-	
-	//SPreview* previewPtr;
-
 	
 	public:
 	
@@ -53,28 +33,15 @@ class SText {
 	SText(int i);
 	~SText();
 	
-	
-	void setPos(float x, float y);
-	void setPos(ofPoint p);
-	void setDim(float w, float h);
-	void setAll(float x, float y, float w, float h);
-	void setAll(string s, float x, float y, float w, float h);
 
 	void setText(string s);
 	
-	void cursor(int x, int y);
-	void setCurrentParams(int x, int y);
-	void setCursorType(int x, int y);
-	void setActionType(int x, int y, int b);
-	void resetCursorType();
-	void mouseActions(int x, int y);
 	
 	void wrapLines();
 	void setYDim();
 	
 	void draw();
-	void drawBoundingBox();
-	void drawBoundingLines();
+
 	
 	
 

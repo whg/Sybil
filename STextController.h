@@ -11,11 +11,15 @@
 
 
 
-@interface STextController : NSObject {
-	SPreview *previewPtr;
+@interface STextController : NSWindowController {
+	//SPreview *previewPtr;
 	IBOutlet NSTextField *textfield;
 	
+	int uid;
 }
+
+- (int) uid;
+- (void) set_uid: (int) i;
 
 - (IBAction) textFieldChanged: (id) sender;
 - (IBAction) setFont: (id) sender;

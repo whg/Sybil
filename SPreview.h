@@ -4,14 +4,21 @@
 #include "GLee.h"
 #import <Cocoa/Cocoa.h>
 #include "ofMain.h"
+#include "SItem.h"
 #include "SText.h"
+#include "STextController.h"
 
-class SText;
+//forward declare classes...
+class SItem;
 
 class SPreview : public ofBaseApp {
 	
-
-	public:
+private:
+	
+	int idc; //id counter
+	int fid; //focused id
+	
+public:
 	
 	~SPreview();
 
@@ -27,12 +34,14 @@ class SPreview : public ofBaseApp {
 	void mouseReleased(int x, int y, int button);
 			
 	void setFocus(int i);
+	int getFocus();
+	
+	void hello();
 
 	float oneDecimalPoint(float x);
 	
-	int idc; //id counter
-	int fid; //focused id
-	vector<SText *> t;
+	
+	vector<SItem *> items;
 	
 	//SText *t;
 		

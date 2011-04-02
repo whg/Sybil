@@ -16,7 +16,6 @@ class SText;
 @interface STextController : NSWindowController {
 	IBOutlet NSTextField *textfield;
 	SText *textPtr;
-//	SPreview *previewPtr;
 	int uid;
 }
 

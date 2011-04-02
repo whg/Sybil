@@ -37,11 +37,11 @@
 		EE66720B1347693F00E906A6 /* SPreview.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE6671FE1347693F00E906A6 /* SPreview.mm */; };
 		EE66720C1347693F00E906A6 /* SText.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE6672001347693F00E906A6 /* SText.mm */; };
 		EE66720D1347693F00E906A6 /* STextController.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE6672021347693F00E906A6 /* STextController.mm */; };
-		EE66720E1347693F00E906A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EE6672031347693F00E906A6 /* InfoPlist.strings */; };
 		EE66720F1347693F00E906A6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE6672041347693F00E906A6 /* main.cpp */; };
 		EE6672101347693F00E906A6 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = EE6672061347693F00E906A6 /* MainMenu.nib */; };
 		EE6672111347693F00E906A6 /* STextWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE6672071347693F00E906A6 /* STextWindow.xib */; };
-		EE6672121347693F00E906A6 /* Sybil-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE6672081347693F00E906A6 /* Sybil-Info.plist */; };
+		EE6672A51347A6BD00E906A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EE6672A31347A6BD00E906A6 /* InfoPlist.strings */; };
+		EE6672A61347A6BD00E906A6 /* Sybil-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE6672A41347A6BD00E906A6 /* Sybil-Info.plist */; };
 		EEBB0FE112F8C45400855BED /* ofxMatrix3x3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEBB0FD412F8C45400855BED /* ofxMatrix3x3.cpp */; };
 		EEBB0FE212F8C45400855BED /* ofxMatrix4x4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEBB0FD612F8C45400855BED /* ofxMatrix4x4.cpp */; };
 		EEBB0FE312F8C45400855BED /* ofxQuaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEBB0FDB12F8C45400855BED /* ofxQuaternion.cpp */; };
@@ -132,11 +132,11 @@
 		EE6672001347693F00E906A6 /* SText.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SText.mm; sourceTree = "<group>"; };
 		EE6672011347693F00E906A6 /* STextController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STextController.h; sourceTree = "<group>"; };
 		EE6672021347693F00E906A6 /* STextController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = STextController.mm; sourceTree = "<group>"; };
-		EE6672031347693F00E906A6 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = src/InfoPlist.strings; sourceTree = "<group>"; };
 		EE6672041347693F00E906A6 /* main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = main.cpp; path = src/main.cpp; sourceTree = "<group>"; };
 		EE6672061347693F00E906A6 /* MainMenu.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = MainMenu.nib; sourceTree = "<group>"; };
 		EE6672071347693F00E906A6 /* STextWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = STextWindow.xib; sourceTree = "<group>"; };
-		EE6672081347693F00E906A6 /* Sybil-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Sybil-Info.plist"; path = "src/Sybil-Info.plist"; sourceTree = "<group>"; };
+		EE6672A31347A6BD00E906A6 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		EE6672A41347A6BD00E906A6 /* Sybil-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Sybil-Info.plist"; sourceTree = "<group>"; };
 		EEBB0FD212F8C45400855BED /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		EEBB0FD412F8C45400855BED /* ofxMatrix3x3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMatrix3x3.cpp; sourceTree = "<group>"; };
 		EEBB0FD512F8C45400855BED /* ofxMatrix3x3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMatrix3x3.h; sourceTree = "<group>"; };
@@ -369,11 +369,11 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
+				EE6672A31347A6BD00E906A6 /* InfoPlist.strings */,
+				EE6672A41347A6BD00E906A6 /* Sybil-Info.plist */,
 				EE6671F81347693F00E906A6 /* classes */,
-				EE6672031347693F00E906A6 /* InfoPlist.strings */,
 				EE6672041347693F00E906A6 /* main.cpp */,
 				EE6672051347693F00E906A6 /* resources */,
-				EE6672081347693F00E906A6 /* Sybil-Info.plist */,
 				EEBB0FD012F8C44500855BED /* addons */,
 				E4B69B5B0A3A1756003C02F2 /* Sybil.app */,
 				E45BE0360E8CC5DE009D7055 /* libs */,
@@ -591,10 +591,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EE66720E1347693F00E906A6 /* InfoPlist.strings in Resources */,
 				EE6672101347693F00E906A6 /* MainMenu.nib in Resources */,
 				EE6672111347693F00E906A6 /* STextWindow.xib in Resources */,
-				EE6672121347693F00E906A6 /* Sybil-Info.plist in Resources */,
+				EE6672A51347A6BD00E906A6 /* InfoPlist.strings in Resources */,
+				EE6672A61347A6BD00E906A6 /* Sybil-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -728,6 +728,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/../../../libs/rtAudio/lib/osx\"";
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)Universal";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
@@ -851,9 +852,10 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_4 = "\"$(SRCROOT)/../../../libs/GLee/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_5 = "\"$(SRCROOT)/../../../libs/poco/lib/osx\"";
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/../../../libs/rtAudio/lib/osx\"";
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)Debug";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
@@ -873,7 +875,7 @@
 				GCC_MODEL_TUNING = G4;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/Carbon.framework/Headers/Carbon.h";
-				INFOPLIST_FILE = "src/Sybil-Info.plist";
+				INFOPLIST_FILE = "Sybil-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -903,6 +905,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/../../../libs/rtAudio/lib/osx\"";
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};

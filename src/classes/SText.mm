@@ -26,7 +26,6 @@ SText::SText(int i)
 	
 	windowController = [[STextController alloc] initWithWindowNibName:@"STextWindow"];
 	[windowController set_uid: i];
-//	[windowController loadWindow];
 	[windowController setParent:this];
 	[windowController showWindow:nil];
 	

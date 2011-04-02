@@ -8,18 +8,12 @@
 
 #import "STextController.h"
 
-//SPreview *previewPtr;
-
 @implementation STextController
 
 
 - (void) loadWindow{
 	
 	[super loadWindow];
-	
-//	SPreview *previewPtr = (SPreview*) ofGetAppPtr();
-
-//	textPtr = STextPtr;
 	
 }
 

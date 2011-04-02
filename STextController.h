@@ -6,17 +6,21 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#include "SPreview.h"
+//#include "SPreview.h"
+#include "SText.h"
 #import <Cocoa/Cocoa.h>
 
 
+class SText;
 
 @interface STextController : NSWindowController {
-	//SPreview *previewPtr;
 	IBOutlet NSTextField *textfield;
-	
+	SText *textPtr;
+//	SPreview *previewPtr;
 	int uid;
 }
+
+- (void) setParent: (SText*) p;
 
 - (int) uid;
 - (void) set_uid: (int) i;

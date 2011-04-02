@@ -17,9 +17,11 @@ void SPreview::setup(){
 	ofEnableSmoothing();
 	
 	idc = 0;
+	fid = -1;
 	
 	items.push_back(new SText(idc++));
 	
+	items.push_back(new SText(idc++));
 	items.push_back(new SText(idc++));
 		
 //	items[0]->setText("hello hello hello hello");
@@ -51,10 +53,16 @@ int SPreview::getFocus() {
 	return fid;
 }
 
+void SPreview::setText(int i, string text) {
+	//items[i]->setText(text);
+	tt = "hello";
+	cout << "i = " << i << ", text = " << text << endl;
+}
 
-//- + - KEYS - + -
+
+// - + - KEYS - + -
 void SPreview::keyPressed(int key){
-	printf("%i", key);
+	printf("key = %i\n", key);
 	switch (key) {
 		case 'a':
 			//t->setText("ASDF ADF AS REAF ASDF ADFS");
@@ -66,13 +74,15 @@ void SPreview::keyPressed(int key){
 }
 
 void SPreview::keyReleased(int key){
-
+	setText(0, "hello method");
 }
 
-//- + - MOUSE - + -
+// - + - MOUSE - + -
 void SPreview::mouseMoved(int x, int y){
 	for (int i = 0; i < items.size(); i++) {
-		items[i]->setCursorType(x, y);
+		if(items[i]->setCursorType(x, y)) {
+			break;
+		}
 	}
 }
 
@@ -85,9 +95,17 @@ void SPreview::mouseDragged(int x, int y, int button){
 void SPreview::mousePressed(int x, int y, int button){
 	for (int i = 0; i < items.size(); i++) {
 		items[i]->setCurrentParams(x, y);
-		items[i]->setCursorType(x, y);
-		items[i]->setActionType(x, y, ++button);
+		//items[i]->setCursorType(x, y);
+		if (items[i]->setActionType(x, y, ++button)) {
+			break;
+		}
 	}
+	
+	//this is so only one is in focus at any time
+	for (int i = 0; i < items.size(); i++) {
+		items[i]->setFocus(false);
+	}
+	if (fid != -1) items[fid]->setFocus(true);
 }
 
 void SPreview::mouseReleased(int x, int y, int button){

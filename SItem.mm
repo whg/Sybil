@@ -58,6 +58,10 @@ void SItem::setAll(float x, float y, float w, float h) {
 	dim.set(w, h);
 }
 
+void SItem::setFocus(bool b) {
+	focus = b;
+}
+
 void SItem::draw() {
 	ofPushMatrix();
 	ofTranslate(pos.x, pos.y);
@@ -83,7 +87,7 @@ void SItem::cursor(int x, int y) {
 	
 	
 	if (focus) {
-		//previewPtr->setFocus(uid);
+		previewPtr->setFocus(uid);
 	}
 	
 }
@@ -97,24 +101,27 @@ void SItem::setCurrentParams(int x, int y) {
 	initMY = y;
 }
 
-void SItem::setCursorType(int x, int y) {
+bool SItem::setCursorType(int x, int y) {
 	
 	//for moving, this shows a crosshair
 	if (x > pos.x && x < pos.x + dim.x &&
 			y > pos.y && y < pos.y + dim.y) {
-		glutSetCursor(GLUT_CURSOR_CROSSHAIR); 		
+		glutSetCursor(GLUT_CURSOR_CROSSHAIR); 	
+		return true;
 	} 
 	
 	//this is for increasing x, ie right border
 	else if (x > pos.x + dim.x - resizeMargin && x < pos.x + dim.x + resizeMargin &&
 					 y > pos.y && y < pos.y + dim.y) {
-		glutSetCursor(GLUT_CURSOR_LEFT_RIGHT);		
+		glutSetCursor(GLUT_CURSOR_LEFT_RIGHT);	
+		return true;
 	}
 	
 	//this is for increasing y, ie the bottom
 	else if (x > pos.x && x < pos.x + dim.x &&
 					 y > pos.y  + dim.y - resizeMargin && y < pos.y + dim.y + resizeMargin) {
-		glutSetCursor(GLUT_CURSOR_UP_DOWN);		
+		glutSetCursor(GLUT_CURSOR_UP_DOWN);
+		return true;
 	}
 	
 	//normal cursor
@@ -122,9 +129,11 @@ void SItem::setCursorType(int x, int y) {
 		glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
 	}
 	
+	return false;
 }
 
-void SItem::setActionType(int x, int y, int b) {
+bool SItem::setActionType(int x, int y, int b) {
+	
 	
 	//for moving
 	if (x > pos.x && x < pos.x + dim.x &&
@@ -133,6 +142,7 @@ void SItem::setActionType(int x, int y, int b) {
 			cursorType = MOVE;
 			focus = true;
 			previewPtr->setFocus(uid);
+			return true;
 		}
 	} 
 	
@@ -143,6 +153,7 @@ void SItem::setActionType(int x, int y, int b) {
 			cursorType = RESIZEX;
 			focus = true;
 			previewPtr->setFocus(uid);
+			return true;
 		}
 	}
 	
@@ -153,9 +164,11 @@ void SItem::setActionType(int x, int y, int b) {
 			cursorType = RESIZEY;
 			focus = true;
 			previewPtr->setFocus(uid);
+			return true;
 		}	
 	}
-	
+
+	return false;
 }
 
 void SItem::resetCursorType() {
@@ -166,18 +179,20 @@ void SItem::mouseActions(int x, int y) {
 	
 	//this is to move
 	if (cursorType == MOVE) { 
-		printf("move move move\n");
 		pos.set(x-xOffset, y-yOffset); //do the move
 	}
 	
 	//this is to resize
-	if (cursorType == RESIZEX) {
+	else if (cursorType == RESIZEX) {
 		dim.x = xDimS + x - initMX;
 		//do the line wrapping as well
 	}
 	
-	if (cursorType == RESIZEY) {
+	else if (cursorType == RESIZEY) {
 		dim.y = yDimS + y - initMY;
 	}
 }
 
+void SItem::hello() {
+	printf("hello from SItem\n");
+}

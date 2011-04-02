@@ -10,6 +10,7 @@
 #ifndef _STEXT
 #define _STEXT
 
+@class STextController;
 
 #include "ofMain.h"
 #include "SItem.h"
@@ -26,6 +27,7 @@ class SText : public SItem {
 	ofTrueTypeFont ttf;
 	float lineHeight, genCharWidth;
 	
+	STextController* windowController;
 	
 	public:
 	
@@ -42,7 +44,7 @@ class SText : public SItem {
 	
 	void draw();
 
-	
+	void hello();
 	
 
 };

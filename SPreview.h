@@ -8,6 +8,8 @@
 #include "SText.h"
 #include "STextController.h"
 
+//SPreview* previewPtr;
+
 //forward declare classes...
 class SItem;
 
@@ -35,6 +37,8 @@ public:
 			
 	void setFocus(int i);
 	int getFocus();
+	
+	void setText(int i, string text);
 	
 	void hello();
 

@@ -8,33 +8,28 @@
 
 #import "STextController.h"
 
-
+//SPreview *previewPtr;
 
 @implementation STextController
 
-//
-//- (id) init {
-//	
-//	if(self = [super init]) {
-//		//previewPtr = (SPreview*) ofGetAppPtr();
-//		[textfield sizeToFit]; //this doesn't work
-//	}
-//
-//	
-//	return self;
-//}
 
-- (void) loadWindow {
-
+- (void) loadWindow{
+	
 	[super loadWindow];
+	
+//	SPreview *previewPtr = (SPreview*) ofGetAppPtr();
+
+//	textPtr = STextPtr;
 	
 }
 
+- (void) setParent:(SText *)p {
+	textPtr = p;
+}
+
 - (IBAction) textFieldChanged: (id) sender {
-//	NSLog(@"text = %@", [sender stringValue]);
-//	printf("sec text = %s\n", [[sender stringValue] UTF8String]);
-	
-	//previewPtr->setText([[sender stringValue] UTF8String]);
+
+	textPtr->setText([[sender stringValue] UTF8String]);
 }
 
 - (IBAction) setFont: (id) sender {
@@ -50,6 +45,8 @@
 }
 
 - (void) dealloc {
+		
+	[textfield release];
 	
 	[super dealloc];
 }

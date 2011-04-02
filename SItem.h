@@ -12,6 +12,7 @@
 
 #include "ofMain.h"
 
+
 class SItem {
 	
 private: 	
@@ -53,21 +54,21 @@ public:
 		
 	void cursor(int x, int y);
 	void setCurrentParams(int x, int y);
-	void setCursorType(int x, int y);
-	void setActionType(int x, int y, int b);
+	bool setCursorType(int x, int y);
+	bool setActionType(int x, int y, int b);
 	void resetCursorType();
 	void mouseActions(int x, int y);
 	
 	void drawBoundingBox();
 	
-	void setFocus();
+	void setFocus(bool b);
 
 	
 	virtual void draw();
 	
 	
-//	virtual void setText() = 0;
-	
+	virtual void setText(string s) = 0;
+	virtual void hello();
 	
 	
 };

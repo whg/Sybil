@@ -8,31 +8,36 @@
  */
 
 #include "SText.h"
+#include "SPreview.h"
 
 
 
 SText::SText(int i)
 : SItem(i) {
 
-	text = "hello my name:";
+	text = "edit this";
 	
 	ttf.loadFont("Georgia.ttf", 20, true, true, true);
 	lineHeight = ttf.getLineHeight();
 	genCharWidth = lineHeight/3;
 	
+	//don't understand this, but it works
+	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	
-	//really not sure about this, getting some pretty wierd errors in the console
-	STextController* windowController;
 	windowController = [[STextController alloc] initWithWindowNibName:@"STextWindow"];
-	//[windowController set_uid: i];
+	[windowController set_uid: i];
+//	[windowController loadWindow];
+	[windowController setParent:this];
 	[windowController showWindow:nil];
 	
-	//NSLog(@"id for window = %i", [windowController uid]);
+	[pool drain];
+
 	
-	[windowController release];
 }
 
 SText::~SText() {
+
+	[windowController release];
 
 }
 
@@ -78,6 +83,10 @@ void SText::draw() {
 
 void SText::setText(string s) {
 	text = s;
+}
+
+void SText::hello() {
+	printf("hello from SText\n");
 }
 
 

@@ -18,8 +18,10 @@ SPreview *previewPtr;
 SItem::SItem(int i) {
 	uid = i; //set unique id
 	
-	pos = ofPoint(ofRandom(10, 100), 10);
-	dim = ofPoint(200, 50);
+	pos.x = (int) ofRandom(0, 100);
+	pos.y = (int) ofRandom(0, 100);
+	dim.x = 200;
+	dim.y = 50;
 
 	
 	resizeMargin = 5;
@@ -33,29 +35,31 @@ SItem::SItem(int i) {
 
 SItem::~SItem() {	
 	
-	pos = ofPoint(10, 10);
-	dim = ofPoint(50, 0);
+	pos.x = 0;
+	pos.y = 0;
+	dim.x = 200;
+	dim.y = 50;
 	
 	resizeMargin = 5;
 	focus = false;
 	cursorType = NONE;
 }
 
-void SItem::setPos(float x, float y) {
-	pos.set(x, y);
+void SItem::setPos(int x, int y) {
+	if (x != -1) pos.x = x;
+	if (y != -1) pos.y = y;
 }
 
-void SItem::setPos(ofPoint p) {
-	pos = p;
+void SItem::setDim(int w, int h) {
+	if (w != -1) dim.x = w;
+	if (h != -1) dim.y = h;
 }
 
-void SItem::setDim(float w, float h) {
-	dim.set(w, h);
-}
-
-void SItem::setAll(float x, float y, float w, float h) {
-	pos.set(x, y);
-	dim.set(w, h);
+void SItem::setAll(int x, int y, int w, int h) {
+	if (x != -1) pos.x = x;
+	if (x != -1) pos.y = y;
+	if (x != -1) dim.x = w;
+	if (x != -1) dim.y = h;
 }
 
 void SItem::setFocus(bool b) {
@@ -179,7 +183,8 @@ void SItem::mouseActions(int x, int y) {
 	
 	//this is to move
 	if (cursorType == MOVE) { 
-		pos.set(x-xOffset, y-yOffset); //do the move
+		pos.x = x-xOffset; //do the move
+		pos.y = y-yOffset; 
 	}
 	
 	//this is to resize
@@ -191,6 +196,8 @@ void SItem::mouseActions(int x, int y) {
 	else if (cursorType == RESIZEY) {
 		dim.y = yDimS + y - initMY;
 	}
+	
+	updateWindow();
 }
 
 void SItem::hello() {

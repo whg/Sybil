@@ -12,6 +12,10 @@
 
 #include "ofMain.h"
 
+typedef struct {
+	int x;
+	int y;
+} SPoint;
 
 class SItem {
 	
@@ -28,7 +32,7 @@ public:
 	//think these need to be public to be accessed in sub class
 	int uid; //unique id
 	bool focus;
-	ofPoint pos, dim;
+	SPoint pos, dim;
 	int resizeMargin;
 		
 	enum cursorTypes {
@@ -47,10 +51,9 @@ public:
 	virtual ~SItem(); //always have a virtual deconstructor in a base class...
 	
 	
-	void setPos(float x, float y);
-	void setPos(ofPoint p);
-	void setDim(float w, float h);
-	void setAll(float x, float y, float w, float h);
+	void setPos(int x, int y);
+	void setDim(int w, int h);
+	void setAll(int x, int y, int w, int h);
 		
 	void cursor(int x, int y);
 	void setCurrentParams(int x, int y);
@@ -68,6 +71,7 @@ public:
 	
 	
 	virtual void setText(string s) = 0;
+	virtual void updateWindow() = 0;
 	virtual void hello();
 	
 	

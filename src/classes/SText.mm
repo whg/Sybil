@@ -14,30 +14,35 @@
 
 SText::SText(int i)
 : SItem(i) {
-
-	text = "edit this";
 	
 	ttf.loadFont("Georgia.ttf", 20, true, true, true);
 	lineHeight = ttf.getLineHeight();
 	genCharWidth = lineHeight/3;
 	
+	text = "edit this";
+	setText(text);
+	
 	//don't understand this, but it works
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	
 	windowController = [[STextController alloc] initWithWindowNibName:@"STextWindow"];
-	[windowController set_uid: i];
+	[windowController setUid: i];
 	[windowController setParent:this];
 	[windowController showWindow:nil];
-	
 	[pool drain];
+	
+	updateWindow();
+	
 
 	
 }
 
 SText::~SText() {
 
+	[windowController close];
 	[windowController release];
-
+	printf("stext deconstructed\n");
+	
 }
 
 
@@ -47,10 +52,7 @@ void SText::draw() {
 		
 	if(focus) drawBoundingBox();
 		
-	wrapLines();
 	
-	//the y dimension is set automatically in text mode
-	setYDim();
 		
 	ofNoFill();
 	ofSetColor(0, 0, 0);
@@ -82,6 +84,9 @@ void SText::draw() {
 
 void SText::setText(string s) {
 	text = s;
+	wrapLines();
+	setYDim();
+	updateWindow();
 }
 
 void SText::hello() {
@@ -136,4 +141,10 @@ void SText::setYDim() {
 	else {
 		dim.y = refPoints.back().y + (lineHeight*0.2); 
 	}
+}
+
+void SText::updateWindow() {
+	[windowController updatePosFields:pos.x:pos.y];
+	[windowController updateDimFields:dim.x :dim.y];
+	[windowController updateMainTextField:text];
 }

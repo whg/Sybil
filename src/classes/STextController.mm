@@ -12,7 +12,8 @@
 
 
 - (void) loadWindow{
-	
+		
+	previewPtr = (SPreview*) ofGetAppPtr();
 	[super loadWindow];
 	
 }
@@ -21,9 +22,40 @@
 	textPtr = p;
 }
 
-- (IBAction) textFieldChanged: (id) sender {
-
+- (IBAction) mainTextFieldChanged: (id) sender {
 	textPtr->setText([[sender stringValue] UTF8String]);
+}
+
+- (IBAction) xposChanged: (id) sender {
+	textPtr->setPos([sender intValue], -1);
+}
+
+- (IBAction) yposChanged: (id) sender {
+	textPtr->setPos(-1, [sender intValue]);
+}
+
+- (IBAction) widthChanged: (id) sender {
+	textPtr->setDim([sender intValue], -1);
+}
+
+- (IBAction) heightChanged: (id) sender {
+	textPtr->setDim(-1, [sender intValue]);
+}
+
+- (void) updatePosFields:(int)x :(int)y {
+	
+	xpos.intValue = x;
+	ypos.intValue = y;
+	
+}
+
+- (void) updateDimFields:(int)w: (int)h {
+	width.intValue = w;
+	height.intValue = h;
+}
+
+- (void) updateMainTextField:(string)s {
+	mainText.stringValue = [NSString stringWithUTF8String:s.c_str() ];
 }
 
 - (IBAction) setFont: (id) sender {
@@ -34,13 +66,24 @@
 	return uid;
 }
 
-- (void) set_uid: (int) i {
+- (void) setUid: (int) i {
 	uid = i;
 }
 
+- (void) removeSelf:(id)sender {
+
+	previewPtr->removeItem(uid);
+
+}
+
+
 - (void) dealloc {
 		
-	[textfield release];
+	[mainText release];
+	[xpos release];
+	[ypos release];
+	[width release];
+	[height release];
 	
 	[super dealloc];
 }

@@ -42,6 +42,7 @@
 		EE6672111347693F00E906A6 /* STextWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE6672071347693F00E906A6 /* STextWindow.xib */; };
 		EE6672A51347A6BD00E906A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EE6672A31347A6BD00E906A6 /* InfoPlist.strings */; };
 		EE6672A61347A6BD00E906A6 /* Sybil-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE6672A41347A6BD00E906A6 /* Sybil-Info.plist */; };
+		EE95D01B1349F249004A1263 /* SMenuController.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE95D01A1349F249004A1263 /* SMenuController.mm */; };
 		EEBB0FE112F8C45400855BED /* ofxMatrix3x3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEBB0FD412F8C45400855BED /* ofxMatrix3x3.cpp */; };
 		EEBB0FE212F8C45400855BED /* ofxMatrix4x4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEBB0FD612F8C45400855BED /* ofxMatrix4x4.cpp */; };
 		EEBB0FE312F8C45400855BED /* ofxQuaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEBB0FDB12F8C45400855BED /* ofxQuaternion.cpp */; };
@@ -137,6 +138,8 @@
 		EE6672071347693F00E906A6 /* STextWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = STextWindow.xib; sourceTree = "<group>"; };
 		EE6672A31347A6BD00E906A6 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		EE6672A41347A6BD00E906A6 /* Sybil-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Sybil-Info.plist"; sourceTree = "<group>"; };
+		EE95D0191349F249004A1263 /* SMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMenuController.h; sourceTree = "<group>"; };
+		EE95D01A1349F249004A1263 /* SMenuController.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = SMenuController.mm; sourceTree = "<group>"; };
 		EEBB0FD212F8C45400855BED /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		EEBB0FD412F8C45400855BED /* ofxMatrix3x3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMatrix3x3.cpp; sourceTree = "<group>"; };
 		EEBB0FD512F8C45400855BED /* ofxMatrix3x3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMatrix3x3.h; sourceTree = "<group>"; };
@@ -371,8 +374,8 @@
 			children = (
 				EE6672A31347A6BD00E906A6 /* InfoPlist.strings */,
 				EE6672A41347A6BD00E906A6 /* Sybil-Info.plist */,
-				EE6671F81347693F00E906A6 /* classes */,
 				EE6672041347693F00E906A6 /* main.cpp */,
+				EE6671F81347693F00E906A6 /* classes */,
 				EE6672051347693F00E906A6 /* resources */,
 				EEBB0FD012F8C44500855BED /* addons */,
 				E4B69B5B0A3A1756003C02F2 /* SybilDebug.app */,
@@ -458,16 +461,18 @@
 		EE6671F81347693F00E906A6 /* classes */ = {
 			isa = PBXGroup;
 			children = (
-				EE6671F91347693F00E906A6 /* SImage.cpp */,
-				EE6671FA1347693F00E906A6 /* SImage.h */,
-				EE6671FB1347693F00E906A6 /* SItem.h */,
-				EE6671FC1347693F00E906A6 /* SItem.mm */,
 				EE6671FD1347693F00E906A6 /* SPreview.h */,
 				EE6671FE1347693F00E906A6 /* SPreview.mm */,
+				EE6671FB1347693F00E906A6 /* SItem.h */,
+				EE6671FC1347693F00E906A6 /* SItem.mm */,
+				EE6671F91347693F00E906A6 /* SImage.cpp */,
+				EE6671FA1347693F00E906A6 /* SImage.h */,
 				EE6671FF1347693F00E906A6 /* SText.h */,
 				EE6672001347693F00E906A6 /* SText.mm */,
 				EE6672011347693F00E906A6 /* STextController.h */,
 				EE6672021347693F00E906A6 /* STextController.mm */,
+				EE95D0191349F249004A1263 /* SMenuController.h */,
+				EE95D01A1349F249004A1263 /* SMenuController.mm */,
 			);
 			name = classes;
 			path = src/classes;
@@ -630,6 +635,7 @@
 				EE66720C1347693F00E906A6 /* SText.mm in Sources */,
 				EE66720D1347693F00E906A6 /* STextController.mm in Sources */,
 				EE66720F1347693F00E906A6 /* main.cpp in Sources */,
+				EE95D01B1349F249004A1263 /* SMenuController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,25 +7,42 @@
 //
 
 #include "SText.h"
+#include "SPreview.h"
 #import <Cocoa/Cocoa.h>
 
 
 class SText;
+class SPreview;
 
 @interface STextController : NSWindowController {
-	IBOutlet NSTextField *textfield;
-	//IBOutlet NSTextField *xpos;
+	IBOutlet NSTextField *mainText;
+	IBOutlet NSTextField *xpos;
+	IBOutlet NSTextField *ypos;
+	IBOutlet NSTextField *width, *height;
 	SText *textPtr;
+	SPreview *previewPtr;
 	int uid;
 }
 
-
+//setters
 - (void) setParent: (SText*) p;
 
-- (int) uid;
-- (void) set_uid: (int) i;
 
-- (IBAction) textFieldChanged: (id) sender;
+- (void) updatePosFields: (int) x : (int) y;
+- (void) updateDimFields: (int) w : (int) h;
+- (void) updateMainTextField: (string) s;
+
+- (int) uid;
+- (void) setUid: (int) i;
+
+- (IBAction) xposChanged: (id) sender;
+- (IBAction) yposChanged: (id) sender;
+- (IBAction) widthChanged: (id) sender;
+- (IBAction) heightChanged: (id) sender;
+
+- (IBAction) mainTextFieldChanged: (id) sender;
 - (IBAction) setFont: (id) sender;
+
+- (IBAction) removeSelf: (id) sender;
 
 @end

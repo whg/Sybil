@@ -20,6 +20,8 @@ private:
 	int idc; //id counter
 	int fid; //focused id
 	
+	int ztrans;
+	
 public:
 	
 	~SPreview();
@@ -46,6 +48,11 @@ public:
 	
 	
 	vector<SItem *> items;
+	
+	void addTextItem();
+	
+	void removeItem(int i);
+	
 	
 	//SText *t;
 		

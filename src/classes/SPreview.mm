@@ -18,6 +18,7 @@ void SPreview::setup(){
 	
 	idc = 0;
 	fid = -1;
+	ztrans = 0;
 	
 	items.push_back(new SText(idc++));
 	
@@ -38,10 +39,15 @@ void SPreview::update(){
 // - + - DRAW - + -
 void SPreview::draw(){
 	
+	ofPushMatrix();
+	ofTranslate(0, 0, ztrans);
+	
 	ofSetColor(0, 0, 0);
 	for (int i = 0; i < items.size(); i++) {
 		items[i]->draw();
 	}
+	
+	ofPopMatrix();
 
 }
 
@@ -74,7 +80,7 @@ void SPreview::keyPressed(int key){
 }
 
 void SPreview::keyReleased(int key){
-	setText(0, "hello method");
+	
 }
 
 // - + - MOUSE - + -
@@ -89,6 +95,11 @@ void SPreview::mouseMoved(int x, int y){
 void SPreview::mouseDragged(int x, int y, int button){
 	for (int i = 0; i < items.size(); i++) {
 		items[i]->cursor(x, y);
+	}
+	
+	if (button == 2) {
+		ztrans = x-100;
+		printf("ztrans = %i", ztrans);
 	}
 }
 
@@ -116,5 +127,21 @@ void SPreview::mouseReleased(int x, int y, int button){
 
 void SPreview::hello() {
 	printf("hello\n");
+}
+
+void SPreview::addTextItem() {
+	items.push_back(new SText(idc++));
+	
+}
+
+void SPreview::removeItem(int i) {
+
+	for (int j = 0 ; j < items.size(); j++) {
+		if (items[j]->uid == i) {
+			delete items[j];
+			items.erase(items.begin()+j);
+			break;
+		}
+	}
 }
 

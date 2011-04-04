@@ -21,8 +21,8 @@ void SPreview::setup(){
 	
 	items.push_back(new SText(idc++));
 	
-	items.push_back(new SText(idc++));
-	items.push_back(new SText(idc++));
+	//items.push_back(new SText(idc++));
+	//items.push_back(new SText(idc++));
 		
 //	items[0]->setText("hello hello hello hello");
 	

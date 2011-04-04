@@ -6,7 +6,6 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-//#include "SPreview.h"
 #include "SText.h"
 #import <Cocoa/Cocoa.h>
 
@@ -15,9 +14,11 @@ class SText;
 
 @interface STextController : NSWindowController {
 	IBOutlet NSTextField *textfield;
+	//IBOutlet NSTextField *xpos;
 	SText *textPtr;
 	int uid;
 }
+
 
 - (void) setParent: (SText*) p;
 

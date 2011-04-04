@@ -19,6 +19,7 @@ class SPreview;
 	IBOutlet NSTextField *xpos;
 	IBOutlet NSTextField *ypos;
 	IBOutlet NSTextField *width, *height;
+	NSWindow *window;
 	SText *textPtr;
 	SPreview *previewPtr;
 	int uid;

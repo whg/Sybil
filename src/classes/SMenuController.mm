@@ -28,4 +28,9 @@
 	
 }
 
+- (IBAction) addText: (id) sender {
+	previewPtr->addImageItem();
+	
+}
+
 @end

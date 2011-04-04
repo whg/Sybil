@@ -66,7 +66,7 @@
 	return uid;
 }
 
-- (void) setUid: (int) i {
+- (void) setUid:(int) i {
 	uid = i;
 }
 
@@ -76,16 +76,17 @@
 
 }
 
-
-- (void) dealloc {
-		
+- (void) finalize {
 	[mainText release];
 	[xpos release];
 	[ypos release];
 	[width release];
 	[height release];
+	NSLog(@"released from controller");
 	
-	[super dealloc];
+	[super finalize];
 }
+	
+
 
 @end

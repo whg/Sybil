@@ -3,7 +3,7 @@
 //  Sybil
 //
 //  Created by Will Gallia on 04/04/2011.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 . All rights reserved.
 //
 
 class SItem;
@@ -79,7 +79,7 @@ class SPreview;
 	
 }
 
-- (void) finalize {
+- (void) dealloc {
 	[window close];
 	[xpos release];
 	[ypos release];
@@ -87,7 +87,7 @@ class SPreview;
 	[height release];
 	NSLog(@"released from item controller");
 	
-	[super finalize];
+	[super dealloc];
 }
 
 

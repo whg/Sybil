@@ -23,14 +23,13 @@ void SPreview::setup(){
 	fid = -1;
 	ztrans = 0;
 	
-	items.push_back(new SText(idc++));
 	
 	//items.push_back(new SText(idc++));
 	//items.push_back(new SText(idc++));
 		
 //	items[0]->setText("hello hello hello hello");
 	
-	//set up interface - do this last
+	//set up cocoa part - do this last
 	NSApplicationMain(0, NULL);
 
 }

@@ -3,7 +3,7 @@
  *  Sybil
  *
  *  Created by Will Gallia on 07/03/2011.
- *  Copyright 2011 __MyCompanyName__. All rights reserved.
+ *  Copyright 2011 . All rights reserved.
  *
  */
 
@@ -37,7 +37,9 @@ SText::SText(int i)
 }
 
 SText::~SText() {
-	[windowController close];
+	[windowController release];
+
+	//[windowController close];
 	printf("stext deconstructed\n");
 	
 }

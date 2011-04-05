@@ -3,7 +3,7 @@
  *  Sybil
  *
  *  Created by Will Gallia on 21/03/2011.
- *  Copyright 2011 __MyCompanyName__. All rights reserved.
+ *  Copyright 2011 . All rights reserved.
  *
  */
 
@@ -22,7 +22,10 @@
 class SImage : public SItem {
 	
 private:
-	ofImage *baseImage;
+	ofImage baseImage;
+	int baseWidth, baseHeight;
+	float imgRatio;
+	bool imageSet;
 	SImageController *windowController;
 	
 public:
@@ -30,6 +33,9 @@ public:
 	SImage(int i);
 	~SImage();
 	
+	void draw();
+	
+	void loadImage(string path);
 	
 	
 };

@@ -3,7 +3,7 @@
 //  Sybil
 //
 //  Created by Will Gallia on 07/03/2011.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 . All rights reserved.
 //
 
 #include "SItem.h"
@@ -32,12 +32,17 @@
 	NSLog(@"set text and value = %@", sender);
 }
 
+- (IBAction) removeSelf: (id) sender {
+	NSLog(@"remove self from stext controller");
+	[self close];
+	[super removeSelf:nil];
+}
 
-- (void) finalize {
+- (void) dealloc {
 	[mainText release];
 	NSLog(@"released from text controller");
 	
-	[super finalize];
+	[super dealloc];
 }
 	
 

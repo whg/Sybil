@@ -3,7 +3,7 @@
  *  Sybil
  *
  *  Created by Will Gallia on 20/03/2011.
- *  Copyright 2011 __MyCompanyName__. All rights reserved.
+ *  Copyright 2011 . All rights reserved.
  *
  */
 
@@ -18,12 +18,13 @@ SPreview *previewPtr;
 SItem::SItem(int i) {
 	uid = i; //set unique id
 	
+	//set initial attributes
 	pos.x = (int) ofRandom(0, 100);
 	pos.y = (int) ofRandom(0, 100);
 	dim.x = 200;
 	dim.y = 50;
 
-	
+	//init variables
 	resizeMargin = 5;
 	focus = false;
 	cursorType = NONE;
@@ -35,16 +36,14 @@ SItem::SItem(int i) {
 
 SItem::~SItem() {	
 	
-	pos.x = 0;
-	pos.y = 0;
-	dim.x = 200;
-	dim.y = 50;
-	
-	resizeMargin = 5;
-	focus = false;
-	cursorType = NONE;
+	printf("SItem deconstructor called\n");
 }
 
+
+// all of these setters only work if
+// the value given is not -1, this way 
+// we can set only one component with 
+// one method...
 void SItem::setPos(int x, int y) {
 	if (x != -1) pos.x = x;
 	if (y != -1) pos.y = y;

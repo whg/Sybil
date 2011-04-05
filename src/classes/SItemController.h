@@ -3,7 +3,7 @@
 //  Sybil
 //
 //  Created by Will Gallia on 04/04/2011.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 . All rights reserved.
 //
 
 
@@ -11,7 +11,7 @@ class SItem;
 class SPreview;
 @class SItemController;
 
-//#include "SItem.h"
+#include "SItem.h"
 //#include "SPreview.h"
 #import <Cocoa/Cocoa.h>
 
@@ -25,10 +25,6 @@ class SPreview;
 	SPreview *previewPtr;
 	int uid;
 }
-
-//@property SPreview *previewPtr;
-//@property int uid;
-
 
 - (void) setParent: (SItem*) p;
 

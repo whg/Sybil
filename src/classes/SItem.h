@@ -3,7 +3,7 @@
  *  Sybil
  *
  *  Created by Will Gallia on 20/03/2011.
- *  Copyright 2011 __MyCompanyName__. All rights reserved.
+ *  Copyright 2011 . All rights reserved.
  *
  */
 
@@ -69,9 +69,10 @@ public:
 	
 	virtual void draw();
 	
-	
-	virtual void setText(string s) {};
 	virtual void update() {};
+	virtual void setText(string s) {};
+	virtual void loadImage(string s) {};
+	
 	virtual void hello();
 	
 	

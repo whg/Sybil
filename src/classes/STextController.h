@@ -3,7 +3,7 @@
 //  Sybil
 //
 //  Created by Will Gallia on 07/03/2011.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 . All rights reserved.
 //
 
 
@@ -19,5 +19,8 @@
 - (IBAction) mainTextFieldChanged: (id) sender;
 - (IBAction) setFont: (id) sender;
 
+
+//inherited
+- (IBAction) removeSelf: (id) sender;
 
 @end

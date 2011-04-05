@@ -3,7 +3,7 @@
 //  Sybil
 //
 //  Created by Will Gallia on 04/04/2011.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 . All rights reserved.
 //
 
 #import "SMenuController.h"
@@ -33,14 +33,6 @@
 	
 }
 
-
-- (IBAction)showOpenPanel:(id)sender
-{
-	NSOpenPanel *op = [NSOpenPanel openPanel];
-	
-	NSLog(@"apparently opened");
-	
-}
 
 //- (IBAction) addText: (id) sender {
 //	previewPtr->addImageItem();

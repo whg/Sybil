@@ -108,7 +108,6 @@ void SPreview::mouseDragged(int x, int y, int button){
 void SPreview::mousePressed(int x, int y, int button){
 	for (int i = 0; i < items.size(); i++) {
 		items[i]->setCurrentParams(x, y);
-		//items[i]->setCursorType(x, y);
 		if (items[i]->setActionType(x, y, ++button)) {
 			break;
 		}

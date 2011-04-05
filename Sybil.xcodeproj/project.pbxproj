@@ -185,7 +185,7 @@
 		EE95D249134A1FA0004A1263 /* ofxCvShortImage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxCvShortImage.cpp; sourceTree = "<group>"; };
 		EE95D24A134A1FA0004A1263 /* ofxCvShortImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxCvShortImage.h; sourceTree = "<group>"; };
 		EE95D24B134A1FA0004A1263 /* ofxOpenCv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOpenCv.h; sourceTree = "<group>"; };
-		EE95D29C134A2F3C004A1263 /* SImageWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SImageWindow.xib; path = ../../SImageWindow.xib; sourceTree = "<group>"; };
+		EE95D29C134A2F3C004A1263 /* SImageWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SImageWindow.xib; sourceTree = "<group>"; };
 		EE95D29E134A2F51004A1263 /* SImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SImageController.h; sourceTree = "<group>"; };
 		EE95D29F134A2F51004A1263 /* SImageController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SImageController.mm; sourceTree = "<group>"; };
 		EE95D2B5134A3212004A1263 /* SItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SItemController.h; sourceTree = "<group>"; };

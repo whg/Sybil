@@ -19,8 +19,7 @@ SText::SText(int i)
 	lineHeight = ttf.getLineHeight();
 	genCharWidth = lineHeight/3;
 	
-	text = "edit this";
-	setText(text);
+	setText("edit this");
 	
 	//don't understand this, but it works
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
@@ -31,7 +30,7 @@ SText::SText(int i)
 	[windowController showWindow:nil];
 	[pool drain];
 	
-	updateWindow();
+	update();
 	
 
 	
@@ -84,7 +83,6 @@ void SText::setText(string s) {
 	text = s;
 	wrapLines();
 	setYDim();
-	updateWindow();
 }
 
 void SText::hello() {
@@ -141,8 +139,10 @@ void SText::setYDim() {
 	}
 }
 
-void SText::updateWindow() {
+void SText::update() {
 	[windowController updatePosFields:pos.x:pos.y];
 	[windowController updateDimFields:dim.x :dim.y];
 	[windowController updateMainTextField:text];
+	wrapLines();
+	setYDim();
 }

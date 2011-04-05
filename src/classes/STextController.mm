@@ -6,52 +6,22 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+#include "SItem.h"
 #import "STextController.h"
+
 
 @implementation STextController
 
 
 - (void) loadWindow{
 		
-	previewPtr = (SPreview*) ofGetAppPtr();
 	[super loadWindow];
 	
 }
 
-- (void) setParent:(SText *)p {
-	textPtr = p;
-}
 
 - (IBAction) mainTextFieldChanged: (id) sender {
-	textPtr->setText([[sender stringValue] UTF8String]);
-}
-
-- (IBAction) xposChanged: (id) sender {
-	textPtr->setPos([sender intValue], -1);
-}
-
-- (IBAction) yposChanged: (id) sender {
-	textPtr->setPos(-1, [sender intValue]);
-}
-
-- (IBAction) widthChanged: (id) sender {
-	textPtr->setDim([sender intValue], -1);
-}
-
-- (IBAction) heightChanged: (id) sender {
-	textPtr->setDim(-1, [sender intValue]);
-}
-
-- (void) updatePosFields:(int)x :(int)y {
-	
-	xpos.intValue = x;
-	ypos.intValue = y;
-	
-}
-
-- (void) updateDimFields:(int)w: (int)h {
-	width.intValue = w;
-	height.intValue = h;
+	itemPtr->setText([[sender stringValue] UTF8String]);
 }
 
 - (void) updateMainTextField:(string)s {
@@ -62,27 +32,10 @@
 	NSLog(@"set text and value = %@", sender);
 }
 
-- (int) uid {
-	return uid;
-}
-
-- (void) setUid:(int) i {
-	uid = i;
-}
-
-- (void) removeSelf:(id)sender {
-
-	previewPtr->removeItem(uid);
-
-}
 
 - (void) finalize {
 	[mainText release];
-	[xpos release];
-	[ypos release];
-	[width release];
-	[height release];
-	NSLog(@"released from controller");
+	NSLog(@"released from text controller");
 	
 	[super finalize];
 }

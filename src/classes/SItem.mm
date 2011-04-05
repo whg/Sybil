@@ -197,7 +197,7 @@ void SItem::mouseActions(int x, int y) {
 		dim.y = yDimS + y - initMY;
 	}
 	
-	updateWindow();
+	update();
 }
 
 void SItem::hello() {

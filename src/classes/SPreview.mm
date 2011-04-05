@@ -1,5 +1,8 @@
 #include "SPreview.h"
 
+
+@class SItemController;
+
 // - + - DECONSRUCTOR - + -
 SPreview::~SPreview() {
 	for (int i = 0; i < items.size(); i++) {
@@ -13,7 +16,7 @@ void SPreview::setup(){
 	
 	ofBackground(255, 255, 255);
 	ofSetBackgroundAuto(true);
-	ofSetFrameRate(50);
+	ofSetFrameRate(25);
 	ofEnableSmoothing();
 	
 	idc = 0;
@@ -131,6 +134,11 @@ void SPreview::hello() {
 
 void SPreview::addTextItem() {
 	items.push_back(new SText(idc++));
+	
+}
+
+void SPreview::addImageItem() {
+	items.push_back(new SImage(idc++));
 	
 }
 

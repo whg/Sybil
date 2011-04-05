@@ -10,14 +10,26 @@
 #ifndef _SIMAGE
 #define _SIMAGE
 
+@class SImageController;
+
 #include "ofMain.h"
 #include "SItem.h"
+#import <Cocoa/Cocoa.h>
+#include "SImageController.h"
+
+
 
 class SImage : public SItem {
 	
 private:
+	ofImage *baseImage;
+	SImageController *windowController;
 	
 public:
+	SImage();
+	SImage(int i);
+	~SImage();
+	
 	
 	
 };

@@ -70,8 +70,8 @@ public:
 	virtual void draw();
 	
 	
-	virtual void setText(string s) = 0;
-	virtual void updateWindow() = 0;
+	virtual void setText(string s) {};
+	virtual void update() {};
 	virtual void hello();
 	
 	

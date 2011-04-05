@@ -6,12 +6,14 @@
 #include "ofMain.h"
 #include "SItem.h"
 #include "SText.h"
-#include "STextController.h"
+#include "SImage.h"
 
 //SPreview* previewPtr;
 
 //forward declare classes...
 class SItem;
+class SImage;
+@class SItemController;
 
 class SPreview : public ofBaseApp {
 	
@@ -50,6 +52,7 @@ public:
 	vector<SItem *> items;
 	
 	void addTextItem();
+	void addImageItem();
 	
 	void removeItem(int i);
 	

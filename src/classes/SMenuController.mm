@@ -28,9 +28,23 @@
 	
 }
 
-- (IBAction) addText: (id) sender {
+- (IBAction) addImage: (id) sender {
 	previewPtr->addImageItem();
 	
 }
+
+
+- (IBAction)showOpenPanel:(id)sender
+{
+	NSOpenPanel *op = [NSOpenPanel openPanel];
+	
+	NSLog(@"apparently opened");
+	
+}
+
+//- (IBAction) addText: (id) sender {
+//	previewPtr->addImageItem();
+//	
+//}
 
 @end

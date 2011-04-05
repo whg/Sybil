@@ -22,4 +22,7 @@ class SPreview;
 - (IBAction) addText: (id) sender;
 - (IBAction) addImage: (id) sender;
 
+//- (IBAction)showOpenPanel:(id)sender;
+
+
 @end

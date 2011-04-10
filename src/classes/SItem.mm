@@ -11,18 +11,16 @@
 #include "SItem.h"
 #include "SPreview.h"
 
-//this is a silly way of doing things
-SPreview *previewPtr;
-
-
 SItem::SItem(int i) {
 	uid = i; //set unique id
 	
 	//set initial attributes
-	pos.x = (int) ofRandom(0, 100);
-	pos.y = (int) ofRandom(0, 100);
-	dim.x = 200;
-	dim.y = 50;
+	pos = SPoint((int) ofRandom(0, 100), (int) ofRandom(0, 100));
+	dim = SPoint(150, 50);
+//	pos.x = (int) ofRandom(0, 100);
+//	pos.y = (int) ofRandom(0, 100);
+//	dim.x = 200;
+//	dim.y = 50;
 
 	//init variables
 	resizeMargin = 5;
@@ -96,12 +94,16 @@ void SItem::cursor(int x, int y) {
 }
 
 void SItem::setCurrentParams(int x, int y) {
-	xOffset = x - pos.x;
-	yOffset = y - pos.y;
-	xDimS = dim.x;
-	yDimS = dim.y;
-	initMX = x;
-	initMY = y;
+	offset.set(x - pos.x, y - pos.y);
+	initDim.set(dim.x, dim.y);
+	initPos.set(x, y);
+	
+//	offset.x = x - pos.x;
+//	offset.y = y - pos.y;
+//	initDim.x = dim.x;
+//	initDim.y = dim.y;
+//	initPos.x = x;
+//	initPos.y = y;
 }
 
 bool SItem::setCursorType(int x, int y) {
@@ -182,21 +184,21 @@ void SItem::mouseActions(int x, int y) {
 	
 	//this is to move
 	if (cursorType == MOVE) { 
-		pos.x = x-xOffset; //do the move
-		pos.y = y-yOffset; 
+		pos.x = x-offset.x; //do the move
+		pos.y = y-offset.y; 
 	}
 	
 	//this is to resize
 	else if (cursorType == RESIZEX) {
-		dim.x = xDimS + x - initMX;
+		dim.x = initDim.x + x - initPos.x;
 		//do the line wrapping as well
 	}
 	
 	else if (cursorType == RESIZEY) {
-		dim.y = yDimS + y - initMY;
+		dim.y = initDim.y + y - initPos.y;
 	}
 	
-	update();
+	updateWindow();
 }
 
 void SItem::hello() {

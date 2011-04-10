@@ -38,7 +38,7 @@ class SText : public SItem {
 
 	void setText(string s);
 	
-	void update();
+	void updateWindow();
 	
 	void wrapLines();
 	void setYDim();

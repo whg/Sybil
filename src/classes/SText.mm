@@ -30,7 +30,7 @@ SText::SText(int i)
 	[windowController showWindow:nil];
 	[pool drain];
 	
-	update();
+	updateWindow();
 	
 
 	
@@ -141,7 +141,7 @@ void SText::setYDim() {
 	}
 }
 
-void SText::update() {
+void SText::updateWindow() {
 	[windowController updatePosFields:pos.x:pos.y];
 	[windowController updateDimFields:dim.x :dim.y];
 	[windowController updateMainTextField:text];

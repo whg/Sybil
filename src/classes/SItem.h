@@ -10,21 +10,20 @@
 #ifndef _SITEM
 #define _SITEM
 
+#include "STypes.h"
 #include "ofMain.h"
 
-typedef struct {
-	int x;
-	int y;
-} SPoint;
+class SPreview;
 
 class SItem {
 	
 private: 	
 	
 	//these are used for mouse actions
-	int xOffset, yOffset;
-	int initMX, initMY;
-	int xDimS, yDimS;
+	SPoint offset, initPos, initDim;
+//	int xOffset, yOffset;
+//	int initMX, initMY;
+//	int xDimS, yDimS;
 	
 	
 public:
@@ -34,7 +33,8 @@ public:
 	bool focus;
 	SPoint pos, dim;
 	int resizeMargin;
-		
+	SPreview *previewPtr;
+
 	enum cursorTypes {
 		NONE,
 		MOVE,
@@ -69,7 +69,7 @@ public:
 	
 	virtual void draw();
 	
-	virtual void update() {};
+	virtual void updateWindow() {};
 	virtual void setText(string s) {};
 	virtual void loadImage(string s) {};
 	

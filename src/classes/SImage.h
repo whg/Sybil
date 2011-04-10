@@ -13,20 +13,34 @@
 @class SImageController;
 
 #include "ofMain.h"
-#include "SItem.h"
+//#include "SItem.h"
 #import <Cocoa/Cocoa.h>
-#include "SImageController.h"
-
+#import "SImageController.h"
+#include "ofxOpenCv.h"
 
 
 class SImage : public SItem {
 	
 private:
 	ofImage baseImage;
-	int baseWidth, baseHeight;
+	//int baseWidth, baseHeight;
+	
+	//ofx openCV types
+	ofxCvGrayscaleImage colourImg, grayImg;
+	ofxCvContourFinder contourFinder;
+	
+	//these will hold the points... integer coordinates (SPoint)...
+	vector<SPoint> initPoints, points;
+	
+	
 	float imgRatio;
 	bool imageSet;
 	SImageController *windowController;
+	
+	float baseThreshold, numOf, diff, minArea;
+	
+	void findInitPoints();
+	
 	
 public:
 	SImage();
@@ -37,6 +51,9 @@ public:
 	
 	void loadImage(string path);
 	
+	void updateWindow();
+	
+	bool fixAspectRatio, showImage;
 	
 };
 

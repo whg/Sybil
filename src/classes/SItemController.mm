@@ -35,18 +35,22 @@ class SPreview;
 
 - (IBAction) xposChanged: (id) sender {
 	itemPtr->setPos([sender intValue], -1);
+	itemPtr->update();
 }
 
 - (IBAction) yposChanged: (id) sender {
 	itemPtr->setPos(-1, [sender intValue]);
+	itemPtr->update();
 }
 
 - (IBAction) widthChanged: (id) sender {
 	itemPtr->setDim([sender intValue], -1);
+	itemPtr->update();
 }
 
 - (IBAction) heightChanged: (id) sender {
 	itemPtr->setDim(-1, [sender intValue]);
+	itemPtr->update();
 }
 
 - (void) updatePosFields:(int)x :(int)y {

@@ -21,9 +21,6 @@ private:
 	
 	//these are used for mouse actions
 	SPoint offset, initPos, initDim;
-//	int xOffset, yOffset;
-//	int initMX, initMY;
-//	int xDimS, yDimS;
 	
 	
 public:
@@ -68,10 +65,8 @@ public:
 
 	
 	virtual void draw();
-	
+	virtual void update() {};
 	virtual void updateWindow() {};
-	virtual void setText(string s) {};
-	virtual void loadImage(string s) {};
 	
 	virtual void hello();
 	

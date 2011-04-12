@@ -15,6 +15,12 @@
 // init...
 - (void) loadWindow{
 	
+//	int sel[12];
+//	for (int i = 0; i < 12; i++) {
+//		sel[i] = i+1;
+//	}
+//	noLinesSelection = [[NSArray alloc] initWithObjects:sel count:12];
+	
 	[super loadWindow];
 	
 }
@@ -29,7 +35,7 @@
 	if (result == NSOKButton) {
 		NSURL *u = [op URL];
 		NSString *p = [[op URL] path];
-		itemPtr->loadImage([p UTF8String]);
+		((SImage*)itemPtr)->loadImage( [p UTF8String] );
 		[u release];
 		[p release];
 	}
@@ -43,18 +49,68 @@
 //very simple, allows you to toggle a fixed aspect ratio
 - (IBAction) fixAspectRatio: (id) sender {
 	
-	if ([sender state] == 1) {
-		((SImage*)itemPtr)->fixAspectRatio = true;
+	if ( [sender state] == 1) {
+		((SImage*)itemPtr)->setFixAspectRatio(true);
 	} else {
-		((SImage*)itemPtr)->fixAspectRatio = false;
+		((SImage*)itemPtr)->setFixAspectRatio(false);
 	}
+	itemPtr->update();
 }
 
 - (IBAction) showOriginalImage: (id) sender {
 	
-	NSLog(@"state = %i", [sender state]);
-	
+	if ( [sender state] == 1) {
+		((SImage*)itemPtr)->drawOriginalImage(true);
+	} else {
+		((SImage*)itemPtr)->drawOriginalImage(false);
+	}
+	//NSLog(@"state = %i", [sender state] );
+	itemPtr->update();
 }
+
+- (IBAction) baseThresholdChanged: (id) sender {
+	
+	((SImage*)itemPtr)->setBaseThreshold( [sender floatValue] );	
+	itemPtr->update();
+}
+
+- (IBAction) numOfLinesChanged: (id) sender {
+	
+	//NSLog(@"no of lines = %i", [sender indexOfSelectedItem] );
+	//using a very cheap method here... the index + 1... pretty bad form...
+	//... feel like i should bind an array to the popup button... but time is running out...
+	((SImage*)itemPtr)->setNumberOfLines(((int)[sender indexOfSelectedItem] )+1);
+	itemPtr->update();
+}
+
+- (IBAction) lineSpacingChanged: (id) sender {
+
+	((SImage*)itemPtr)->setLineSpacing( [sender floatValue] );
+	itemPtr->update();
+}
+
+- (IBAction) minimumAreaChanged: (id) sender {
+	
+	((SImage*)itemPtr)->setMinArea( [sender floatValue] );
+	itemPtr->update();
+}
+
+- (IBAction) enableSmoothingChanged: (id) sender {
+	
+	if ( [sender state] ) {
+		((SImage*)itemPtr)->enableSmoothing(true);
+	} else {
+		((SImage*)itemPtr)->enableSmoothing(false);
+	}
+	itemPtr->update();
+}
+
+- (IBAction) smoothingRadiusChanged: (id) sender {
+
+	((SImage*)itemPtr)->setSmoothingRadius( [sender intValue] );
+	itemPtr->update();
+}
+
 
 - (IBAction) removeSelf: (id) sender {
 	NSLog(@"remove self from simage controller");
@@ -63,6 +119,9 @@
 }
 
 - (void) finalize {
+	
+//	[noLinesSelection release];
+//	[arrayController release];
 	
 	NSLog(@"finalized from SImageController");
 	[super finalize];

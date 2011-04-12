@@ -9,7 +9,7 @@
 
 #import "SItemController.h"
 #import <Cocoa/Cocoa.h>
-
+#include "SText.h"
 
 @interface STextController : SItemController {
 	IBOutlet NSTextField *mainText;

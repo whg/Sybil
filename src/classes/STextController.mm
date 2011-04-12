@@ -21,7 +21,7 @@
 
 
 - (IBAction) mainTextFieldChanged: (id) sender {
-	itemPtr->setText([[sender stringValue] UTF8String]);
+	((SText*)itemPtr)->setText([[sender stringValue] UTF8String]);
 }
 
 - (void) updateMainTextField:(string)s {

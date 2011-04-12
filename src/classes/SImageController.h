@@ -14,12 +14,23 @@
 
 @interface SImageController : SItemController {
 	
-	
+//	NSArray* noLinesSelection;
+//	IBOutlet NSArrayController* arrayController;
+
 }
+
 
 - (IBAction) openFile: (id) sender;
 - (IBAction) fixAspectRatio: (id) sender;
-- (IBAction) showOrignalImage: (id) sender;
+- (IBAction) showOriginalImage: (id) sender;
+- (IBAction) baseThresholdChanged: (id) sender;
+- (IBAction) numOfLinesChanged: (id) sender;
+- (IBAction) lineSpacingChanged: (id) sender;
+- (IBAction) minimumAreaChanged: (id) sender;
+- (IBAction) enableSmoothingChanged: (id) sender;
+- (IBAction) smoothingRadiusChanged: (id) sender;
+
+
 
 - (IBAction) removeSelf: (id) sender;
 

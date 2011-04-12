@@ -17,10 +17,6 @@ SItem::SItem(int i) {
 	//set initial attributes
 	pos = SPoint((int) ofRandom(0, 100), (int) ofRandom(0, 100));
 	dim = SPoint(150, 50);
-//	pos.x = (int) ofRandom(0, 100);
-//	pos.y = (int) ofRandom(0, 100);
-//	dim.x = 200;
-//	dim.y = 50;
 
 	//init variables
 	resizeMargin = 5;
@@ -54,15 +50,18 @@ void SItem::setDim(int w, int h) {
 
 void SItem::setAll(int x, int y, int w, int h) {
 	if (x != -1) pos.x = x;
-	if (x != -1) pos.y = y;
-	if (x != -1) dim.x = w;
-	if (x != -1) dim.y = h;
+	if (y != -1) pos.y = y;
+	if (w != -1) dim.x = w;
+	if (h != -1) dim.y = h;
 }
 
 void SItem::setFocus(bool b) {
 	focus = b;
 }
 
+
+//generic draw method, just draws a bounding box
+//will never be called...
 void SItem::draw() {
 	ofPushMatrix();
 	ofTranslate(pos.x, pos.y);
@@ -97,13 +96,7 @@ void SItem::setCurrentParams(int x, int y) {
 	offset.set(x - pos.x, y - pos.y);
 	initDim.set(dim.x, dim.y);
 	initPos.set(x, y);
-	
-//	offset.x = x - pos.x;
-//	offset.y = y - pos.y;
-//	initDim.x = dim.x;
-//	initDim.y = dim.y;
-//	initPos.x = x;
-//	initPos.y = y;
+
 }
 
 bool SItem::setCursorType(int x, int y) {
@@ -117,14 +110,16 @@ bool SItem::setCursorType(int x, int y) {
 	
 	//this is for increasing x, ie right border
 	else if (x > pos.x + dim.x - resizeMargin && x < pos.x + dim.x + resizeMargin &&
-					 y > pos.y && y < pos.y + dim.y) {
+					 y > pos.y && y < pos.y + dim.y &&
+					 dim.x > 0 && dim.y > 0) {
 		glutSetCursor(GLUT_CURSOR_LEFT_RIGHT);	
 		return true;
 	}
 	
 	//this is for increasing y, ie the bottom
 	else if (x > pos.x && x < pos.x + dim.x &&
-					 y > pos.y  + dim.y - resizeMargin && y < pos.y + dim.y + resizeMargin) {
+					 y > pos.y  + dim.y - resizeMargin && y < pos.y + dim.y + resizeMargin &&
+					 dim.x > 0 && dim.y > 0) {
 		glutSetCursor(GLUT_CURSOR_UP_DOWN);
 		return true;
 	}

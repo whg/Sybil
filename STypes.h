@@ -14,7 +14,7 @@
 class SPoint {
 public:
 	
-	virtual ~SPoint() {}
+	~SPoint() {}
 	
 	int x;
 	int y;
@@ -29,42 +29,19 @@ public:
 		y = _y;
 	}
 	
-//	SPoint(const SPoint &p) {
-//		x = p.x;
-//		y = p.y;
-//	}
+	SPoint(const SPoint &p) {
+		x = p.x;
+		y = p.y;
+	}
 	
 	void set(int _x, int _y) {
 		x = _x;
 		y = _y;
 	} 
 	
-//	struct {
-//		int x;
-//		int y;
-//	};
 	
 	
 };
 
-class SS {
-	
-public:
-	
-	int x;
-	int y;
-	
-	SS(int _x, int _y) {
-		x = _x;
-		y = _y;
-	}
-	
-	void set(int _x, int _y) {
-		x = _x;
-		y = _y;
-	}
-	
-	
-};
 
 #endif

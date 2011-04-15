@@ -32,10 +32,10 @@
 		E4C2429410CC5C38004149E2 /* freetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2429310CC5C38004149E2 /* freetype.a */; };
 		E4C242CD10CC650E004149E2 /* libfmodex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C242CC10CC650E004149E2 /* libfmodex.dylib */; };
 		E4C246DA10CCAE22004149E2 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C246D910CCAE22004149E2 /* freeimage.a */; };
-		EE6672091347693F00E906A6 /* SImage.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE6671F91347693F00E906A6 /* SImage.mm */; };
-		EE66720A1347693F00E906A6 /* SItem.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE6671FC1347693F00E906A6 /* SItem.mm */; };
-		EE66720B1347693F00E906A6 /* SPreview.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE6671FE1347693F00E906A6 /* SPreview.mm */; };
-		EE66720C1347693F00E906A6 /* SText.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE6672001347693F00E906A6 /* SText.mm */; };
+		EE6672091347693F00E906A6 /* SImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE6671F91347693F00E906A6 /* SImage.cpp */; };
+		EE66720A1347693F00E906A6 /* SItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE6671FC1347693F00E906A6 /* SItem.cpp */; };
+		EE66720B1347693F00E906A6 /* SPreview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */; };
+		EE66720C1347693F00E906A6 /* SText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE6672001347693F00E906A6 /* SText.cpp */; };
 		EE66720D1347693F00E906A6 /* STextController.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE6672021347693F00E906A6 /* STextController.mm */; };
 		EE66720F1347693F00E906A6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE6672041347693F00E906A6 /* main.cpp */; };
 		EE6672101347693F00E906A6 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = EE6672061347693F00E906A6 /* MainMenu.nib */; };
@@ -134,14 +134,14 @@
 		E4C2429310CC5C38004149E2 /* freetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freetype.a; path = ../../../libs/freetype/lib/osx/freetype.a; sourceTree = SOURCE_ROOT; };
 		E4C242CC10CC650E004149E2 /* libfmodex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmodex.dylib; path = ../../../libs/fmodex/lib/osx/libfmodex.dylib; sourceTree = SOURCE_ROOT; };
 		E4C246D910CCAE22004149E2 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../../libs/FreeImage/lib/osx/freeimage.a; sourceTree = SOURCE_ROOT; };
-		EE6671F91347693F00E906A6 /* SImage.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; includeInIndex = 1; path = SImage.mm; sourceTree = "<group>"; };
+		EE6671F91347693F00E906A6 /* SImage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; includeInIndex = 1; path = SImage.cpp; sourceTree = "<group>"; };
 		EE6671FA1347693F00E906A6 /* SImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SImage.h; sourceTree = "<group>"; };
 		EE6671FB1347693F00E906A6 /* SItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SItem.h; sourceTree = "<group>"; };
-		EE6671FC1347693F00E906A6 /* SItem.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SItem.mm; sourceTree = "<group>"; };
+		EE6671FC1347693F00E906A6 /* SItem.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = SItem.cpp; sourceTree = "<group>"; };
 		EE6671FD1347693F00E906A6 /* SPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPreview.h; sourceTree = "<group>"; };
-		EE6671FE1347693F00E906A6 /* SPreview.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SPreview.mm; sourceTree = "<group>"; };
+		EE6671FE1347693F00E906A6 /* SPreview.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = SPreview.cpp; sourceTree = "<group>"; };
 		EE6671FF1347693F00E906A6 /* SText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SText.h; sourceTree = "<group>"; };
-		EE6672001347693F00E906A6 /* SText.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SText.mm; sourceTree = "<group>"; };
+		EE6672001347693F00E906A6 /* SText.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = SText.cpp; sourceTree = "<group>"; };
 		EE6672011347693F00E906A6 /* STextController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STextController.h; sourceTree = "<group>"; };
 		EE6672021347693F00E906A6 /* STextController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = STextController.mm; sourceTree = "<group>"; };
 		EE6672041347693F00E906A6 /* main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = main.cpp; path = src/main.cpp; sourceTree = "<group>"; };
@@ -514,7 +514,7 @@
 			isa = PBXGroup;
 			children = (
 				EE6671FD1347693F00E906A6 /* SPreview.h */,
-				EE6671FE1347693F00E906A6 /* SPreview.mm */,
+				EE6671FE1347693F00E906A6 /* SPreview.cpp */,
 				EE95D125134A0C35004A1263 /* SItem */,
 				EE95D124134A0BDB004A1263 /* SImage */,
 				EE95D123134A0BC8004A1263 /* SText */,
@@ -541,7 +541,7 @@
 			isa = PBXGroup;
 			children = (
 				EE6671FF1347693F00E906A6 /* SText.h */,
-				EE6672001347693F00E906A6 /* SText.mm */,
+				EE6672001347693F00E906A6 /* SText.cpp */,
 				EE6672011347693F00E906A6 /* STextController.h */,
 				EE6672021347693F00E906A6 /* STextController.mm */,
 			);
@@ -552,7 +552,7 @@
 			isa = PBXGroup;
 			children = (
 				EE6671FA1347693F00E906A6 /* SImage.h */,
-				EE6671F91347693F00E906A6 /* SImage.mm */,
+				EE6671F91347693F00E906A6 /* SImage.cpp */,
 				EE95D29E134A2F51004A1263 /* SImageController.h */,
 				EE95D29F134A2F51004A1263 /* SImageController.mm */,
 			);
@@ -563,7 +563,7 @@
 			isa = PBXGroup;
 			children = (
 				EE6671FB1347693F00E906A6 /* SItem.h */,
-				EE6671FC1347693F00E906A6 /* SItem.mm */,
+				EE6671FC1347693F00E906A6 /* SItem.cpp */,
 				EE95D2B5134A3212004A1263 /* SItemController.h */,
 				EE95D2B6134A3212004A1263 /* SItemController.mm */,
 			);
@@ -804,10 +804,10 @@
 				EEBB0FE112F8C45400855BED /* ofxMatrix3x3.cpp in Sources */,
 				EEBB0FE212F8C45400855BED /* ofxMatrix4x4.cpp in Sources */,
 				EEBB0FE312F8C45400855BED /* ofxQuaternion.cpp in Sources */,
-				EE6672091347693F00E906A6 /* SImage.mm in Sources */,
-				EE66720A1347693F00E906A6 /* SItem.mm in Sources */,
-				EE66720B1347693F00E906A6 /* SPreview.mm in Sources */,
-				EE66720C1347693F00E906A6 /* SText.mm in Sources */,
+				EE6672091347693F00E906A6 /* SImage.cpp in Sources */,
+				EE66720A1347693F00E906A6 /* SItem.cpp in Sources */,
+				EE66720B1347693F00E906A6 /* SPreview.cpp in Sources */,
+				EE66720C1347693F00E906A6 /* SText.cpp in Sources */,
 				EE66720D1347693F00E906A6 /* STextController.mm in Sources */,
 				EE66720F1347693F00E906A6 /* main.cpp in Sources */,
 				EE95D01B1349F249004A1263 /* SMenuController.mm in Sources */,

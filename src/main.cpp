@@ -5,7 +5,6 @@
 
 // - + - + - + - + - + - + - + -
 
-
 int main() {
 
 	ofAppGlutWindow window;

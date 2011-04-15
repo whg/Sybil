@@ -64,7 +64,6 @@
 	} else {
 		((SImage*)itemPtr)->drawOriginalImage(false);
 	}
-	//NSLog(@"state = %i", [sender state] );
 	itemPtr->update();
 }
 
@@ -76,7 +75,6 @@
 
 - (IBAction) numOfLinesChanged: (id) sender {
 	
-	//NSLog(@"no of lines = %i", [sender indexOfSelectedItem] );
 	//using a very cheap method here... the index + 1... pretty bad form...
 	//... feel like i should bind an array to the popup button... but time is running out...
 	((SImage*)itemPtr)->setNumberOfLines(((int)[sender indexOfSelectedItem] )+1);

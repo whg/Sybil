@@ -5,29 +5,37 @@
 
 // - + - DECONSRUCTOR - + -
 SPreview::~SPreview() {
+	
+	//delete all items
 	for (int i = 0; i < items.size(); i++) {
 		delete items[i];
 	}
+	
+	//delete the terminal
+	delete terminal;
 }
 
 
 // - + - SETUP - + -
 void SPreview::setup(){
 	
+	//set up all oF things...
 	ofBackground(255, 255, 255);
 	ofSetBackgroundAuto(true);
 	ofSetFrameRate(25);
 	ofEnableSmoothing();
+	ofEnableAlphaBlending();
+
 	
 	idc = 0;
 	fid = -1;
 	ztrans = 0;
 	
+	//instantiate terminal
+	terminal = new STerm();
 	
-	//items.push_back(new SText(idc++));
-	//items.push_back(new SText(idc++));
-		
-//	items[0]->setText("hello hello hello hello");
+	//start with preview
+	mode = TERMINAL;
 	
 	//set up cocoa part - do this last
 	NSApplicationMain(0, NULL);
@@ -41,18 +49,35 @@ void SPreview::update(){
 // - + - DRAW - + -
 void SPreview::draw(){
 	
-	ofPushMatrix();
-	ofTranslate(0, 0, ztrans);
-	
-	ofSetColor(0, 0, 0);
-	for (int i = 0; i < items.size(); i++) {
-		items[i]->draw();
+	switch (mode) {
+			
+		//draw preview mode.
+		//this draws all items...
+		case PREVIEW:
+			
+			ofPushMatrix();
+			ofTranslate(0, 0, ztrans);
+			
+			ofSetColor(0, 0, 0);
+			for (int i = 0; i < items.size(); i++) {
+				items[i]->draw();
+			}
+			ofPopMatrix();
+			break;
+			
+			
+		//draw the terminal
+		case TERMINAL:
+			
+			terminal->draw();
+			break;
+
 	}
-	
-	ofPopMatrix();
 
 }
 
+//focus stuff... 
+//this is so only one thing is change at a time...
 void SPreview::setFocus(int i) {
 	fid = i;
 }
@@ -61,24 +86,15 @@ int SPreview::getFocus() {
 	return fid;
 }
 
-void SPreview::setText(int i, string text) {
-	//items[i]->setText(text);
-	tt = "hello";
-	cout << "i = " << i << ", text = " << text << endl;
-}
-
 
 // - + - KEYS - + -
 void SPreview::keyPressed(int key){
-	printf("key = %i\n", key);
-	switch (key) {
-		case 'a':
-			//t->setText("ASDF ADF AS REAF ASDF ADFS");
-			break;
-
-		default:
-			break;
+	
+	//send the keypresses to the terminal
+	if (mode == TERMINAL) {
+		terminal->keyPressed(key);
 	}
+
 }
 
 void SPreview::keyReleased(int key){
@@ -126,9 +142,6 @@ void SPreview::mouseReleased(int x, int y, int button){
 	}
 }
 
-void SPreview::hello() {
-	printf("hello\n");
-}
 
 void SPreview::addTextItem() {
 	items.push_back(new SText(idc++));
@@ -151,3 +164,14 @@ void SPreview::removeItem(int i) {
 	}
 }
 
+void SPreview::setMode(int m) {
+	switch (m) {
+		case 0:
+			mode = PREVIEW;
+			break;
+		case 1:
+			mode = TERMINAL;
+			break;
+
+	}
+}

@@ -7,13 +7,13 @@
 #include "SItem.h"
 #include "SText.h"
 #include "SImage.h"
-
-//SPreview* previewPtr;
+#include "STerm.h"
 
 //forward declare classes...
 class SItem;
 class SImage;
 @class SItemController;
+class STerm;
 
 class SPreview : public ofBaseApp {
 	
@@ -23,6 +23,8 @@ private:
 	int fid; //focused id
 	
 	int ztrans;
+	
+	STerm* terminal;
 	
 public:
 	
@@ -42,13 +44,9 @@ public:
 	void setFocus(int i);
 	int getFocus();
 	
-	void setText(int i, string text);
-	
-	void hello();
-
-	float oneDecimalPoint(float x);
-	
-	
+	void setMode(int m);
+			
+	//these are where all the items are stored...
 	vector<SItem *> items;
 	
 	void addTextItem();
@@ -57,20 +55,15 @@ public:
 	void removeItem(int i);
 	
 	
-	//SText *t;
-		
-	string tt;
+	enum modes {
+		PREVIEW,
+		TERMINAL
+	};
+	
+	modes mode;
+	
 };
 
-//this is just a little helper, might use it...
-inline float SPreview::oneDecimalPoint(float x) {
-	x*= 10.0;	
-	double ip;
-	if (modf(x, &ip) > 0.5) x = ceil(x);
-	else x = floor(x);
-	x/= 10.0;
-	return x;
-}
 
 
 #endif

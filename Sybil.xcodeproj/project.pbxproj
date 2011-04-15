@@ -32,6 +32,7 @@
 		E4C2429410CC5C38004149E2 /* freetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2429310CC5C38004149E2 /* freetype.a */; };
 		E4C242CD10CC650E004149E2 /* libfmodex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C242CC10CC650E004149E2 /* libfmodex.dylib */; };
 		E4C246DA10CCAE22004149E2 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C246D910CCAE22004149E2 /* freeimage.a */; };
+		EE633F4A1358C26C004885E7 /* STerm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE633F491358C26C004885E7 /* STerm.cpp */; };
 		EE6672091347693F00E906A6 /* SImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE6671F91347693F00E906A6 /* SImage.cpp */; };
 		EE66720A1347693F00E906A6 /* SItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE6671FC1347693F00E906A6 /* SItem.cpp */; };
 		EE66720B1347693F00E906A6 /* SPreview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */; };
@@ -134,6 +135,8 @@
 		E4C2429310CC5C38004149E2 /* freetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freetype.a; path = ../../../libs/freetype/lib/osx/freetype.a; sourceTree = SOURCE_ROOT; };
 		E4C242CC10CC650E004149E2 /* libfmodex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmodex.dylib; path = ../../../libs/fmodex/lib/osx/libfmodex.dylib; sourceTree = SOURCE_ROOT; };
 		E4C246D910CCAE22004149E2 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../../libs/FreeImage/lib/osx/freeimage.a; sourceTree = SOURCE_ROOT; };
+		EE633F481358C26C004885E7 /* STerm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STerm.h; sourceTree = "<group>"; };
+		EE633F491358C26C004885E7 /* STerm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = STerm.cpp; sourceTree = "<group>"; };
 		EE6671F91347693F00E906A6 /* SImage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; includeInIndex = 1; path = SImage.cpp; sourceTree = "<group>"; };
 		EE6671FA1347693F00E906A6 /* SImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SImage.h; sourceTree = "<group>"; };
 		EE6671FB1347693F00E906A6 /* SItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SItem.h; sourceTree = "<group>"; };
@@ -521,6 +524,8 @@
 				EE95D0191349F249004A1263 /* SMenuController.h */,
 				EE95D01A1349F249004A1263 /* SMenuController.mm */,
 				EEB771FA1350F59A00B10568 /* STypes.h */,
+				EE633F481358C26C004885E7 /* STerm.h */,
+				EE633F491358C26C004885E7 /* STerm.cpp */,
 			);
 			name = classes;
 			path = src/classes;
@@ -819,6 +824,7 @@
 				EE95D253134A1FA0004A1263 /* ofxCvShortImage.cpp in Sources */,
 				EE95D2A0134A2F51004A1263 /* SImageController.mm in Sources */,
 				EE95D2B7134A3212004A1263 /* SItemController.mm in Sources */,
+				EE633F4A1358C26C004885E7 /* STerm.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

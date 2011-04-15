@@ -33,10 +33,16 @@
 	
 }
 
+- (IBAction) changeToPreview: (id) sender {
+	previewPtr->setMode(0);
+	
+}
 
-//- (IBAction) addText: (id) sender {
-//	previewPtr->addImageItem();
-//	
-//}
+
+- (IBAction) changeToTerminal: (id) sender {
+	previewPtr->setMode(1);
+	
+}
+
 
 @end

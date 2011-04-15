@@ -21,6 +21,8 @@ class SPreview;
 
 - (IBAction) addText: (id) sender;
 - (IBAction) addImage: (id) sender;
+- (IBAction) changeToPreview: (id) sender;
+- (IBAction) changeToTerminal: (id) sender;
 
 //- (IBAction)showOpenPanel:(id)sender;
 

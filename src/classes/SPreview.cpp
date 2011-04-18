@@ -1,9 +1,16 @@
+/*
+ *  SPreview.cpp
+ *  Sybil
+ *
+ *  Created by Will Gallia on 06/02/2011.
+ *  Copyright 2011 . All rights reserved.
+ *
+ */
+
+
 #include "SPreview.h"
 
-
-@class SItemController;
-
-// - + - DECONSRUCTOR - + -
+// - - - DECONSRUCTOR - - -
 SPreview::~SPreview() {
 	
 	//delete all items
@@ -13,16 +20,19 @@ SPreview::~SPreview() {
 	
 	//delete the terminal
 	delete terminal;
+	
+	//delete serial
+	delete serial;
 }
 
 
-// - + - SETUP - + -
+// - - - SETUP - - -
 void SPreview::setup(){
 	
 	//set up all oF things...
 	ofBackground(255, 255, 255);
 	ofSetBackgroundAuto(true);
-	ofSetFrameRate(25);
+	ofSetFrameRate(30);
 	ofEnableSmoothing();
 	ofEnableAlphaBlending();
 
@@ -30,23 +40,37 @@ void SPreview::setup(){
 	idc = 0;
 	fid = -1;
 	ztrans = 0;
+	startedDrawing = false;
 	
-	//instantiate terminal
-	terminal = new STerm();
+	//instantiate serial
+	serial = new SSerial();
 	
-	//start with preview
-	mode = TERMINAL;
+	//instantiate terminal, passing pointer to serial connection
+	terminal = new STerm(serial);
+	
+	setViewMode(TERMINAL);
 	
 	//set up cocoa part - do this last
 	NSApplicationMain(0, NULL);
 
 }
 
-// - + - UPDATE - + -
+/* - - - UPDATE - - -
+
+ this is where we do the serial stuff...
+ things can happen pretty fast so we need to check every frame...
+
+ */
+
 void SPreview::update(){
+	
+	if (startedDrawing) {
+		serial->update();
+	}
+	
 }
 
-// - + - DRAW - + -
+// - - - DRAW - - -
 void SPreview::draw(){
 	
 	switch (mode) {
@@ -63,8 +87,8 @@ void SPreview::draw(){
 				items[i]->draw();
 			}
 			ofPopMatrix();
-			break;
 			
+			break;
 			
 		//draw the terminal
 		case TERMINAL:
@@ -87,7 +111,14 @@ int SPreview::getFocus() {
 }
 
 
-// - + - KEYS - + -
+/* 
+ - - - KEYS - - -
+ 
+ not a lot going on here...
+ if in terminal mode, send all keypressses to terminal
+ 
+ */
+
 void SPreview::keyPressed(int key){
 	
 	//send the keypresses to the terminal
@@ -101,18 +132,32 @@ void SPreview::keyReleased(int key){
 	
 }
 
-// - + - MOUSE - + -
+/*
+ 
+ - - - MOUSE ACTIONS - - -
+ 
+ all mouse actions are sent to the items,
+ where items can be moved, resized, etc...
+ only do these if we are in preview mode
+ 
+ */
+
+
 void SPreview::mouseMoved(int x, int y){
-	for (int i = 0; i < items.size(); i++) {
-		if(items[i]->setCursorType(x, y)) {
-			break;
+	if (mode == PREVIEW) {
+		for (int i = 0; i < items.size(); i++) {
+			if(items[i]->setCursorType(x, y)) {
+				break;
+			}
 		}
 	}
 }
 
 void SPreview::mouseDragged(int x, int y, int button){
-	for (int i = 0; i < items.size(); i++) {
-		items[i]->cursor(x, y);
+	if (mode == PREVIEW) {
+		for (int i = 0; i < items.size(); i++) {
+			items[i]->cursor(x, y);
+		}
 	}
 	
 	if (button == 2) {
@@ -122,26 +167,33 @@ void SPreview::mouseDragged(int x, int y, int button){
 }
 
 void SPreview::mousePressed(int x, int y, int button){
-	for (int i = 0; i < items.size(); i++) {
-		items[i]->setCurrentParams(x, y);
-		if (items[i]->setActionType(x, y, ++button)) {
-			break;
+	if (mode == PREVIEW) {
+		for (int i = 0; i < items.size(); i++) {
+			items[i]->setCurrentParams(x, y);
+			if (items[i]->setActionType(x, y, ++button)) {
+				break;
+			}
 		}
-	}
 	
-	//this is so only one is in focus at any time
-	for (int i = 0; i < items.size(); i++) {
-		items[i]->setFocus(false);
-	}
-	if (fid != -1) items[fid]->setFocus(true);
+		//this is so only one is in focus at any time
+		for (int i = 0; i < items.size(); i++) {
+			items[i]->setFocus(false);
+		}
+		if (fid != -1) items[fid]->setFocus(true);
+		
+	}// end if
 }
 
 void SPreview::mouseReleased(int x, int y, int button){
-	for (int i = 0; i < items.size(); i++) {
-		items[i]->resetCursorType();
+	if (mode == PREVIEW) {
+		for (int i = 0; i < items.size(); i++) {
+			items[i]->resetCursorType();
+		}
 	}
 }
 
+
+// - - - ITEM HOUSEWORK - - -
 
 void SPreview::addTextItem() {
 	items.push_back(new SText(idc++));
@@ -164,14 +216,28 @@ void SPreview::removeItem(int i) {
 	}
 }
 
-void SPreview::setMode(int m) {
+// - - - SET VIEW MODE - - -
+
+void SPreview::setViewMode(int m) {
 	switch (m) {
-		case 0:
+		case PREVIEW:
 			mode = PREVIEW;
+			ofSetWindowShape(PREVIEW_WIDTH, PREVIEW_HEIGHT);
 			break;
-		case 1:
+		case TERMINAL:
 			mode = TERMINAL;
+			ofSetWindowShape(TERMINAL_WIDTH, TERMINAL_HEIGHT);
 			break;
 
 	}
+}
+
+// - - - DRAWING - - -
+
+void SPreview::setStartedDrawing(bool b) {
+	startedDrawing = b;
+}
+
+bool SPreview::getStartedDrawing() {
+	return startedDrawing;
 }

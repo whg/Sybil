@@ -1,3 +1,12 @@
+/*
+ *  SPreview.h
+ *  Sybil
+ *
+ *  Created by Will Gallia on 06/02/2011.
+ *  Copyright 2011 . All rights reserved.
+ *
+ */
+
 #ifndef _SPREVIEW
 #define _SPREVIEW
 
@@ -8,12 +17,14 @@
 #include "SText.h"
 #include "SImage.h"
 #include "STerm.h"
+#include "SConstants.h"
+#include "SSerial.h"
 
-//forward declare classes...
 class SItem;
 class SImage;
 @class SItemController;
 class STerm;
+class SSerial;
 
 class SPreview : public ofBaseApp {
 	
@@ -21,7 +32,7 @@ private:
 	
 	int idc; //id counter
 	int fid; //focused id
-	
+	bool startedDrawing;
 	int ztrans;
 	
 	STerm* terminal;
@@ -43,24 +54,22 @@ public:
 			
 	void setFocus(int i);
 	int getFocus();
+	void setStartedDrawing(bool b);
+	bool getStartedDrawing();
 	
-	void setMode(int m);
+	void setViewMode(int m);
 			
 	//these are where all the items are stored...
 	vector<SItem *> items;
 	
 	void addTextItem();
 	void addImageItem();
-	
 	void removeItem(int i);
 	
+	SSerial* serial;
 	
-	enum modes {
-		PREVIEW,
-		TERMINAL
-	};
 	
-	modes mode;
+	viewModes mode;
 	
 };
 

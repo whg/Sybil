@@ -10,14 +10,15 @@
 #ifndef _STYPES
 #define _STYPES
 
-//basically ofPoint but with integers
+//basically ofPoint but with short int, ie. 16bit
+//we need this for the microcontroller...
 class SPoint {
 public:
 	
 	~SPoint() {}
 	
-	int x;
-	int y;
+	short int x;
+	short int y;
 	
 	SPoint() {
 		x = 0;
@@ -38,8 +39,6 @@ public:
 		x = _x;
 		y = _y;
 	} 
-	
-	
 	
 };
 

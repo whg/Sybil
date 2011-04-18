@@ -33,17 +33,18 @@
 		E4C242CD10CC650E004149E2 /* libfmodex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C242CC10CC650E004149E2 /* libfmodex.dylib */; };
 		E4C246DA10CCAE22004149E2 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C246D910CCAE22004149E2 /* freeimage.a */; };
 		EE633F4A1358C26C004885E7 /* STerm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE633F491358C26C004885E7 /* STerm.cpp */; };
+		EE63406A135C36C7004885E7 /* SSerial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE634069135C36C7004885E7 /* SSerial.cpp */; };
 		EE6672091347693F00E906A6 /* SImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE6671F91347693F00E906A6 /* SImage.cpp */; };
 		EE66720A1347693F00E906A6 /* SItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE6671FC1347693F00E906A6 /* SItem.cpp */; };
 		EE66720B1347693F00E906A6 /* SPreview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */; };
 		EE66720C1347693F00E906A6 /* SText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE6672001347693F00E906A6 /* SText.cpp */; };
-		EE66720D1347693F00E906A6 /* STextController.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE6672021347693F00E906A6 /* STextController.mm */; };
+		EE66720D1347693F00E906A6 /* STextController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE6672021347693F00E906A6 /* STextController.m */; };
 		EE66720F1347693F00E906A6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE6672041347693F00E906A6 /* main.cpp */; };
 		EE6672101347693F00E906A6 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = EE6672061347693F00E906A6 /* MainMenu.nib */; };
 		EE6672111347693F00E906A6 /* STextWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE6672071347693F00E906A6 /* STextWindow.xib */; };
 		EE6672A51347A6BD00E906A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EE6672A31347A6BD00E906A6 /* InfoPlist.strings */; };
 		EE6672A61347A6BD00E906A6 /* Sybil-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE6672A41347A6BD00E906A6 /* Sybil-Info.plist */; };
-		EE95D01B1349F249004A1263 /* SMenuController.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE95D01A1349F249004A1263 /* SMenuController.mm */; };
+		EE95D01B1349F249004A1263 /* SMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE95D01A1349F249004A1263 /* SMenuController.m */; };
 		EE95D24C134A1FA0004A1263 /* install.xml in Resources */ = {isa = PBXBuildFile; fileRef = EE95D224134A1FA0004A1263 /* install.xml */; };
 		EE95D24D134A1FA0004A1263 /* openCV.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE95D23A134A1FA0004A1263 /* openCV.a */; };
 		EE95D24E134A1FA0004A1263 /* ofxCvColorImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE95D23D134A1FA0004A1263 /* ofxCvColorImage.cpp */; };
@@ -53,8 +54,8 @@
 		EE95D252134A1FA0004A1263 /* ofxCvImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE95D246134A1FA0004A1263 /* ofxCvImage.cpp */; };
 		EE95D253134A1FA0004A1263 /* ofxCvShortImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE95D249134A1FA0004A1263 /* ofxCvShortImage.cpp */; };
 		EE95D29D134A2F3C004A1263 /* SImageWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE95D29C134A2F3C004A1263 /* SImageWindow.xib */; };
-		EE95D2A0134A2F51004A1263 /* SImageController.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE95D29F134A2F51004A1263 /* SImageController.mm */; };
-		EE95D2B7134A3212004A1263 /* SItemController.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE95D2B6134A3212004A1263 /* SItemController.mm */; };
+		EE95D2A0134A2F51004A1263 /* SImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE95D29F134A2F51004A1263 /* SImageController.m */; };
+		EE95D2B7134A3212004A1263 /* SItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE95D2B6134A3212004A1263 /* SItemController.m */; };
 		EEBB0FE112F8C45400855BED /* ofxMatrix3x3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEBB0FD412F8C45400855BED /* ofxMatrix3x3.cpp */; };
 		EEBB0FE212F8C45400855BED /* ofxMatrix4x4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEBB0FD612F8C45400855BED /* ofxMatrix4x4.cpp */; };
 		EEBB0FE312F8C45400855BED /* ofxQuaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEBB0FDB12F8C45400855BED /* ofxQuaternion.cpp */; };
@@ -136,7 +137,10 @@
 		E4C242CC10CC650E004149E2 /* libfmodex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmodex.dylib; path = ../../../libs/fmodex/lib/osx/libfmodex.dylib; sourceTree = SOURCE_ROOT; };
 		E4C246D910CCAE22004149E2 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../../libs/FreeImage/lib/osx/freeimage.a; sourceTree = SOURCE_ROOT; };
 		EE633F481358C26C004885E7 /* STerm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STerm.h; sourceTree = "<group>"; };
-		EE633F491358C26C004885E7 /* STerm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = STerm.cpp; sourceTree = "<group>"; };
+		EE633F491358C26C004885E7 /* STerm.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = STerm.cpp; sourceTree = "<group>"; };
+		EE634044135B8B9B004885E7 /* SConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SConstants.h; sourceTree = "<group>"; };
+		EE634068135C36C7004885E7 /* SSerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSerial.h; sourceTree = "<group>"; };
+		EE634069135C36C7004885E7 /* SSerial.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = SSerial.cpp; sourceTree = "<group>"; };
 		EE6671F91347693F00E906A6 /* SImage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; includeInIndex = 1; path = SImage.cpp; sourceTree = "<group>"; };
 		EE6671FA1347693F00E906A6 /* SImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SImage.h; sourceTree = "<group>"; };
 		EE6671FB1347693F00E906A6 /* SItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SItem.h; sourceTree = "<group>"; };
@@ -146,14 +150,14 @@
 		EE6671FF1347693F00E906A6 /* SText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SText.h; sourceTree = "<group>"; };
 		EE6672001347693F00E906A6 /* SText.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = SText.cpp; sourceTree = "<group>"; };
 		EE6672011347693F00E906A6 /* STextController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STextController.h; sourceTree = "<group>"; };
-		EE6672021347693F00E906A6 /* STextController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = STextController.mm; sourceTree = "<group>"; };
+		EE6672021347693F00E906A6 /* STextController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = STextController.m; sourceTree = "<group>"; };
 		EE6672041347693F00E906A6 /* main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; name = main.cpp; path = src/main.cpp; sourceTree = "<group>"; };
 		EE6672061347693F00E906A6 /* MainMenu.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = MainMenu.nib; sourceTree = "<group>"; };
 		EE6672071347693F00E906A6 /* STextWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = STextWindow.xib; sourceTree = "<group>"; };
 		EE6672A31347A6BD00E906A6 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		EE6672A41347A6BD00E906A6 /* Sybil-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Sybil-Info.plist"; sourceTree = "<group>"; };
 		EE95D0191349F249004A1263 /* SMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMenuController.h; sourceTree = "<group>"; };
-		EE95D01A1349F249004A1263 /* SMenuController.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = SMenuController.mm; sourceTree = "<group>"; };
+		EE95D01A1349F249004A1263 /* SMenuController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = SMenuController.m; sourceTree = "<group>"; };
 		EE95D224134A1FA0004A1263 /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		EE95D228134A1FA0004A1263 /* cv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cv.h; sourceTree = "<group>"; };
 		EE95D229134A1FA0004A1263 /* cv.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cv.hpp; sourceTree = "<group>"; };
@@ -190,9 +194,9 @@
 		EE95D24B134A1FA0004A1263 /* ofxOpenCv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxOpenCv.h; sourceTree = "<group>"; };
 		EE95D29C134A2F3C004A1263 /* SImageWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SImageWindow.xib; sourceTree = "<group>"; };
 		EE95D29E134A2F51004A1263 /* SImageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SImageController.h; sourceTree = "<group>"; };
-		EE95D29F134A2F51004A1263 /* SImageController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SImageController.mm; sourceTree = "<group>"; };
+		EE95D29F134A2F51004A1263 /* SImageController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = SImageController.m; sourceTree = "<group>"; };
 		EE95D2B5134A3212004A1263 /* SItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SItemController.h; sourceTree = "<group>"; };
-		EE95D2B6134A3212004A1263 /* SItemController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SItemController.mm; sourceTree = "<group>"; };
+		EE95D2B6134A3212004A1263 /* SItemController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = SItemController.m; sourceTree = "<group>"; };
 		EEB771FA1350F59A00B10568 /* STypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STypes.h; path = ../../STypes.h; sourceTree = "<group>"; };
 		EEBB0FD212F8C45400855BED /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		EEBB0FD412F8C45400855BED /* ofxMatrix3x3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMatrix3x3.cpp; sourceTree = "<group>"; };
@@ -522,10 +526,13 @@
 				EE95D124134A0BDB004A1263 /* SImage */,
 				EE95D123134A0BC8004A1263 /* SText */,
 				EE95D0191349F249004A1263 /* SMenuController.h */,
-				EE95D01A1349F249004A1263 /* SMenuController.mm */,
-				EEB771FA1350F59A00B10568 /* STypes.h */,
+				EE95D01A1349F249004A1263 /* SMenuController.m */,
 				EE633F481358C26C004885E7 /* STerm.h */,
 				EE633F491358C26C004885E7 /* STerm.cpp */,
+				EEB771FA1350F59A00B10568 /* STypes.h */,
+				EE634044135B8B9B004885E7 /* SConstants.h */,
+				EE634068135C36C7004885E7 /* SSerial.h */,
+				EE634069135C36C7004885E7 /* SSerial.cpp */,
 			);
 			name = classes;
 			path = src/classes;
@@ -548,7 +555,7 @@
 				EE6671FF1347693F00E906A6 /* SText.h */,
 				EE6672001347693F00E906A6 /* SText.cpp */,
 				EE6672011347693F00E906A6 /* STextController.h */,
-				EE6672021347693F00E906A6 /* STextController.mm */,
+				EE6672021347693F00E906A6 /* STextController.m */,
 			);
 			name = SText;
 			sourceTree = "<group>";
@@ -559,7 +566,7 @@
 				EE6671FA1347693F00E906A6 /* SImage.h */,
 				EE6671F91347693F00E906A6 /* SImage.cpp */,
 				EE95D29E134A2F51004A1263 /* SImageController.h */,
-				EE95D29F134A2F51004A1263 /* SImageController.mm */,
+				EE95D29F134A2F51004A1263 /* SImageController.m */,
 			);
 			name = SImage;
 			sourceTree = "<group>";
@@ -570,7 +577,7 @@
 				EE6671FB1347693F00E906A6 /* SItem.h */,
 				EE6671FC1347693F00E906A6 /* SItem.cpp */,
 				EE95D2B5134A3212004A1263 /* SItemController.h */,
-				EE95D2B6134A3212004A1263 /* SItemController.mm */,
+				EE95D2B6134A3212004A1263 /* SItemController.m */,
 			);
 			name = SItem;
 			sourceTree = "<group>";
@@ -813,18 +820,19 @@
 				EE66720A1347693F00E906A6 /* SItem.cpp in Sources */,
 				EE66720B1347693F00E906A6 /* SPreview.cpp in Sources */,
 				EE66720C1347693F00E906A6 /* SText.cpp in Sources */,
-				EE66720D1347693F00E906A6 /* STextController.mm in Sources */,
+				EE66720D1347693F00E906A6 /* STextController.m in Sources */,
 				EE66720F1347693F00E906A6 /* main.cpp in Sources */,
-				EE95D01B1349F249004A1263 /* SMenuController.mm in Sources */,
+				EE95D01B1349F249004A1263 /* SMenuController.m in Sources */,
 				EE95D24E134A1FA0004A1263 /* ofxCvColorImage.cpp in Sources */,
 				EE95D24F134A1FA0004A1263 /* ofxCvContourFinder.cpp in Sources */,
 				EE95D250134A1FA0004A1263 /* ofxCvFloatImage.cpp in Sources */,
 				EE95D251134A1FA0004A1263 /* ofxCvGrayscaleImage.cpp in Sources */,
 				EE95D252134A1FA0004A1263 /* ofxCvImage.cpp in Sources */,
 				EE95D253134A1FA0004A1263 /* ofxCvShortImage.cpp in Sources */,
-				EE95D2A0134A2F51004A1263 /* SImageController.mm in Sources */,
-				EE95D2B7134A3212004A1263 /* SItemController.mm in Sources */,
+				EE95D2A0134A2F51004A1263 /* SImageController.m in Sources */,
+				EE95D2B7134A3212004A1263 /* SItemController.m in Sources */,
 				EE633F4A1358C26C004885E7 /* STerm.cpp in Sources */,
+				EE63406A135C36C7004885E7 /* SSerial.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

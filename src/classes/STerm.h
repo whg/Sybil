@@ -14,6 +14,12 @@
 #define _S_TERM
 
 #include "ofMain.h"
+#include "STypes.h"
+#include "SSerial.h"
+#include "SPreview.h"
+
+class SPreview;
+class SSerial;
 
 typedef struct {
 	int x;
@@ -46,9 +52,11 @@ private:
 	
 	int cl; //current line
 	
+	SSerial* serialConnection;
+	SPreview* previewPtr;
 	
 public:
-	STerm();
+	STerm(SSerial* sc);
 	~STerm();
 	
 	

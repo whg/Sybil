@@ -11,8 +11,13 @@
 
 
 //--------------------------------------------------------------
-STerm::STerm() {
+STerm::STerm(SSerial* sc) {
 
+	//set the serial connection
+	serialConnection = sc;
+	
+	previewPtr = (SPreview*) ofGetAppPtr();
+	
 	//load font
 	font.loadFont("/Library/Fonts/Andale Mono.ttf", 12);
 	lineHeight = (int) font.getLineHeight();
@@ -73,6 +78,9 @@ void STerm::draw() {
 
 
 /* - - - - - - - - - - - - - - - - - - - 
+ 
+ - - - KEY ACTIONS - - -
+ 
  this is where all the key presses are interpreted
  i am trying to copy bash, so at the moment,
  we are implementing:
@@ -87,7 +95,7 @@ void STerm::draw() {
 
 void STerm::keyPressed(int key) {
 	
-	printf("key = %i\n", key);
+	//printf("key = %i\n", key);
 	//printf("prev command before = %i\n", prevCommand);
 	//lines[cl] += (char) key;
 	
@@ -131,7 +139,7 @@ void STerm::keyPressed(int key) {
 		}
 	}
 	
-	// up arrow
+	// up arrow - previous command
 	else if (key == 357) {
 		//save the current command
 		if (prevCommand == 0) {
@@ -206,7 +214,7 @@ void STerm::keyPressed(int key) {
 	
 	//enter, do things with current line
 	else if (key == 13) { 
-		cout << lines[cl] << endl;
+		//cout << lines[cl] << endl;
 		
 		//process the command
 		process(lines[cl]);
@@ -216,6 +224,7 @@ void STerm::keyPressed(int key) {
 		prompt.index = 0;
 		prompt.x = 0;
 		prompt.y+= lineHeight;
+		prevCommand = 0;
 	}
 	
 	//all other keys...
@@ -230,7 +239,11 @@ void STerm::keyPressed(int key) {
 
 /* - - - - - - - - - - - - - - -
  
+ - - - PROCESS - - -
+ 
  this is where we process the commands
+ it is here that we check that the arguments are correct
+ if they are then commands are sent to serial
  
  - - - - - - - - - - - - - - - */
 
@@ -244,17 +257,100 @@ void STerm::process(string command) {
 		explode(command, ' ', tokens);
 		string comment = "";
 		
-		//process first token... the command...
+		//process first token... 
+		// i.e. the command...
 		
 		if (tokens[0] == "take") {
 			comment = "you wrote take";
 		}
+		
+		// - - line - -
 		else if (tokens[0] == "line") {
+			
+			//check for 4 arguments
 			if (tokens.size() != 5) {
 				comment = "usage: line [] x0 y0 x1 y1";
 			} 
 			
+			else {
+			
+				short int c[4];
+				for (int i = 1; i < 5; i++) {
+					
+					//convert string to int
+					c[i-1] = (short int) atoi(tokens[i].c_str());
+					
+					//this checks to see if a number was not entered
+					//atoi() returns 0 if there the given string is not a number
+					if (c[i-1] == 0 && tokens[i] != "0") {
+						comment = "line: " + tokens[i] + ": Argument is not a number";
+						break;
+					}
+				}
+				
+				//now send it...
+				if (comment == "") {
+					serialConnection->sendSingleLine(c[0], c[1], c[2], c[3]);
+				}
+				
+			}
+			
 		}
+		
+		// - - rect - -
+		else if (tokens[0] == "rect") {
+			
+			//check for 4 arguments
+			if (tokens.size() == 1) {
+				//now make the SPoint vector
+				vector<SPoint> points;
+				points.push_back(SPoint(0, 0));
+				points.push_back(SPoint(100, 100));
+				points.push_back(SPoint(0, 0));
+				points.push_back(SPoint(0, 100));
+				points.push_back(SPoint(0, 0));
+				points.push_back(SPoint(100, 0));
+				
+				//now send...
+				serialConnection->sendCollection(points);
+				previewPtr->setStartedDrawing(true);
+			}
+			else if (tokens.size() != 5) {
+				comment = "usage: rect [] x y w h";
+			} 
+			
+			
+			else {
+				
+				//same as above
+				short int c[4];
+				for (int i = 1; i < 5; i++) {
+					c[i-1] = (short int) atoi(tokens[i].c_str());
+					if (c[i-1] == 0 && tokens[i] != "0") {
+						comment = "rect: " + tokens[i] + ": Argument is not a number";
+						break;
+					}
+				}
+				
+				if (comment == "") {
+					
+					//now make the SPoint vector
+					vector<SPoint> points;
+					points.push_back(SPoint(c[0], c[1]));
+					points.push_back(SPoint(c[0]+c[2], c[1]));
+					points.push_back(SPoint(c[0]+c[2], c[1]+c[3]));
+					points.push_back(SPoint(c[0], c[1]+c[3]));
+					points.push_back(SPoint(c[0], c[1]));
+					
+					//now send...
+					serialConnection->sendCollection(points);
+					previewPtr->setStartedDrawing(true);
+				}
+				
+			}
+			
+		}
+		
 		else {
 			comment = tokens[0] +	": command not found";
 		}
@@ -277,23 +373,26 @@ void STerm::process(string command) {
 
 void STerm::explode(string command, char sep, vector<string> &tokens) {
 	tokens.clear();
+	
+	
 	string t = "";
 	for (int i = 0; i < command.length(); i++) {
 		if (command[i] != sep) t+= command[i];
 		else {
-			cout << t.length() << endl;
-			//don't things starting with a space..
+			//don't add things starting with a space..
 			if (t[0] != ' ') {
 				tokens.push_back(t);
 				t = "";
 			}
 		}
 	}
+	
 	// add the final one...
-	if (t.length() != 1 && t[0] != 0) {
+	// but don't add it if it's a space
+	if (t != " ") {
 		tokens.push_back(t);
-		t = "";
 	}
+
 }
 
 //this is a bit of a rubbish way of doing things but this whole thing

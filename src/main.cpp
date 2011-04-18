@@ -2,13 +2,14 @@
 #include "ofAppGlutWindow.h"
 
 #include "SPreview.h"
+#include "SConstants.h"
 
 // - + - + - + - + - + - + - + -
 
 int main() {
 
 	ofAppGlutWindow window;
-	ofSetupOpenGL(&window, 800, 600, OF_WINDOW);
+	ofSetupOpenGL(&window, PREVIEW_WIDTH, PREVIEW_HEIGHT, OF_WINDOW);
 	ofRunApp(new SPreview());
 
 }

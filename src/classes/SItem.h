@@ -12,6 +12,7 @@
 
 #include "STypes.h"
 #include "ofMain.h"
+#include "SConstants.h"
 
 class SPreview;
 
@@ -31,14 +32,6 @@ public:
 	SPoint pos, dim;
 	int resizeMargin;
 	SPreview *previewPtr;
-
-	enum cursorTypes {
-		NONE,
-		MOVE,
-		RESIZEX,
-		RESIZEY,
-		RESIZEBOTH
-	};
 	
 	cursorTypes cursorType;
 

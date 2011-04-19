@@ -25,6 +25,8 @@ STerm::STerm(SSerial* sc) {
 	spaceWidth = characterWidth-1;
 	printf("characterWidth = %i\n", characterWidth);
 	cl = 0;
+	screenYPos = 0;
+	noResults = 0;
 	
 	//set default prompt
 	prompt.x = 0;
@@ -49,10 +51,31 @@ STerm::~STerm() {
 	
 }
 
+void STerm::update() {
+	
+	noResults = 0;
+	for (int i = 0; i < results.size(); i++) {
+		if (results[i] != "") {
+			noResults++;
+		}
+	}
+	
+	//check to see if we need to move everything up to fit the new line
+	if (prompt.y+lineHeight > ofGetHeight() - screenYPos) {
+		screenYPos-= lineHeight;
+		//screenYPos-(noResults*lineHeight*2);
+	}
+	
+}
 
 void STerm::draw() {
 	
+	update();
+	
 	ofFill();
+	
+	ofPushMatrix();
+	ofTranslate(0, screenYPos);
 	
 	//this is where we draw all commands previous and present.
 	//not future... yet
@@ -62,7 +85,9 @@ void STerm::draw() {
 			ofSetColor(10, 10, 10);
 			font.drawString(prompt.str + lines[j], 0, lineHeight*(i+1));
 			j++;
-		} else {
+		} 
+		//draw results/comments
+		else {
 			ofSetColor(100, 100, 100);
 			font.drawString(results[i], 0, lineHeight*(i+1));
 			
@@ -75,6 +100,8 @@ void STerm::draw() {
 	ofTranslate(characterWidth*prompt.str.length(), 0);
 	ofSetColor(50, 50, 50, 100);
 	ofRect(prompt.x+prompt.minx, prompt.y, characterWidth, lineHeight);	
+	ofPopMatrix();
+	
 	ofPopMatrix();
 }
 
@@ -227,6 +254,8 @@ void STerm::keyPressed(int key) {
 		prompt.x = 0;
 		prompt.y+= lineHeight;
 		prevCommand = 0;
+		
+		
 	}
 	
 	//control-c, clear the screen
@@ -246,6 +275,7 @@ void STerm::keyPressed(int key) {
 		lines.push_back("");
 		results.push_back("");
 		stringWidth = characterWidth*8;
+		screenYPos = 0;
 		
 	}
 	
@@ -483,7 +513,7 @@ void STerm::process(string command) {
 					
 					p.push_back(SPoint(x, y));
 					printf("x = %i y = %i\n", x, y);
-					
+					if (i == 0) fp = SPoint(x, y);
 				}
 				//go full circle, push back first point
 				p.push_back(fp);

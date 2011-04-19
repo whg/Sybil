@@ -26,7 +26,7 @@ SSerial::SSerial() {
 	
 	//just for good measure...
 	serial.flush(true, true);
-	
+	serial.setVerbose(true);
 }
 
 //destructor
@@ -45,7 +45,7 @@ void SSerial::update() {
 			if (readyToSendNext) {
 				//sendLine(points[pc].x, points[pc].y, points[pc+1].x, points[pc+1].y);
 				sendMove(points[pc].x, points[pc].y);
-				printf("sent iteration %i of %i\n", pc, (int) points.size());
+				printf("sent iteration %i of %i\n", pc, (int) points.size()-1);
 				pc++;
 				readyToSendNext = false;
 			}
@@ -115,7 +115,7 @@ void SSerial::checkInput() {
 		//printf("no bytes available = %i \n", serial.available());
 		
 		unsigned char recievedByte = serial.readByte();
-		//printf("recievedByte = %i\n", (unsigned char) recievedByte);
+		printf("recievedByte = %i\n", (unsigned char) recievedByte);
 		
 		
 		switch (recievedByte) {
@@ -128,7 +128,7 @@ void SSerial::checkInput() {
 		}
 		
 		//now flush
-		serial.flush(true, true);
+		//serial.flush(true, false);
 	}
 
 }
@@ -180,7 +180,7 @@ void SSerial::sendMove(int x, int y) {
 	
 	
 	//write type... move
-	serial.writeByte((unsigned char) 3);
+	serial.writeByte((unsigned char) 4);
 	
 	serial.writeByte(x00);
 	serial.writeByte(x01);

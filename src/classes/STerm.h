@@ -40,6 +40,8 @@ private:
 	int stringWidth;
 	
 	int basicWidth;
+	int screenYPos;
+	int noResults;
 	
 	int prevCommand;
 	string tempCommand;
@@ -55,14 +57,16 @@ private:
 	SSerial* serialConnection;
 	SPreview* previewPtr;
 	
+	
+	
 	vector<SPoint> cc;
 	
 public:
 	STerm(SSerial* sc);
 	~STerm();
 	
-	
 	void draw();
+	void update();
 	void keyPressed(int key);
 	void process(string command);
 	void explode(string command, char sep, vector<string> &tokens);

@@ -55,6 +55,8 @@ private:
 	SSerial* serialConnection;
 	SPreview* previewPtr;
 	
+	vector<SPoint> cc;
+	
 public:
 	STerm(SSerial* sc);
 	~STerm();

@@ -38,7 +38,9 @@ public:
 	void sendLine(int x0, int y0, int x1, int y1);
 	void sendSingleLine(int x0, int y0, int x1, int y1);
 	void sendCollection(vector<SPoint> &points);
+	void sendMove(int x, int y);
 	
+	SPoint getPos();
 	
 	void checkInput();
 

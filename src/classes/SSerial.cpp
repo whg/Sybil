@@ -24,6 +24,9 @@ SSerial::SSerial() {
 	
 	previewPtr = (SPreview*) ofGetAppPtr();
 	
+	//just for good measure...
+	serial.flush(true, true);
+	
 }
 
 //destructor
@@ -37,11 +40,12 @@ void SSerial::update() {
 
 	if (!finished) {
 		
-		if (pc < points.size()-1) {
+		if (pc < points.size()) {
 			
 			if (readyToSendNext) {
-				sendLine(points[pc].x, points[pc].y, points[pc+1].x, points[pc+1].y);
-				printf("sent iteration %i\n", pc);
+				//sendLine(points[pc].x, points[pc].y, points[pc+1].x, points[pc+1].y);
+				sendMove(points[pc].x, points[pc].y);
+				printf("sent iteration %i of %i\n", pc, (int) points.size());
 				pc++;
 				readyToSendNext = false;
 			}
@@ -108,11 +112,10 @@ void SSerial::sendCollection(vector<SPoint> &points) {
 void SSerial::checkInput() {
 	
 	if (serial.available() != 0) {
-		printf("no bytes available = %i \n", serial.available());
+		//printf("no bytes available = %i \n", serial.available());
 		
 		unsigned char recievedByte = serial.readByte();
-		printf("recievedByte = %i\n", (unsigned char) recievedByte);
-		
+		//printf("recievedByte = %i\n", (unsigned char) recievedByte);
 		
 		
 		switch (recievedByte) {
@@ -164,5 +167,68 @@ void SSerial::sendSingleLine(int x0, int y0, int x1, int y1) {
 	int ys1 = ((y11<<8) | y10);
 	
 	printf("wrote via serial %i %i %i %i %i \n", 1, xs0, ys0, xs1, ys1);
+	
+}
+
+void SSerial::sendMove(int x, int y) {
+	
+	//convert to 1 byte
+	unsigned char x00 = (unsigned char) x;
+	unsigned char x01 = (unsigned char) (x>>8);
+	unsigned char y00 = (unsigned char) y;
+	unsigned char y01 = (unsigned char) (y>>8);
+	
+	
+	//write type... move
+	serial.writeByte((unsigned char) 3);
+	
+	serial.writeByte(x00);
+	serial.writeByte(x01);
+	serial.writeByte(y00);
+	serial.writeByte(y01);
+	
+	//write nothing... fill the array
+	for (int i = 0; i < 4; i++) {
+		serial.writeByte(0);
+	}
+	
+	
+	//these are just for printing out...
+	int xs0 = ((x01<<8) | x00);
+	int ys0 = ((y01<<8) | y00);	
+	
+	printf("wrote via serial %i %i %i\n", 3, xs0, ys0);
+	
+}
+
+SPoint SSerial::getPos() {
+	
+	//let's do this now...
+	serial.flush(true, true);
+
+	//write type... move
+	serial.writeByte((unsigned char) 5);
+	
+	//write nothing... fill the array
+	for (int i = 0; i < 8; i++) {
+		serial.writeByte(0);
+	}
+		
+	//wait until all results are there...
+	//this could cause an infinite loop... oh no...
+	//hopefully all is good on the microcontroller end... let's hope so anyway
+	while (serial.available() != 4) { }
+	
+	printf("no bytes available = %i \n", serial.available());
+	
+	//fetch results
+	unsigned char results[4];
+	serial.readBytes(results, 4);
+	
+	//combine the 8bit results to two 16bit shorts
+	short int x = (results[0] | (results[1]<<8));
+	short int y = (results[2] | (results[3]<<8));
+	
+	return SPoint(x, y);
 	
 }

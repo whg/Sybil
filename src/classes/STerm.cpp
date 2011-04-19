@@ -41,6 +41,8 @@ STerm::STerm(SSerial* sc) {
 	
 	//load the commands...
 	setCommands(commands);
+	
+	
 }
 
 STerm::~STerm() {
@@ -227,8 +229,29 @@ void STerm::keyPressed(int key) {
 		prevCommand = 0;
 	}
 	
+	//control-c, clear the screen
+	else if (key == 3) {
+		
+		//clear screen
+		ofBackground(255, 255, 255);
+		
+		//reset variables
+		lines.clear();
+		results.clear();
+		cl = 0;
+		prompt.x = 0;
+		prompt.y = 4;
+		prompt.index = 0;
+		prompt.minx = 2;
+		lines.push_back("");
+		results.push_back("");
+		stringWidth = characterWidth*8;
+		
+	}
+	
 	//all other keys...
-	else {
+	//hopefully ofTrueTypeFont can draw them...
+	else if (key > 31) {
 		lines[cl].insert(it+prompt.index, (char) key);
 		prompt.x+= characterWidth;
 		prompt.index++;
@@ -269,7 +292,7 @@ void STerm::process(string command) {
 			
 			//check for 4 arguments
 			if (tokens.size() != 5) {
-				comment = "usage: line [] x0 y0 x1 y1";
+				comment = "usage: line x0 y0 x1 y1";
 			} 
 			
 			else {
@@ -283,7 +306,7 @@ void STerm::process(string command) {
 					//this checks to see if a number was not entered
 					//atoi() returns 0 if there the given string is not a number
 					if (c[i-1] == 0 && tokens[i] != "0") {
-						comment = "line: " + tokens[i] + ": Argument is not a number";
+						comment = "line: " + tokens[i] + ": argument is not a number";
 						break;
 					}
 				}
@@ -297,7 +320,8 @@ void STerm::process(string command) {
 			
 		}
 		
-		// - - rect - -
+		// - - RECT - -
+		
 		else if (tokens[0] == "rect") {
 			
 			//check for 4 arguments
@@ -305,18 +329,18 @@ void STerm::process(string command) {
 				//now make the SPoint vector
 				vector<SPoint> points;
 				points.push_back(SPoint(0, 0));
-				points.push_back(SPoint(100, 100));
+				points.push_back(SPoint(0, 400));
+				points.push_back(SPoint(400, 400));
+				points.push_back(SPoint(400, 0));
 				points.push_back(SPoint(0, 0));
-				points.push_back(SPoint(0, 100));
-				points.push_back(SPoint(0, 0));
-				points.push_back(SPoint(100, 0));
+				//points.push_back(SPoint(100, 0));
 				
 				//now send...
 				serialConnection->sendCollection(points);
 				previewPtr->setStartedDrawing(true);
 			}
 			else if (tokens.size() != 5) {
-				comment = "usage: rect [] x y w h";
+				comment = "usage: rect x y w h";
 			} 
 			
 			
@@ -327,7 +351,7 @@ void STerm::process(string command) {
 				for (int i = 1; i < 5; i++) {
 					c[i-1] = (short int) atoi(tokens[i].c_str());
 					if (c[i-1] == 0 && tokens[i] != "0") {
-						comment = "rect: " + tokens[i] + ": Argument is not a number";
+						comment = "rect: " + tokens[i] + ": argument is not a number";
 						break;
 					}
 				}
@@ -351,11 +375,131 @@ void STerm::process(string command) {
 			
 		}
 		
+		// - - MOVE - -
+		// this command moves the pen from its current position to 
+		// the specified position
+		
+		else if (tokens[0] == "move") {
+			
+			//check for 2 arguments
+			if (tokens.size() != 3) {
+				comment = "usage: move x y";
+			} 
+			
+			else {
+				
+				short int c[2];
+				for (int i = 1; i < 3; i++) {
+					
+					c[i-1] = (short int) atoi(tokens[i].c_str());
+					if (c[i-1] == 0 && tokens[i] != "0") {
+						comment = "line: " + tokens[i] + ": argument is not a number";
+						break;
+					}
+				}
+				
+				//now send...
+				if (comment == "") {
+					serialConnection->sendMove(c[0], c[1]);
+				}
+				
+			}
+			
+		}
+		
+		// - - - GET - - -
+		
+		else if (tokens[0] == "get") {
+			
+			//check for 1 argument
+			if (tokens.size() != 2) {
+				comment = "usage: get pos";
+			} 
+			
+			else if (tokens[1] == "pos") {
+				SPoint p = serialConnection->getPos();
+				stringstream x, y;
+				x << p.x;
+				y << p.y;
+				comment = "Position = (" + x.str() + "," + y.str() + ")";
+			}
+			
+			else {
+				comment = "get: " + tokens[1] + ": argument not recognised";
+			}
+
+			
+		}
+		
+		// - - - CIRCLE - - -
+		
+		else if (tokens[0] == "circle") {
+			
+			//resolution & radius
+			int res, rad;
+			
+			//check for 1 argument
+			//this is for the default resolution of 30
+			if (tokens.size() == 2 || tokens.size() == 3) {
+				short int c;
+				//convert to int					
+				c = (short int) atoi(tokens[1].c_str());
+				if (c == 0 && tokens[1] != "0") {
+					comment = "circle: " + tokens[1] + ": argument is not a number";
+				}
+				rad = c;
+				//set res to default i.e. 30, this will be overridden later if res is specified
+				res = 30;
+			}
+			
+			//2 arguments, user specified resolution
+			if (tokens.size() == 3) {
+				short int c;
+				//convert to int					
+				c = (short int) atoi(tokens[2].c_str());
+				if (c == 0 && tokens[2] != "0") {
+					comment = "circle: " + tokens[2] + ": argument is not a number";
+				}
+				//set resolution
+				res = c;
+			}
+			
+			if (tokens.size() != 2 && tokens.size() != 3) {
+				comment = "usage: circle r (res)";
+			} 
+
+			//calculate and send
+			if (comment == "") {
+				
+				//calc circle
+				SPoint fp;
+				vector<SPoint> p;
+				
+				int cinc = 360/res; //circle increment
+				
+				for (int i = 0; i < 360; i+= cinc) {
+					short int x = (sin(ofDegToRad(i))+1) * rad;
+					short int y = (cos(ofDegToRad(i))+1) * rad;
+					
+					p.push_back(SPoint(x, y));
+					printf("x = %i y = %i\n", x, y);
+					
+				}
+				//go full circle, push back first point
+				p.push_back(fp);
+			
+				serialConnection->sendCollection(p);
+				previewPtr->setStartedDrawing(true);
+				
+			}
+
+		}
+		
 		else {
 			comment = tokens[0] +	": command not found";
 		}
 		
-		//show the comment, if there is one and inc promt.y
+		//show the comment if there is one and increment promt.y
 		if (comment != "") {
 			results.push_back(comment);
 			prompt.y+= lineHeight;
@@ -392,6 +536,8 @@ void STerm::explode(string command, char sep, vector<string> &tokens) {
 	if (t != " ") {
 		tokens.push_back(t);
 	}
+	
+	printf("no of tokens = %i\n", (int) tokens.size());
 
 }
 
@@ -406,6 +552,7 @@ void STerm::setCommands(vector<string> &c) {
 	c.push_back("move");
 	c.push_back("circle");
 	c.push_back("rect");
+	c.push_back("get");
 	
 }
 

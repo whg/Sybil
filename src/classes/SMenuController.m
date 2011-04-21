@@ -7,17 +7,13 @@
 //
 
 #import "SMenuController.h"
-//#include "ofMain.h"
-
 
 @implementation SMenuController
 
 - (id) init {
 	
-	if (self = [super init]) {
-		
+	if (self = [super init]) {		
 		previewPtr = (SPreview*) ofGetAppPtr();
-		
 	}
 	
 	return self;
@@ -35,13 +31,16 @@
 
 - (IBAction) changeToPreview: (id) sender {
 	previewPtr->setViewMode(0);
+	[previewMode setState:NSOnState];
+	[terminalMode setState:NSOffState];
 	
 }
 
 
 - (IBAction) changeToTerminal: (id) sender {
 	previewPtr->setViewMode(1);
-	
+	[previewMode setState:NSOffState];
+	[terminalMode setState:NSOnState];
 }
 
 

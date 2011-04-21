@@ -15,7 +15,8 @@ class SPreview;
 
 @interface SMenuController : NSObject {
 	SPreview* previewPtr;
-
+	IBOutlet NSMenuItem* previewMode;
+	IBOutlet NSMenuItem* terminalMode;
 	
 }
 

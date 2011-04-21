@@ -320,34 +320,7 @@ void STerm::process(string command) {
 		// - - line - -
 		else if (tokens[0] == "line") {
 			
-			//check for 4 arguments
-			if (tokens.size() != 5) {
-				comment = "usage: line x0 y0 x1 y1";
-			} 
-			
-			else {
-			
-				short int c[4];
-				for (int i = 1; i < 5; i++) {
-					
-					//convert string to int
-					c[i-1] = (short int) atoi(tokens[i].c_str());
-					
-					//this checks to see if a number was not entered
-					//atoi() returns 0 if there the given string is not a number
-					if (c[i-1] == 0 && tokens[i] != "0") {
-						comment = "line: " + tokens[i] + ": argument is not a number";
-						break;
-					}
-				}
-				
-				//now send it...
-				if (comment == "") {
-					serialConnection->sendSingleLine(c[0], c[1], c[2], c[3]);
-				}
-				
-			}
-			
+						
 		}
 		
 		// - - RECT - -

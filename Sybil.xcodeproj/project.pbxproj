@@ -34,6 +34,7 @@
 		E4C246DA10CCAE22004149E2 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C246D910CCAE22004149E2 /* freeimage.a */; };
 		EE633F4A1358C26C004885E7 /* STerm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE633F491358C26C004885E7 /* STerm.cpp */; };
 		EE63406A135C36C7004885E7 /* SSerial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE634069135C36C7004885E7 /* SSerial.cpp */; };
+		EE634529135EE3BF004885E7 /* SCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE634528135EE3BF004885E7 /* SCommand.cpp */; };
 		EE6672091347693F00E906A6 /* SImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE6671F91347693F00E906A6 /* SImage.cpp */; };
 		EE66720A1347693F00E906A6 /* SItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE6671FC1347693F00E906A6 /* SItem.cpp */; };
 		EE66720B1347693F00E906A6 /* SPreview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */; };
@@ -141,6 +142,8 @@
 		EE634044135B8B9B004885E7 /* SConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SConstants.h; sourceTree = "<group>"; };
 		EE634068135C36C7004885E7 /* SSerial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSerial.h; sourceTree = "<group>"; };
 		EE634069135C36C7004885E7 /* SSerial.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = SSerial.cpp; sourceTree = "<group>"; };
+		EE634527135EE3BF004885E7 /* SCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCommand.h; sourceTree = "<group>"; };
+		EE634528135EE3BF004885E7 /* SCommand.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = SCommand.cpp; sourceTree = "<group>"; };
 		EE6671F91347693F00E906A6 /* SImage.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; includeInIndex = 1; path = SImage.cpp; sourceTree = "<group>"; };
 		EE6671FA1347693F00E906A6 /* SImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SImage.h; sourceTree = "<group>"; };
 		EE6671FB1347693F00E906A6 /* SItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SItem.h; sourceTree = "<group>"; };
@@ -533,6 +536,8 @@
 				EE634044135B8B9B004885E7 /* SConstants.h */,
 				EE634068135C36C7004885E7 /* SSerial.h */,
 				EE634069135C36C7004885E7 /* SSerial.cpp */,
+				EE634527135EE3BF004885E7 /* SCommand.h */,
+				EE634528135EE3BF004885E7 /* SCommand.cpp */,
 			);
 			name = classes;
 			path = src/classes;
@@ -833,6 +838,7 @@
 				EE95D2B7134A3212004A1263 /* SItemController.m in Sources */,
 				EE633F4A1358C26C004885E7 /* STerm.cpp in Sources */,
 				EE63406A135C36C7004885E7 /* SSerial.cpp in Sources */,
+				EE634529135EE3BF004885E7 /* SCommand.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

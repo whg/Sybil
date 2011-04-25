@@ -739,6 +739,25 @@
 			EE3380551365876A008EFF7F /* PBXTextBookmark */ = EE3380551365876A008EFF7F /* PBXTextBookmark */;
 			EE3380561365876A008EFF7F /* PBXTextBookmark */ = EE3380561365876A008EFF7F /* PBXTextBookmark */;
 			EE3380571365876A008EFF7F /* PBXTextBookmark */ = EE3380571365876A008EFF7F /* PBXTextBookmark */;
+			EE338060136594F7008EFF7F /* PBXTextBookmark */ = EE338060136594F7008EFF7F /* PBXTextBookmark */;
+			EE338061136594F7008EFF7F /* PBXTextBookmark */ = EE338061136594F7008EFF7F /* PBXTextBookmark */;
+			EE338062136594F7008EFF7F /* PBXTextBookmark */ = EE338062136594F7008EFF7F /* PBXTextBookmark */;
+			EE338063136594F7008EFF7F /* PBXTextBookmark */ = EE338063136594F7008EFF7F /* PBXTextBookmark */;
+			EE338064136594F7008EFF7F /* PBXTextBookmark */ = EE338064136594F7008EFF7F /* PBXTextBookmark */;
+			EE338067136594F7008EFF7F /* PBXTextBookmark */ = EE338067136594F7008EFF7F /* PBXTextBookmark */;
+			EE338068136594F7008EFF7F /* PBXTextBookmark */ = EE338068136594F7008EFF7F /* PBXTextBookmark */;
+			EE338069136594F7008EFF7F /* PBXTextBookmark */ = EE338069136594F7008EFF7F /* PBXTextBookmark */;
+			EE33806A136594F7008EFF7F /* PBXTextBookmark */ = EE33806A136594F7008EFF7F /* PBXTextBookmark */;
+			EE33806C136596A9008EFF7F /* PBXTextBookmark */ = EE33806C136596A9008EFF7F /* PBXTextBookmark */;
+			EE33806D136596A9008EFF7F /* PBXTextBookmark */ = EE33806D136596A9008EFF7F /* PBXTextBookmark */;
+			EE33806E136596A9008EFF7F /* PBXTextBookmark */ = EE33806E136596A9008EFF7F /* PBXTextBookmark */;
+			EE33806F136596A9008EFF7F /* PBXTextBookmark */ = EE33806F136596A9008EFF7F /* PBXTextBookmark */;
+			EE3380741365A7D5008EFF7F /* PBXTextBookmark */ = EE3380741365A7D5008EFF7F /* PBXTextBookmark */;
+			EE3380751365A7D5008EFF7F /* PBXTextBookmark */ = EE3380751365A7D5008EFF7F /* PBXTextBookmark */;
+			EE3380761365A7D5008EFF7F /* PBXTextBookmark */ = EE3380761365A7D5008EFF7F /* PBXTextBookmark */;
+			EE3380771365A7D5008EFF7F /* PBXTextBookmark */ = EE3380771365A7D5008EFF7F /* PBXTextBookmark */;
+			EE3380781365A7D5008EFF7F /* PBXTextBookmark */ = EE3380781365A7D5008EFF7F /* PBXTextBookmark */;
+			EE3380791365A7D5008EFF7F /* PBXTextBookmark */ = EE3380791365A7D5008EFF7F /* PBXTextBookmark */;
 			EE4A8E421324F61B003150AA = EE4A8E421324F61B003150AA /* PBXTextBookmark */;
 			EE633F6A1358C8FB004885E7 = EE633F6A1358C8FB004885E7 /* PBXTextBookmark */;
 			EE63452A135EE487004885E7 = EE63452A135EE487004885E7 /* PBXBookmark */;
@@ -787,7 +806,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 93";
 		rLen = 0;
-		rLoc = 2522;
+		rLoc = 2622;
 		rType = 0;
 		vrLen = 965;
 		vrLoc = 1434;
@@ -827,7 +846,7 @@
 		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
 		name = "STerm.cpp: 539";
 		rLen = 0;
-		rLoc = 11739;
+		rLoc = 11732;
 		rType = 0;
 		vrLen = 1168;
 		vrLoc = 10690;
@@ -837,7 +856,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 129";
 		rLen = 0;
-		rLoc = 3581;
+		rLoc = 3708;
 		rType = 0;
 		vrLen = 1169;
 		vrLoc = 307;
@@ -896,7 +915,7 @@
 		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
 		name = "STerm.cpp: 540";
 		rLen = 0;
-		rLoc = 11739;
+		rLoc = 11732;
 		rType = 0;
 		vrLen = 1081;
 		vrLoc = 10664;
@@ -906,7 +925,7 @@
 		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
 		name = "STerm.cpp: 546";
 		rLen = 0;
-		rLoc = 11917;
+		rLoc = 11910;
 		rType = 0;
 		vrLen = 1161;
 		vrLoc = 10869;
@@ -936,7 +955,7 @@
 		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
 		name = "STerm.cpp: 546";
 		rLen = 0;
-		rLoc = 11894;
+		rLoc = 11887;
 		rType = 0;
 		vrLen = 1163;
 		vrLoc = 10869;
@@ -966,7 +985,7 @@
 		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
 		name = "STerm.cpp: 541";
 		rLen = 0;
-		rLoc = 11742;
+		rLoc = 11735;
 		rType = 0;
 		vrLen = 1165;
 		vrLoc = 10869;
@@ -996,7 +1015,7 @@
 		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
 		name = "STerm.cpp: 532";
 		rLen = 0;
-		rLoc = 11570;
+		rLoc = 11563;
 		rType = 0;
 		vrLen = 1181;
 		vrLoc = 10869;
@@ -1026,7 +1045,7 @@
 		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
 		name = "STerm.cpp: 532";
 		rLen = 0;
-		rLoc = 11568;
+		rLoc = 11561;
 		rType = 0;
 		vrLen = 1183;
 		vrLoc = 10869;
@@ -1056,7 +1075,7 @@
 		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
 		name = "STerm.cpp: 541";
 		rLen = 0;
-		rLoc = 11711;
+		rLoc = 11704;
 		rType = 0;
 		vrLen = 1222;
 		vrLoc = 10869;
@@ -1086,7 +1105,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 215";
 		rLen = 0;
-		rLoc = 3689;
+		rLoc = 3693;
 		rType = 0;
 		vrLen = 938;
 		vrLoc = 2875;
@@ -1096,7 +1115,7 @@
 		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
 		name = "STerm.cpp: 568";
 		rLen = 0;
-		rLoc = 12310;
+		rLoc = 12303;
 		rType = 0;
 		vrLen = 1534;
 		vrLoc = 11043;
@@ -1106,7 +1125,7 @@
 		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
 		name = "STerm.cpp: 578";
 		rLen = 0;
-		rLoc = 12650;
+		rLoc = 12643;
 		rType = 0;
 		vrLen = 1412;
 		vrLoc = 11621;
@@ -1136,7 +1155,7 @@
 		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
 		name = "STerm.cpp: 563";
 		rLen = 0;
-		rLoc = 12172;
+		rLoc = 12165;
 		rType = 0;
 		vrLen = 1364;
 		vrLoc = 11697;
@@ -1166,7 +1185,7 @@
 		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
 		name = "STerm.cpp: 578";
 		rLen = 0;
-		rLoc = 12640;
+		rLoc = 12633;
 		rType = 0;
 		vrLen = 1365;
 		vrLoc = 11697;
@@ -1196,7 +1215,7 @@
 		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
 		name = "STerm.cpp: 554";
 		rLen = 0;
-		rLoc = 11892;
+		rLoc = 11885;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 11697;
@@ -1226,7 +1245,7 @@
 		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
 		name = "STerm.cpp: 574";
 		rLen = 0;
-		rLoc = 12546;
+		rLoc = 12539;
 		rType = 0;
 		vrLen = 1375;
 		vrLoc = 11697;
@@ -1256,7 +1275,7 @@
 		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
 		name = "STerm.cpp: 569";
 		rLen = 0;
-		rLoc = 12383;
+		rLoc = 12376;
 		rType = 0;
 		vrLen = 1415;
 		vrLoc = 11697;
@@ -1286,7 +1305,7 @@
 		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
 		name = "STerm.cpp: 569";
 		rLen = 0;
-		rLoc = 12383;
+		rLoc = 12376;
 		rType = 0;
 		vrLen = 1189;
 		vrLoc = 6194;
@@ -1306,7 +1325,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 129";
 		rLen = 0;
-		rLoc = 3581;
+		rLoc = 3708;
 		rType = 0;
 		vrLen = 1169;
 		vrLoc = 307;
@@ -1316,7 +1335,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 58";
 		rLen = 0;
-		rLoc = 1158;
+		rLoc = 1119;
 		rType = 0;
 		vrLen = 900;
 		vrLoc = 785;
@@ -1346,7 +1365,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 58";
 		rLen = 0;
-		rLoc = 1158;
+		rLoc = 1119;
 		rType = 0;
 		vrLen = 1031;
 		vrLoc = 1321;
@@ -1426,7 +1445,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 184";
 		rLen = 0;
-		rLoc = 3148;
+		rLoc = 3152;
 		rType = 0;
 		vrLen = 1033;
 		vrLoc = 2283;
@@ -1436,7 +1455,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 185";
 		rLen = 0;
-		rLoc = 3136;
+		rLoc = 3140;
 		rType = 0;
 		vrLen = 1023;
 		vrLoc = 2269;
@@ -1489,7 +1508,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 184";
 		rLen = 0;
-		rLoc = 3084;
+		rLoc = 3088;
 		rType = 0;
 		vrLen = 1147;
 		vrLoc = 2176;
@@ -1509,7 +1528,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 184";
 		rLen = 0;
-		rLoc = 3058;
+		rLoc = 3062;
 		rType = 0;
 		vrLen = 1149;
 		vrLoc = 2176;
@@ -1579,7 +1598,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 223";
 		rLen = 0;
-		rLoc = 3771;
+		rLoc = 3775;
 		rType = 0;
 		vrLen = 921;
 		vrLoc = 3117;
@@ -1589,7 +1608,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 223";
 		rLen = 0;
-		rLoc = 3779;
+		rLoc = 3783;
 		rType = 0;
 		vrLen = 1151;
 		vrLoc = 2519;
@@ -1609,7 +1628,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 223";
 		rLen = 0;
-		rLoc = 3767;
+		rLoc = 3771;
 		rType = 0;
 		vrLen = 1019;
 		vrLoc = 2921;
@@ -1629,7 +1648,7 @@
 		fRef = EE6671FD1347693F00E906A6 /* SPreview.h */;
 		name = "SPreview.h: 69";
 		rLen = 0;
-		rLoc = 1212;
+		rLoc = 1261;
 		rType = 0;
 		vrLen = 903;
 		vrLoc = 18;
@@ -1639,7 +1658,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 223";
 		rLen = 0;
-		rLoc = 3767;
+		rLoc = 3771;
 		rType = 0;
 		vrLen = 869;
 		vrLoc = 0;
@@ -1649,7 +1668,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 226";
 		rLen = 0;
-		rLoc = 3822;
+		rLoc = 3826;
 		rType = 0;
 		vrLen = 872;
 		vrLoc = 3226;
@@ -1669,7 +1688,7 @@
 		fRef = EE6671FD1347693F00E906A6 /* SPreview.h */;
 		name = "SPreview.h: 69";
 		rLen = 0;
-		rLoc = 1212;
+		rLoc = 1261;
 		rType = 0;
 		vrLen = 951;
 		vrLoc = 3;
@@ -1679,7 +1698,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 227";
 		rLen = 3;
-		rLoc = 3797;
+		rLoc = 3801;
 		rType = 0;
 		vrLen = 925;
 		vrLoc = 3227;
@@ -1689,7 +1708,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 227";
 		rLen = 0;
-		rLoc = 3800;
+		rLoc = 3804;
 		rType = 0;
 		vrLen = 901;
 		vrLoc = 3226;
@@ -1709,7 +1728,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 207";
 		rLen = 0;
-		rLoc = 3496;
+		rLoc = 3500;
 		rType = 0;
 		vrLen = 991;
 		vrLoc = 2890;
@@ -1729,7 +1748,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 207";
 		rLen = 0;
-		rLoc = 3507;
+		rLoc = 3511;
 		rType = 0;
 		vrLen = 991;
 		vrLoc = 2890;
@@ -1749,7 +1768,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 223";
 		rLen = 0;
-		rLoc = 3776;
+		rLoc = 3780;
 		rType = 0;
 		vrLen = 993;
 		vrLoc = 2890;
@@ -1769,7 +1788,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 227";
 		rLen = 0;
-		rLoc = 3821;
+		rLoc = 3825;
 		rType = 0;
 		vrLen = 991;
 		vrLoc = 2890;
@@ -1819,7 +1838,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 227";
 		rLen = 0;
-		rLoc = 3821;
+		rLoc = 3825;
 		rType = 0;
 		vrLen = 960;
 		vrLoc = 2921;
@@ -1829,7 +1848,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 209";
 		rLen = 0;
-		rLoc = 3381;
+		rLoc = 3385;
 		rType = 0;
 		vrLen = 864;
 		vrLoc = 3225;
@@ -1883,7 +1902,7 @@
 		fRef = EE6671FD1347693F00E906A6 /* SPreview.h */;
 		name = "SPreview.h: 66";
 		rLen = 0;
-		rLoc = 1182;
+		rLoc = 1231;
 		rType = 0;
 		vrLen = 948;
 		vrLoc = 260;
@@ -1893,7 +1912,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 202";
 		rLen = 0;
-		rLoc = 3379;
+		rLoc = 3383;
 		rType = 0;
 		vrLen = 922;
 		vrLoc = 3183;
@@ -2003,7 +2022,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 202";
 		rLen = 0;
-		rLoc = 3379;
+		rLoc = 3383;
 		rType = 0;
 		vrLen = 901;
 		vrLoc = 3183;
@@ -2013,7 +2032,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 207";
 		rLen = 0;
-		rLoc = 3465;
+		rLoc = 3469;
 		rType = 0;
 		vrLen = 836;
 		vrLoc = 3183;
@@ -2043,7 +2062,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 129";
 		rLen = 0;
-		rLoc = 3581;
+		rLoc = 3708;
 		rType = 0;
 		vrLen = 476;
 		vrLoc = 1000;
@@ -2082,7 +2101,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 209";
 		rLen = 0;
-		rLoc = 3502;
+		rLoc = 3506;
 		rType = 0;
 		vrLen = 483;
 		vrLoc = 3331;
@@ -2092,7 +2111,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 207";
 		rLen = 0;
-		rLoc = 3465;
+		rLoc = 3469;
 		rType = 0;
 		vrLen = 859;
 		vrLoc = 3183;
@@ -2122,7 +2141,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 207";
 		rLen = 0;
-		rLoc = 3465;
+		rLoc = 3469;
 		rType = 0;
 		vrLen = 954;
 		vrLoc = 390;
@@ -2182,7 +2201,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 92";
 		rLen = 0;
-		rLoc = 2520;
+		rLoc = 2620;
 		rType = 0;
 		vrLen = 1030;
 		vrLoc = 1321;
@@ -5952,7 +5971,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 139";
 		rLen = 0;
-		rLoc = 4099;
+		rLoc = 4226;
 		rType = 0;
 		vrLen = 1030;
 		vrLoc = 1484;
@@ -5962,7 +5981,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 143";
 		rLen = 0;
-		rLoc = 4099;
+		rLoc = 4226;
 		rType = 0;
 		vrLen = 1013;
 		vrLoc = 1581;
@@ -5986,7 +6005,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 144";
 		rLen = 0;
-		rLoc = 4099;
+		rLoc = 4226;
 		rType = 0;
 		vrLen = 1005;
 		vrLoc = 1633;
@@ -5996,7 +6015,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 101";
 		rLen = 0;
-		rLoc = 2374;
+		rLoc = 2474;
 		rType = 0;
 		vrLen = 1167;
 		vrLoc = 1321;
@@ -6016,7 +6035,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 94";
 		rLen = 0;
-		rLoc = 2235;
+		rLoc = 2246;
 		rType = 0;
 		vrLen = 1227;
 		vrLoc = 1464;
@@ -6046,7 +6065,7 @@
 		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
 		name = "STerm.cpp: 569";
 		rLen = 0;
-		rLoc = 12383;
+		rLoc = 12376;
 		rType = 0;
 		vrLen = 1189;
 		vrLoc = 6194;
@@ -6066,7 +6085,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 152";
 		rLen = 0;
-		rLoc = 3257;
+		rLoc = 3391;
 		rType = 0;
 		vrLen = 976;
 		vrLoc = 2129;
@@ -6076,7 +6095,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 154";
 		rLen = 0;
-		rLoc = 3333;
+		rLoc = 3467;
 		rType = 0;
 		vrLen = 953;
 		vrLoc = 2132;
@@ -6096,7 +6115,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 98";
 		rLen = 0;
-		rLoc = 1789;
+		rLoc = 1828;
 		rType = 0;
 		vrLen = 974;
 		vrLoc = 901;
@@ -6116,7 +6135,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 52";
 		rLen = 0;
-		rLoc = 865;
+		rLoc = 874;
 		rType = 0;
 		vrLen = 943;
 		vrLoc = 0;
@@ -6166,7 +6185,7 @@
 		fRef = EE634527135EE3BF004885E7 /* SCommand.h */;
 		name = "SCommand.h: 47";
 		rLen = 0;
-		rLoc = 950;
+		rLoc = 1012;
 		rType = 0;
 		vrLen = 888;
 		vrLoc = 0;
@@ -6186,7 +6205,7 @@
 		fRef = EE634527135EE3BF004885E7 /* SCommand.h */;
 		name = "SCommand.h: 47";
 		rLen = 0;
-		rLoc = 950;
+		rLoc = 1012;
 		rType = 0;
 		vrLen = 888;
 		vrLoc = 0;
@@ -6266,7 +6285,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 98";
 		rLen = 0;
-		rLoc = 1789;
+		rLoc = 1828;
 		rType = 0;
 		vrLen = 1020;
 		vrLoc = 596;
@@ -6286,7 +6305,7 @@
 		fRef = EE634069135C36C7004885E7 /* SSerial.cpp */;
 		name = "SSerial.cpp: 222";
 		rLen = 0;
-		rLoc = 4557;
+		rLoc = 4548;
 		rType = 0;
 		vrLen = 1157;
 		vrLoc = 3752;
@@ -6306,7 +6325,7 @@
 		fRef = EE634069135C36C7004885E7 /* SSerial.cpp */;
 		name = "SSerial.cpp: 222";
 		rLen = 0;
-		rLoc = 4557;
+		rLoc = 4548;
 		rType = 0;
 		vrLen = 1159;
 		vrLoc = 3752;
@@ -6316,7 +6335,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 214";
 		rLen = 0;
-		rLoc = 4001;
+		rLoc = 4128;
 		rType = 0;
 		vrLen = 1067;
 		vrLoc = 3034;
@@ -6336,7 +6355,7 @@
 		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
 		name = "STerm.cpp: 493";
 		rLen = 0;
-		rLoc = 10767;
+		rLoc = 10760;
 		rType = 0;
 		vrLen = 970;
 		vrLoc = 8055;
@@ -6416,7 +6435,7 @@
 		fRef = EE634527135EE3BF004885E7 /* SCommand.h */;
 		name = "SCommand.h: 47";
 		rLen = 0;
-		rLoc = 950;
+		rLoc = 1012;
 		rType = 0;
 		vrLen = 888;
 		vrLoc = 0;
@@ -6426,7 +6445,7 @@
 		fRef = EE634069135C36C7004885E7 /* SSerial.cpp */;
 		name = "SSerial.cpp: 222";
 		rLen = 0;
-		rLoc = 4557;
+		rLoc = 4548;
 		rType = 0;
 		vrLen = 1198;
 		vrLoc = 3456;
@@ -6446,7 +6465,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 226";
 		rLen = 0;
-		rLoc = 4539;
+		rLoc = 4789;
 		rType = 0;
 		vrLen = 1028;
 		vrLoc = 3092;
@@ -6456,7 +6475,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 243";
 		rLen = 0;
-		rLoc = 4539;
+		rLoc = 4789;
 		rType = 0;
 		vrLen = 978;
 		vrLoc = 3488;
@@ -6476,7 +6495,7 @@
 		fRef = EE634527135EE3BF004885E7 /* SCommand.h */;
 		name = "SCommand.h: 47";
 		rLen = 0;
-		rLoc = 950;
+		rLoc = 1012;
 		rType = 0;
 		vrLen = 888;
 		vrLoc = 0;
@@ -6486,7 +6505,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 243";
 		rLen = 0;
-		rLoc = 4539;
+		rLoc = 4789;
 		rType = 0;
 		vrLen = 1051;
 		vrLoc = 3415;
@@ -6496,7 +6515,7 @@
 		fRef = EE634069135C36C7004885E7 /* SSerial.cpp */;
 		name = "SSerial.cpp: 222";
 		rLen = 0;
-		rLoc = 4557;
+		rLoc = 4548;
 		rType = 0;
 		vrLen = 1198;
 		vrLoc = 3456;
@@ -6506,7 +6525,7 @@
 		fRef = EE634069135C36C7004885E7 /* SSerial.cpp */;
 		name = "SSerial.cpp: 225";
 		rLen = 0;
-		rLoc = 4579;
+		rLoc = 4569;
 		rType = 0;
 		vrLen = 1127;
 		vrLoc = 3802;
@@ -6526,7 +6545,7 @@
 		fRef = EE634069135C36C7004885E7 /* SSerial.cpp */;
 		name = "SSerial.cpp: 225";
 		rLen = 0;
-		rLoc = 4579;
+		rLoc = 4569;
 		rType = 0;
 		vrLen = 962;
 		vrLoc = 0;
@@ -6566,7 +6585,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 51";
 		rLen = 0;
-		rLoc = 864;
+		rLoc = 873;
 		rType = 0;
 		vrLen = 950;
 		vrLoc = 149;
@@ -6586,7 +6605,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 51";
 		rLen = 0;
-		rLoc = 864;
+		rLoc = 873;
 		rType = 0;
 		vrLen = 977;
 		vrLoc = 149;
@@ -6656,7 +6675,7 @@
 		fRef = EE634527135EE3BF004885E7 /* SCommand.h */;
 		name = "SCommand.h: 47";
 		rLen = 0;
-		rLoc = 950;
+		rLoc = 1012;
 		rType = 0;
 		vrLen = 888;
 		vrLoc = 0;
@@ -6666,7 +6685,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 172";
 		rLen = 0;
-		rLoc = 3101;
+		rLoc = 3235;
 		rType = 0;
 		vrLen = 965;
 		vrLoc = 2356;
@@ -6686,7 +6705,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 172";
 		rLen = 0;
-		rLoc = 3124;
+		rLoc = 3258;
 		rType = 0;
 		vrLen = 988;
 		vrLoc = 2521;
@@ -6706,7 +6725,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 172";
 		rLen = 0;
-		rLoc = 3124;
+		rLoc = 3258;
 		rType = 0;
 		vrLen = 988;
 		vrLoc = 2521;
@@ -6716,7 +6735,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 53";
 		rLen = 0;
-		rLoc = 890;
+		rLoc = 899;
 		rType = 0;
 		vrLen = 898;
 		vrLoc = 346;
@@ -6726,7 +6745,7 @@
 		fRef = EE634527135EE3BF004885E7 /* SCommand.h */;
 		name = "SCommand.h: 47";
 		rLen = 0;
-		rLoc = 950;
+		rLoc = 1012;
 		rType = 0;
 		vrLen = 888;
 		vrLoc = 0;
@@ -6736,7 +6755,7 @@
 		fRef = EE634527135EE3BF004885E7 /* SCommand.h */;
 		name = "SCommand.h: 47";
 		rLen = 0;
-		rLoc = 950;
+		rLoc = 1012;
 		rType = 0;
 		vrLen = 888;
 		vrLoc = 0;
@@ -6787,7 +6806,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		fallbackIsa = XCBuildMessageTextBookmark;
 		rLen = 1;
-		rLoc = 76;
+		rLoc = 77;
 		rType = 1;
 	};
 	EE33803B1365844E008EFF7F /* PBXTextBookmark */ = {
@@ -6795,7 +6814,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 77";
 		rLen = 0;
-		rLoc = 1393;
+		rLoc = 1398;
 		rType = 0;
 		vrLen = 552;
 		vrLoc = 1017;
@@ -6815,7 +6834,7 @@
 		fRef = EE634069135C36C7004885E7 /* SSerial.cpp */;
 		name = "SSerial.cpp: 225";
 		rLen = 0;
-		rLoc = 4579;
+		rLoc = 4569;
 		rType = 0;
 		vrLen = 962;
 		vrLoc = 0;
@@ -6825,7 +6844,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 260";
 		rLen = 0;
-		rLoc = 4904;
+		rLoc = 5150;
 		rType = 0;
 		vrLen = 925;
 		vrLoc = 3884;
@@ -6835,7 +6854,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 260";
 		rLen = 0;
-		rLoc = 4855;
+		rLoc = 5101;
 		rType = 0;
 		vrLen = 997;
 		vrLoc = 3993;
@@ -6855,7 +6874,7 @@
 		fRef = EE634069135C36C7004885E7 /* SSerial.cpp */;
 		name = "SSerial.cpp: 251";
 		rLen = 0;
-		rLoc = 5137;
+		rLoc = 5178;
 		rType = 0;
 		vrLen = 1214;
 		vrLoc = 4047;
@@ -6865,7 +6884,7 @@
 		fRef = EE634069135C36C7004885E7 /* SSerial.cpp */;
 		name = "SSerial.cpp: 261";
 		rLen = 0;
-		rLoc = 5362;
+		rLoc = 5403;
 		rType = 0;
 		vrLen = 1191;
 		vrLoc = 4134;
@@ -6885,7 +6904,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 260";
 		rLen = 0;
-		rLoc = 4855;
+		rLoc = 5101;
 		rType = 0;
 		vrLen = 997;
 		vrLoc = 3993;
@@ -6925,7 +6944,7 @@
 		fRef = EE634069135C36C7004885E7 /* SSerial.cpp */;
 		name = "SSerial.cpp: 261";
 		rLen = 0;
-		rLoc = 5362;
+		rLoc = 5403;
 		rType = 0;
 		vrLen = 1191;
 		vrLoc = 4134;
@@ -6955,7 +6974,7 @@
 		fRef = EE634069135C36C7004885E7 /* SSerial.cpp */;
 		name = "SSerial.cpp: 259";
 		rLen = 0;
-		rLoc = 5295;
+		rLoc = 5336;
 		rType = 0;
 		vrLen = 1194;
 		vrLoc = 4185;
@@ -6968,6 +6987,196 @@
 		rLoc = 6526;
 		rType = 0;
 		vrLen = 1096;
+		vrLoc = 7991;
+	};
+	EE338060136594F7008EFF7F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
+		name = "STerm.cpp: 428";
+		rLen = 0;
+		rLoc = 9079;
+		rType = 0;
+		vrLen = 1345;
+		vrLoc = 9366;
+	};
+	EE338061136594F7008EFF7F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE634044135B8B9B004885E7 /* SConstants.h */;
+		name = "SConstants.h: 20";
+		rLen = 0;
+		rLoc = 332;
+		rType = 0;
+		vrLen = 453;
+		vrLoc = 0;
+	};
+	EE338062136594F7008EFF7F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
+		name = "SCommand.cpp: 59";
+		rLen = 0;
+		rLoc = 1114;
+		rType = 0;
+		vrLen = 1071;
+		vrLoc = 3968;
+	};
+	EE338063136594F7008EFF7F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
+		name = "SCommand.cpp: 29";
+		rLen = 0;
+		rLoc = 403;
+		rType = 0;
+		vrLen = 1062;
+		vrLoc = 3976;
+	};
+	EE338064136594F7008EFF7F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE634069135C36C7004885E7 /* SSerial.cpp */;
+		name = "SSerial.cpp: 57";
+		rLen = 0;
+		rLoc = 994;
+		rType = 0;
+		vrLen = 3215;
+		vrLoc = 909;
+	};
+	EE338067136594F7008EFF7F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE6671FD1347693F00E906A6 /* SPreview.h */;
+		name = "SPreview.h: 36";
+		rLen = 0;
+		rLoc = 558;
+		rType = 0;
+		vrLen = 1023;
+		vrLoc = 260;
+	};
+	EE338068136594F7008EFF7F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
+		name = "SPreview.cpp: 254";
+		rLen = 0;
+		rLoc = 4224;
+		rType = 0;
+		vrLen = 1035;
+		vrLoc = 3413;
+	};
+	EE338069136594F7008EFF7F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
+		name = "SPreview.cpp: 34";
+		rLen = 0;
+		rLoc = 512;
+		rType = 0;
+		vrLen = 992;
+		vrLoc = 3470;
+	};
+	EE33806A136594F7008EFF7F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
+		name = "STerm.cpp: 312";
+		rLen = 0;
+		rLoc = 6526;
+		rType = 0;
+		vrLen = 1096;
+		vrLoc = 7991;
+	};
+	EE33806C136596A9008EFF7F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
+		name = "SCommand.cpp: 29";
+		rLen = 0;
+		rLoc = 403;
+		rType = 0;
+		vrLen = 1062;
+		vrLoc = 3976;
+	};
+	EE33806D136596A9008EFF7F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE634069135C36C7004885E7 /* SSerial.cpp */;
+		name = "SSerial.cpp: 225";
+		rLen = 0;
+		rLoc = 4569;
+		rType = 0;
+		vrLen = 1188;
+		vrLoc = 3938;
+	};
+	EE33806E136596A9008EFF7F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
+		name = "SPreview.cpp: 34";
+		rLen = 0;
+		rLoc = 512;
+		rType = 0;
+		vrLen = 992;
+		vrLoc = 3470;
+	};
+	EE33806F136596A9008EFF7F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
+		name = "STerm.cpp: 312";
+		rLen = 0;
+		rLoc = 6526;
+		rType = 0;
+		vrLen = 1096;
+		vrLoc = 7991;
+	};
+	EE3380741365A7D5008EFF7F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE634527135EE3BF004885E7 /* SCommand.h */;
+		name = "SCommand.h: 46";
+		rLen = 0;
+		rLoc = 999;
+		rType = 0;
+		vrLen = 1012;
+		vrLoc = 0;
+	};
+	EE3380751365A7D5008EFF7F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
+		name = "SCommand.cpp: 29";
+		rLen = 0;
+		rLoc = 403;
+		rType = 0;
+		vrLen = 997;
+		vrLoc = 4063;
+	};
+	EE3380761365A7D5008EFF7F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
+		name = "SCommand.cpp: 61";
+		rLen = 7;
+		rLoc = 1086;
+		rType = 0;
+		vrLen = 1037;
+		vrLoc = 862;
+	};
+	EE3380771365A7D5008EFF7F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE634069135C36C7004885E7 /* SSerial.cpp */;
+		name = "SSerial.cpp: 240";
+		rLen = 0;
+		rLoc = 4943;
+		rType = 0;
+		vrLen = 1244;
+		vrLoc = 3938;
+	};
+	EE3380781365A7D5008EFF7F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
+		name = "SPreview.cpp: 34";
+		rLen = 0;
+		rLoc = 512;
+		rType = 0;
+		vrLen = 995;
+		vrLoc = 3470;
+	};
+	EE3380791365A7D5008EFF7F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE633F491358C26C004885E7 /* STerm.cpp */;
+		name = "STerm.cpp: 312";
+		rLen = 0;
+		rLoc = 6526;
+		rType = 0;
+		vrLen = 1120;
 		vrLoc = 7991;
 	};
 	EE4A8DE21324E61E003150AA /* ofAppGlutWindow.cpp */ = {
@@ -7006,7 +7215,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {634, 7761}}";
 			sepNavSelRange = "{6526, 0}";
-			sepNavVisRange = "{7991, 1096}";
+			sepNavVisRange = "{7991, 1120}";
 			sepNavWindowFrame = "{{38, 14}, {693, 838}}";
 		};
 	};
@@ -7022,9 +7231,9 @@
 	};
 	EE634044135B8B9B004885E7 /* SConstants.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {773, 721}}";
-			sepNavSelRange = "{219, 0}";
-			sepNavVisRange = "{0, 396}";
+			sepNavIntBoundsRect = "{{0, 0}, {769, 721}}";
+			sepNavSelRange = "{332, 0}";
+			sepNavVisRange = "{0, 453}";
 		};
 	};
 	EE634068135C36C7004885E7 /* SSerial.h */ = {
@@ -7036,24 +7245,24 @@
 	};
 	EE634069135C36C7004885E7 /* SSerial.cpp */ = {
 		uiCtxt = {
-			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{1071, 856}\";\n            s = 0;\n        },\n                {\n            r = \"{2132, 399}\";\n            s = 0;\n        },\n                {\n            r = \"{2596, 857}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 5381}\";\n    s = 0;\n}";
+			sepNavFolds = "{\n    c =     (\n                {\n            r = \"{1063, 856}\";\n            s = 0;\n        },\n                {\n            r = \"{2124, 399}\";\n            s = 0;\n        },\n                {\n            r = \"{2588, 857}\";\n            s = 0;\n        }\n    );\n    r = \"{0, 5422}\";\n    s = 0;\n}";
 			sepNavIntBoundsRect = "{{0, 0}, {706, 2223}}";
-			sepNavSelRange = "{3186, 0}";
-			sepNavVisRange = "{2076, 1194}";
+			sepNavSelRange = "{2834, 0}";
+			sepNavVisRange = "{1829, 1244}";
 		};
 	};
 	EE634527135EE3BF004885E7 /* SCommand.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {769, 721}}";
-			sepNavSelRange = "{798, 0}";
-			sepNavVisRange = "{0, 950}";
+			sepNavSelRange = "{999, 0}";
+			sepNavVisRange = "{0, 1012}";
 		};
 	};
 	EE634528135EE3BF004885E7 /* SCommand.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {769, 3575}}";
-			sepNavSelRange = "{4855, 0}";
-			sepNavVisRange = "{3993, 997}";
+			sepNavIntBoundsRect = "{{0, 0}, {769, 3887}}";
+			sepNavSelRange = "{1086, 7}";
+			sepNavVisRange = "{862, 1037}";
 		};
 	};
 	EE63452A135EE487004885E7 /* PBXBookmark */ = {
@@ -7099,7 +7308,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 96";
 		rLen = 0;
-		rLoc = 2571;
+		rLoc = 2671;
 		rType = 0;
 		vrLen = 945;
 		vrLoc = 1454;
@@ -7119,7 +7328,7 @@
 		fRef = EE6671FE1347693F00E906A6 /* SPreview.cpp */;
 		name = "SPreview.cpp: 182";
 		rLen = 0;
-		rLoc = 3088;
+		rLoc = 3092;
 		rType = 0;
 		vrLen = 981;
 		vrLoc = 1894;
@@ -7129,7 +7338,7 @@
 		fRef = EE6671FD1347693F00E906A6 /* SPreview.h */;
 		name = "SPreview.h: 69";
 		rLen = 0;
-		rLoc = 1212;
+		rLoc = 1261;
 		rType = 0;
 		vrLen = 921;
 		vrLoc = 0;
@@ -7199,7 +7408,7 @@
 		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
 		name = "SCommand.cpp: 93";
 		rLen = 0;
-		rLoc = 2522;
+		rLoc = 2622;
 		rType = 0;
 		vrLen = 948;
 		vrLoc = 1451;
@@ -7265,17 +7474,17 @@
 	};
 	EE6671FD1347693F00E906A6 /* SPreview.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {769, 1053}}";
-			sepNavSelRange = "{445, 0}";
-			sepNavVisRange = "{0, 926}";
+			sepNavIntBoundsRect = "{{0, 0}, {634, 1092}}";
+			sepNavSelRange = "{558, 0}";
+			sepNavVisRange = "{260, 1023}";
 			sepNavWindowFrame = "{{15, 35}, {693, 838}}";
 		};
 	};
 	EE6671FE1347693F00E906A6 /* SPreview.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {769, 3328}}";
-			sepNavSelRange = "{890, 0}";
-			sepNavVisRange = "{346, 898}";
+			sepNavIntBoundsRect = "{{0, 0}, {634, 3484}}";
+			sepNavSelRange = "{512, 0}";
+			sepNavVisRange = "{3470, 995}";
 			sepNavWindowFrame = "{{15, 35}, {693, 838}}";
 		};
 	};

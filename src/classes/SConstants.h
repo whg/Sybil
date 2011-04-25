@@ -16,6 +16,8 @@
 #define TERMINAL_WIDTH 600
 #define TERMINAL_HEIGHT 400
 
+#define NORMAL_FRAMERATE 30
+#define SERIAL_FRAMERATE 800
 
 enum viewModes {
 	PREVIEW,

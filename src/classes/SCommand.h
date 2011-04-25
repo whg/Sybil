@@ -43,6 +43,7 @@ public:
 	//util methods
 	string get(vector<string> &tokens, vector<char> &options);
 	string move(vector<string> &tokens, vector<char> &options);
+	string delay(vector<string> &tokens, vector<char> &options);
 	
 };
 

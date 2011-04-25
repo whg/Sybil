@@ -54,7 +54,7 @@ void SSerial::update() {
 		else {
 			printf("we have finished\n");
 			finished = true;
-			previewPtr->setStartedDrawing(false);
+			previewPtr->stoppedDrawing();
 		}
 	}
 	
@@ -218,11 +218,11 @@ SPoint SSerial::getPos() {
 	//don't allow yourself to get into an infinite loop
 	//wait until you can count to a big number
 	unsigned long l = 0;
-	while (serial.available() != 4 && l < 999999) { 
+	while (serial.available() != 4 && l < 99999) { 
 		l++;
 	}
 	
-	if (l != 999999) {
+	if (l != 99999) {
 	
 		printf("no bytes available = %i \n", serial.available());
 		
@@ -237,7 +237,8 @@ SPoint SSerial::getPos() {
 		return SPoint(x, y);
 	}
 	
-	return SPoint(0, 0);
+	//this is not possible, ie. the get didn't work
+	return SPoint(-1, -1);
 	
 }
 

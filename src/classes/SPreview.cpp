@@ -31,7 +31,7 @@ void SPreview::setup(){
 	//set up all oF things...
 	ofBackground(255, 255, 255);
 	ofSetBackgroundAuto(true);
-	ofSetFrameRate(30);
+	ofSetFrameRate(NORMAL_FRAMERATE);
 	ofEnableSmoothing();
 	ofEnableAlphaBlending();
 
@@ -39,7 +39,7 @@ void SPreview::setup(){
 	idc = 0;
 	fid = -1;
 	ztrans = 0;
-	startedDrawing = false;
+	isDrawing = false;
 	
 	//instantiate serial
 	serial = new SSerial();
@@ -66,7 +66,7 @@ void SPreview::setup(){
 
 void SPreview::update(){
 	
-	if (startedDrawing) {
+	if (isDrawing) {
 		serial->update();
 	}
 	
@@ -249,10 +249,20 @@ void SPreview::setViewMode(int m) {
 
 // - - - DRAWING - - -
 
-void SPreview::setStartedDrawing(bool b) {
-	startedDrawing = b;
+void SPreview::startedDrawing() {
+	isDrawing = true;
+	ofSetFrameRate(SERIAL_FRAMERATE);
 }
 
-bool SPreview::getStartedDrawing() {
-	return startedDrawing;
+void SPreview::stoppedDrawing() {
+	isDrawing = false;
+	ofSetFrameRate(NORMAL_FRAMERATE);
 }
+
+//void SPreview::setStartedDrawing(bool b) {
+//	startedDrawing = b;
+//}
+//
+//bool SPreview::getStartedDrawing() {
+//	return startedDrawing;
+//}

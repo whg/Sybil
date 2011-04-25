@@ -33,7 +33,7 @@ private:
 	
 	int idc; //id counter
 	int fid; //focused id
-	bool startedDrawing;
+	bool isDrawing;
 	int ztrans;
 	
 	STerm* terminal;
@@ -56,8 +56,11 @@ public:
 			
 	void setFocus(int i);
 	int getFocus();
-	void setStartedDrawing(bool b);
-	bool getStartedDrawing();
+//	void setStartedDrawing(bool b);
+//	bool getStartedDrawing();
+	
+	void startedDrawing();
+	void stoppedDrawing();
 	
 	void setViewMode(int m);
 			

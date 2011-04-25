@@ -26,7 +26,7 @@ SCommand::~SCommand() {
 /*
  this method is a little helper, 
  it converts a string to an int but also modifies a
- a string passed by reference if the source does not contain a number
+ the string passed by reference if the source does not contain a number
  */
 
 int SCommand::stringToInt(string source, string &comment) {
@@ -37,7 +37,7 @@ int SCommand::stringToInt(string source, string &comment) {
 	//this checks to see if a number was not entered
 	//atoi() returns 0 if there the given string is not a number
 	if (r == 0 && source != "0") {
-		comment = "line: " + source + ": argument is not a number";
+		comment = source + ": argument is not a number";
 	}
 		
 	return r;
@@ -54,17 +54,18 @@ string SCommand::line(vector<string> &tokens, vector<char> &options) {
 	string comment = "";
 	bool r = false;
 	
-	SPoint currentPos = serialConnection->getPos();
-
+	SPoint currentPos;
+	
 	//check for 4 arguments
 	if (tokens.size() != 5) {
-		comment = "usage: line [-r] (x0 y0) x1 y1";
+		comment = "usage: line [-r] x0 y0 x1 y1";
 	} 
 	
 	//check for only r option
 	for (int i = 0; i < options.size(); i++) {
 		if (options[i] == 'r') {
 			r = true;
+			currentPos = serialConnection->getPos();
 		}
 		else {
 			comment = "line: illegal option --" + options[i];
@@ -84,6 +85,7 @@ string SCommand::line(vector<string> &tokens, vector<char> &options) {
 			c[i-1] = stringToInt(tokens[i], comment);
 			//if one is bad, then exit loop
 			if (comment != "") {
+				comment = "line: " + comment;
 				break;
 			}
 		}
@@ -112,8 +114,8 @@ string SCommand::rect(vector<string> &tokens, vector<char> &options) {
 	bool rel = false; //relative flag
 	bool cor = false; //corner flag
 	
-	SPoint currentPos = serialConnection->getPos();
-	
+	SPoint currentPos;
+		
 	//check for correct arguments and options...
 	//check for 4 arguments
 	if (tokens.size() != 5) {
@@ -124,6 +126,8 @@ string SCommand::rect(vector<string> &tokens, vector<char> &options) {
 	for (int i = 0; i < options.size(); i++) {
 		if (options[i] == 'r') {
 			rel = true;
+			//now find the current pos of the plotter
+			currentPos = serialConnection->getPos();
 		}
 		else if (options[i] == 'c') {
 			cor = true;
@@ -145,6 +149,7 @@ string SCommand::rect(vector<string> &tokens, vector<char> &options) {
 			c[i-1] = stringToInt(tokens[i], comment);
 			//if one is bad, then exit loop
 			if (comment != "") {
+				comment = "rect: " + comment;
 				break;
 			}
 		}
@@ -181,7 +186,7 @@ string SCommand::rect(vector<string> &tokens, vector<char> &options) {
 			
 			//now send...
 			serialConnection->sendCollection(points);
-			previewPtr->setStartedDrawing(true);
+			previewPtr->startedDrawing();
 		}
 		
 	}
@@ -231,18 +236,22 @@ string SCommand::get(vector<string> &tokens, vector<char> &options) {
 		comment = "usage: get pos";
 	} 
 	
-	else if (tokens[1] == "pos") {
-		SPoint p = serialConnection->getPos();
-		stringstream x, y;
-		x << p.x;
-		y << p.y;
-		comment = "Position = (" + x.str() + "," + y.str() + ")";
+	if (options.size() > 0) {
+		comment = comment = "get: illegal option --" + options[0];
 	}
 	
-	else {
-		comment = "get: " + tokens[1] + ": argument not recognised";
+	if (comment == "") {
+		if (tokens[2] == "pos") {
+			SPoint p = serialConnection->getPos();
+			stringstream x, y;
+			x << p.x;
+			y << p.y;
+			comment = "Position = (" + x.str() + "," + y.str() + ")";
+		}
+		else {
+			comment = "get: " + tokens[1] + ": argument not recognised";
+		}
 	}
-	
 	
 	return comment;
 }
@@ -264,4 +273,25 @@ string SCommand::pen(vector<string> &tokens, vector<char> &options) {
 	
 	return comment;
 }
+
+string SCommand::delay(vector<string> &tokens, vector<char> &options) {
+	
+	string comment = "";
+	
+	//check for 1 argument
+	if (tokens.size() != 2) {
+		comment = "usage: delay ms";
+	} 
+	
+	else {
+		//convert to int
+		int d = stringToInt(tokens[1], comment);
+		
+		if
+	}
+
+	
+	return comment;
+}
+
 

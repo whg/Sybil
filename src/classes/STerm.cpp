@@ -486,7 +486,7 @@ void STerm::process(string command) {
 				p.push_back(fp);
 			
 				serialConnection->sendCollection(p);
-				previewPtr->setStartedDrawing(true);
+				previewPtr->startedDrawing();
 				
 			}
 

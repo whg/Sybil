@@ -26,8 +26,8 @@ public:
 	}
 	
 	SPoint(int _x, int _y) {
-		x = _x;
-		y = _y;
+		x = (short int) _x;
+		y = (short int) _y;
 	}
 	
 	SPoint(const SPoint &p) {
@@ -36,8 +36,8 @@ public:
 	}
 	
 	void set(int _x, int _y) {
-		x = _x;
-		y = _y;
+		x = (short int) _x;
+		y = (short int) _y;
 	} 
 	
 };

@@ -46,7 +46,7 @@ private:
 	
 public:
 	SImage();
-	SImage(int i);
+	SImage(int i, string file);
 	~SImage();
 	
 	void draw();

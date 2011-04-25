@@ -11,17 +11,19 @@
 #include "SPreview.h"
 
 
-
 SText::SText(int i)
 : SItem(i) {
 	
-	ttf.loadFont("Georgia.ttf", 20, true, true, true);
-	lineHeight = ttf.getLineHeight();
-	genCharWidth = lineHeight/3;
+	fontName = "Georgia";
+	fontSize = 20;
 	
+	//this loads the font and does a new things such as set the lineHeight
+	update();
+	
+	//this could be a default...
 	setText("edit this");
 	
-	//don't understand this, but it works
+	//this is a fix to a bug that i don't quite understand...
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	
 	windowController = [[STextController alloc] initWithWindowNibName:@"STextWindow"];
@@ -32,14 +34,11 @@ SText::SText(int i)
 	
 	updateWindow();
 	
-
-	
 }
 
 SText::~SText() {
 	[windowController release];
 
-	//[windowController close];
 	printf("stext deconstructed\n");
 	
 }
@@ -50,8 +49,6 @@ void SText::draw() {
 	ofTranslate(pos.x, pos.y);
 		
 	if(focus) drawBoundingBox();
-		
-	
 		
 	ofNoFill();
 	ofSetColor(0, 0, 0);
@@ -79,11 +76,45 @@ void SText::draw() {
 
 }
 
+void SText::update() {
+	
+	ttf.loadFont("/Library/Fonts/" + fontName + ".ttf", fontSize, true, true, true);
+
+	lineHeight = ttf.getLineHeight();
+	genCharWidth = lineHeight/3;
+	
+	wrapLines();
+	setYDim();
+	
+	printf("n characters = %i\n", ttf.bFullCharacterSet);
+}
+
 
 void SText::setText(string s) {
 	text = s;
 	wrapLines();
 	setYDim();
+}
+
+void SText::setFont(string fontname) {
+	fontName = fontname;
+	update();
+	
+	//if character set cannot be loaded properly,
+	//resort to default, Georgia
+	if (!ttf.bLoadedOk) {
+		ttf.loadFont("/Library/Fonts/Georgia.ttf", fontSize, true, true, true);
+		[windowController fontLoadError];
+	}
+	else {
+		[windowController fontLoaded];
+	}
+
+}
+
+void SText::setFontSize(int s) {
+	fontSize = s;
+	update();
 }
 
 void SText::hello() {

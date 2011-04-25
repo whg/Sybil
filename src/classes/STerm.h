@@ -17,9 +17,11 @@
 #include "STypes.h"
 #include "SSerial.h"
 #include "SPreview.h"
+#include "SCommand.h"
 
 class SPreview;
 class SSerial;
+class SCommand;
 
 typedef struct {
 	int x;
@@ -56,22 +58,20 @@ private:
 	
 	SSerial* serialConnection;
 	SPreview* previewPtr;
+	SCommand* commander;
 	
 	vector<SPoint> cc;
 	
 	
-	
-	
-	
 public:
-	STerm(SSerial* sc);
+	STerm(SCommand* c, SSerial* sc);
 	~STerm();
 	
 	void draw();
 	void update();
 	void keyPressed(int key);
 	void process(string command);
-	void explode(string command, char sep, vector<string> &tokens);
+	void explode(string command, char sep, vector<string> &tokens, vector<char> &options);
 	
 };
 

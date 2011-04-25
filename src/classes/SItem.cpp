@@ -59,6 +59,16 @@ void SItem::setFocus(bool b) {
 	focus = b;
 }
 
+// - - - uid - - -
+
+void SItem::setUid(int i) {
+	uid = i;
+}
+
+int SItem::getUid() {
+	return uid;
+}
+
 
 //generic draw method, just draws a bounding box
 //will never be called...

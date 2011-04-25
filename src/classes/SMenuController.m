@@ -25,7 +25,23 @@
 }
 
 - (IBAction) addImage: (id) sender {
-	previewPtr->addImageItem();
+	
+	//open a NSOpenPanel window
+	NSOpenPanel *op = [NSOpenPanel openPanel];
+	
+	//display the window
+	int result = [op runModal];
+	
+	//if ok is pressed load the chosen image
+	if (result == NSOKButton) {
+		NSURL *u = [op URL];
+		NSString *p = [[op URL] path];
+		
+		previewPtr->addImageItem( [p UTF8String] );
+		
+		[u release];
+		[p release];
+	}
 	
 }
 

@@ -19,12 +19,13 @@
 #include "STerm.h"
 #include "SConstants.h"
 #include "SSerial.h"
+#include "SCommand.h"
 
 class SItem;
 class SImage;
 @class SItemController;
 class STerm;
-class SSerial;
+class SCommand;
 
 class SPreview : public ofBaseApp {
 	
@@ -36,6 +37,7 @@ private:
 	int ztrans;
 	
 	STerm* terminal;
+	SCommand* commander;
 	
 public:
 	
@@ -63,7 +65,7 @@ public:
 	vector<SItem *> items;
 	
 	void addTextItem();
-	void addImageItem();
+	void addImageItem(string file);
 	void removeItem(int i);
 	
 	SSerial* serial;

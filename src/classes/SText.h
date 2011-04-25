@@ -19,7 +19,7 @@
 
 class SText : public SItem {
 	
-	private: 
+private: 
 
 	string text;
 	vector<ofPoint> refPoints;
@@ -27,9 +27,12 @@ class SText : public SItem {
 	ofTrueTypeFont ttf;
 	float lineHeight, genCharWidth;
 	
+	int fontSize;
+	string fontName;
+	
 	STextController* windowController;
 	
-	public:
+public:
 	
 	SText();
 	SText(int i);
@@ -37,6 +40,8 @@ class SText : public SItem {
 	
 
 	void setText(string s);
+	void setFont(string fontname);
+	void setFontSize(int s);
 	
 	void updateWindow();
 	
@@ -44,6 +49,7 @@ class SText : public SItem {
 	void setYDim();
 	
 	void draw();
+	void update();
 
 	void hello();
 	

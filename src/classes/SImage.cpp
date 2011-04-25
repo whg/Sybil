@@ -11,7 +11,7 @@
 
 #include "SImage.h"
 
-SImage::SImage(int i)
+SImage::SImage(int i, string file)
 :SItem(i){
 	printf("constructed SImage\n");
 	
@@ -37,14 +37,16 @@ SImage::SImage(int i)
 	[windowController setUid: i];
 	[windowController setParent:this];
 	
-	//open window to open file
-	[windowController openFile:nil];
-	
 	//if it's all good show the window
 	[windowController showWindow:nil];
 	[pool drain];
+		
+	//load the image
+	loadImage(file);
 	
+	//do an update
 	updateWindow();
+
 	
 }
 

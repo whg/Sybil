@@ -11,9 +11,10 @@
 
 
 //--------------------------------------------------------------
-STerm::STerm(SSerial* sc) {
+STerm::STerm(SCommand* c, SSerial* sc) {
 
-	//set the serial connection
+	//set the commander
+	commander = c;
 	serialConnection = sc;
 	
 	previewPtr = (SPreview*) ofGetAppPtr();
@@ -75,7 +76,7 @@ void STerm::draw() {
 	ofFill();
 	
 	ofPushMatrix();
-	ofTranslate(0, screenYPos);
+	ofTranslate(0, screenYPos-3);
 	
 	//this is where we draw all commands previous and present.
 	//not future... yet
@@ -307,7 +308,8 @@ void STerm::process(string command) {
 		
 		//split the line up into tokens
 		vector<string> tokens;
-		explode(command, ' ', tokens);
+		vector<char> options;
+		explode(command, ' ', tokens, options);
 		string comment = "";
 		
 		//process first token... 
@@ -327,54 +329,56 @@ void STerm::process(string command) {
 		
 		else if (tokens[0] == "rect") {
 			
-			//check for 4 arguments
-			if (tokens.size() == 1) {
-				//now make the SPoint vector
-				vector<SPoint> points;
-				points.push_back(SPoint(0, 0));
-				points.push_back(SPoint(0, 400));
-				points.push_back(SPoint(400, 400));
-				points.push_back(SPoint(400, 0));
-				points.push_back(SPoint(0, 0));
-				//points.push_back(SPoint(100, 0));
-				
-				//now send...
-				serialConnection->sendCollection(points);
-				previewPtr->setStartedDrawing(true);
-			}
-			else if (tokens.size() != 5) {
-				comment = "usage: rect x y w h";
-			} 
+			commander->rect(tokens, options);
 			
-			
-			else {
-				
-				//same as above
-				short int c[4];
-				for (int i = 1; i < 5; i++) {
-					c[i-1] = (short int) atoi(tokens[i].c_str());
-					if (c[i-1] == 0 && tokens[i] != "0") {
-						comment = "rect: " + tokens[i] + ": argument is not a number";
-						break;
-					}
-				}
-				
-				if (comment == "") {
-					
-					//now make the SPoint vector
-					vector<SPoint> points;
-					points.push_back(SPoint(c[0], c[1]));
-					points.push_back(SPoint(c[0]+c[2], c[1]));
-					points.push_back(SPoint(c[0]+c[2], c[1]+c[3]));
-					points.push_back(SPoint(c[0], c[1]+c[3]));
-					points.push_back(SPoint(c[0], c[1]));
-					
-					//now send...
-					serialConnection->sendCollection(points);
-					previewPtr->setStartedDrawing(true);
-				}
-				
-			}
+//			//check for 4 arguments
+//			if (tokens.size() == 1) {
+//				//now make the SPoint vector
+//				vector<SPoint> points;
+//				points.push_back(SPoint(0, 0));
+//				points.push_back(SPoint(0, 400));
+//				points.push_back(SPoint(400, 400));
+//				points.push_back(SPoint(400, 0));
+//				points.push_back(SPoint(0, 0));
+//				//points.push_back(SPoint(100, 0));
+//				
+//				//now send...
+//				serialConnection->sendCollection(points);
+//				previewPtr->setStartedDrawing(true);
+//			}
+//			else if (tokens.size() != 5) {
+//				comment = "usage: rect x y w h";
+//			} 
+//			
+//			
+//			else {
+//				
+//				//same as above
+//				short int c[4];
+//				for (int i = 1; i < 5; i++) {
+//					c[i-1] = (short int) atoi(tokens[i].c_str());
+//					if (c[i-1] == 0 && tokens[i] != "0") {
+//						comment = "rect: " + tokens[i] + ": argument is not a number";
+//						break;
+//					}
+//				}
+//				
+//				if (comment == "") {
+//					
+//					//now make the SPoint vector
+//					vector<SPoint> points;
+//					points.push_back(SPoint(c[0], c[1]));
+//					points.push_back(SPoint(c[0]+c[2], c[1]));
+//					points.push_back(SPoint(c[0]+c[2], c[1]+c[3]));
+//					points.push_back(SPoint(c[0], c[1]+c[3]));
+//					points.push_back(SPoint(c[0], c[1]));
+//					
+//					//now send...
+//					serialConnection->sendCollection(points);
+//					previewPtr->setStartedDrawing(true);
+//				}
+//				
+//			}
 			
 		}
 		
@@ -414,24 +418,14 @@ void STerm::process(string command) {
 		
 		else if (tokens[0] == "get") {
 			
-			//check for 1 argument
-			if (tokens.size() != 2) {
-				comment = "usage: get pos";
-			} 
 			
-			else if (tokens[1] == "pos") {
-				SPoint p = serialConnection->getPos();
-				stringstream x, y;
-				x << p.x;
-				y << p.y;
-				comment = "Position = (" + x.str() + "," + y.str() + ")";
-			}
+			comment = commander->get(tokens, options);
 			
-			else {
-				comment = "get: " + tokens[1] + ": argument not recognised";
-			}
-
-			
+		}
+		
+		else if (tokens[0] == "pen") {
+				
+			comment = commander->pen(tokens, options);
 		}
 		
 		// - - - CIRCLE - - -
@@ -502,7 +496,7 @@ void STerm::process(string command) {
 			comment = tokens[0] +	": command not found";
 		}
 		
-		//show the comment if there is one and increment promt.y
+		//show the comment if there is one and increment prompt.y
 		if (comment != "") {
 			results.push_back(comment);
 			prompt.y+= lineHeight;
@@ -518,7 +512,13 @@ void STerm::process(string command) {
 
 //this is a helper method, inspired by PHP's explode
 
-void STerm::explode(string command, char sep, vector<string> &tokens) {
+//it takes a string and splits the separate words into tokens,
+//extra white space is removed in the process
+
+//in bash fashion words starting with a '-' are treated as options...
+//we can't have negative values in our plotter to this works.
+
+void STerm::explode(string command, char sep, vector<string> &tokens, vector<char> &options) {
 	tokens.clear();
 	
 	
@@ -527,7 +527,9 @@ void STerm::explode(string command, char sep, vector<string> &tokens) {
 		if (command[i] != sep) t+= command[i];
 		else {
 			//don't add things starting with a space..
-			if (t[0] != ' ') {
+			//or an empty string...
+			if (t[0] != ' ' && t != "") {
+				printf("t is: '%s'\n", t.c_str());
 				tokens.push_back(t);
 				t = "";
 			}
@@ -535,13 +537,42 @@ void STerm::explode(string command, char sep, vector<string> &tokens) {
 	}
 	
 	// add the final one...
-	// but don't add it if it's a space
-	if (t != " ") {
+	// but don't add it if it's a space... or nothing
+	if (t != " " && t != "") {
 		tokens.push_back(t);
 	}
 	
 	printf("no of tokens = %i\n", (int) tokens.size());
-
+	for (int i = 0; i < tokens.size(); i++) {
+		printf("tokens %i = \"%s\"\n", i, tokens[i].c_str());
+	}
+	
+	//now do the options...
+	//any word starting with a '-' is an option
+	
+	for (int i = 0; i < tokens.size(); i++) {
+		if (tokens[i].at(0) == '-') {
+			//now start at character 1 and add to options to vector
+			for (int j = 1; j < tokens[i].length(); j++) {
+				options.push_back(tokens[i].at(j));
+			}
+			
+			//now remove the string as it is an option not a valid token
+			tokens.erase(tokens.begin()+i);
+			//we need decrement i now as we have just erased...
+			i--;
+		}
+	}
+	printf("again...\n");
+	printf("no of tokens = %i\n", (int) tokens.size());
+	for (int i = 0; i < tokens.size(); i++) {
+		printf("tokens %i = \"%s\"\n", i, tokens[i].c_str());
+	}
+	
+	for (int i = 0; i < options.size(); i++) {
+		printf("options %i = '%c'\n", i, options[i]);
+	}
+	
 }
 
 //this is a bit of a rubbish way of doing things but this whole thing

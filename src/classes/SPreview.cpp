@@ -18,11 +18,10 @@ SPreview::~SPreview() {
 		delete items[i];
 	}
 	
-	//delete the terminal
 	delete terminal;
-	
-	//delete serial
 	delete serial;
+	delete commander;
+	
 }
 
 
@@ -45,8 +44,11 @@ void SPreview::setup(){
 	//instantiate serial
 	serial = new SSerial();
 	
-	//instantiate terminal, passing pointer to serial connection
-	terminal = new STerm(serial);
+	//now instantiate commander, passing pointer to serial pointer
+	commander = new SCommand(serial);
+	
+	//instantiate terminal, passing pointer to commander pointer
+	terminal = new STerm(commander, serial);
 	
 	setViewMode(TERMINAL);
 	
@@ -168,19 +170,22 @@ void SPreview::mouseDragged(int x, int y, int button){
 
 void SPreview::mousePressed(int x, int y, int button){
 	if (mode == PREVIEW) {
+		bool hit = false;
 		for (int i = 0; i < items.size(); i++) {
 			items[i]->setCurrentParams(x, y);
 			if (items[i]->setActionType(x, y, ++button)) {
+				hit = true;
 				break;
 			}
 		}
-	
-		//this is so only one is in focus at any time
-		for (int i = 0; i < items.size(); i++) {
-			items[i]->setFocus(false);
+		if (hit) {
+			//this is so only one is in focus at any time
+			for (int i = 0; i < items.size(); i++) {
+				items[i]->setFocus(false);
+			}
+			printf("fid = %i, size of items = %i\n", fid, (int) items.size());
+			if (fid != -1) items[fid]->setFocus(true);
 		}
-		if (fid != -1) items[fid]->setFocus(true);
-		
 	}// end if
 }
 
@@ -196,12 +201,14 @@ void SPreview::mouseReleased(int x, int y, int button){
 // - - - ITEM HOUSEWORK - - -
 
 void SPreview::addTextItem() {
+	
 	items.push_back(new SText(idc++));
 	
 }
 
-void SPreview::addImageItem() {
-	items.push_back(new SImage(idc++));
+void SPreview::addImageItem(string file) {
+	
+	items.push_back(new SImage(idc++, file));
 	
 }
 
@@ -214,6 +221,14 @@ void SPreview::removeItem(int i) {
 			break;
 		}
 	}
+	
+	//now reset uids
+	for (int i = 0; i < items.size(); i++) {
+		items[i]->setUid(++i);
+	}
+	
+	fid = -1;
+	idc = (int) items.size();
 }
 
 // - - - SET VIEW MODE - - -

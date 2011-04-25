@@ -26,7 +26,6 @@ private:
 	
 public:
 	
-	//think these need to be public to be accessed in sub class
 	int uid; //unique id
 	bool focus;
 	SPoint pos, dim;
@@ -38,13 +37,16 @@ public:
 	
 	SItem();
 	SItem(int i);
-	virtual ~SItem(); //always have a virtual deconstructor in a base class...
+	virtual ~SItem();
 	
 	
 	void setPos(int x, int y);
 	void setDim(int w, int h);
 	void setAll(int x, int y, int w, int h);
 		
+	void setUid(int i);
+	int getUid();
+	
 	void cursor(int x, int y);
 	void setCurrentParams(int x, int y);
 	bool setCursorType(int x, int y);

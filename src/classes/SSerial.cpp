@@ -215,20 +215,52 @@ SPoint SSerial::getPos() {
 	}
 		
 	//wait until all results are there...
-	//this could cause an infinite loop... oh no...
-	//hopefully all is good on the microcontroller end... let's hope so anyway
-	while (serial.available() != 4) { }
+	//don't allow yourself to get into an infinite loop
+	//wait until you can count to a big number
+	unsigned long l = 0;
+	while (serial.available() != 4 && l < 999999) { 
+		l++;
+	}
 	
-	printf("no bytes available = %i \n", serial.available());
+	if (l != 999999) {
 	
-	//fetch results
-	unsigned char results[4];
-	serial.readBytes(results, 4);
+		printf("no bytes available = %i \n", serial.available());
+		
+		//fetch results
+		unsigned char results[4];
+		serial.readBytes(results, 4);
+		
+		//combine the 8bit results to two 16bit shorts
+		short int x = (results[0] | (results[1]<<8));
+		short int y = (results[2] | (results[3]<<8));
+		
+		return SPoint(x, y);
+	}
 	
-	//combine the 8bit results to two 16bit shorts
-	short int x = (results[0] | (results[1]<<8));
-	short int y = (results[2] | (results[3]<<8));
+	return SPoint(0, 0);
 	
-	return SPoint(x, y);
+}
+
+bool SSerial::sendPen(string command) {
+
+	if (command == "up") {
+		serial.writeByte((unsigned char) 6);
+		for (int i = 0; i < 8; i++) {
+			serial.writeByte(0);
+		}
+		printf("sent pen up\n");
+		return true;
+	}
+	else if(command == "down") {
+		serial.writeByte((unsigned char) 7);
+		for (int i = 0; i < 8; i++) {
+			serial.writeByte(0);
+		}
+		printf("sent pen down\n");
+		return true;
+	}
 	
+	//if none of the above worked return false
+	return false;
+
 }

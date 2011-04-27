@@ -287,7 +287,6 @@ string SCommand::delay(vector<string> &tokens, vector<char> &options) {
 		//convert to int
 		int d = stringToInt(tokens[1], comment);
 		
-		if
 	}
 
 	

@@ -43,7 +43,7 @@ STerm::STerm(SCommand* c, SSerial* sc) {
 	prevCommand = 0;
 	
 	//load the commands...
-	setCommands(commands);
+	setCommands(availableCommands);
 	
 	
 }
@@ -215,10 +215,10 @@ void STerm::keyPressed(int key) {
 	
 	//tab, do autocomplete
 	else if (key == 9) {
-		for (int i = 0; i < commands.size(); i++) {
+		for (int i = 0; i < availableCommands.size(); i++) {
 			bool show = false;
-			for (int j = 0; j < lines[cl].length() && j < commands[i].length(); j++) {
-				if (commands[i].at(j) == lines[cl].at(j)) {
+			for (int j = 0; j < lines[cl].length() && j < availableCommands[i].length(); j++) {
+				if (availableCommands[i].at(j) == lines[cl].at(j)) {
 					show = true;
 				} else {
 					show = false;
@@ -227,7 +227,7 @@ void STerm::keyPressed(int key) {
 			}
 			if (show) {
 				//change the command
-				lines[cl] = commands[i];
+				lines[cl] = availableCommands[i];
         //add a space on to the end of the command... bash style
         lines[cl]+= ' ';
 				//move the prompt
@@ -315,183 +315,34 @@ void STerm::process(string command) {
 		//process first token... 
 		// i.e. the command...
 		
-		if (tokens[0] == "take") {
-			comment = "you wrote take";
+	
+	  if (tokens[0] == "line") {
+			comment = commander->line(tokens, options);
 		}
-		
-		// - - line - -
-		else if (tokens[0] == "line") {
-			
-						
+		else if (tokens[0] == "rect")	{
+			comment = commander->rect(tokens, options);
 		}
-		
-		// - - RECT - -
-		
-		else if (tokens[0] == "rect") {
-			
-			commander->rect(tokens, options);
-			
-//			//check for 4 arguments
-//			if (tokens.size() == 1) {
-//				//now make the SPoint vector
-//				vector<SPoint> points;
-//				points.push_back(SPoint(0, 0));
-//				points.push_back(SPoint(0, 400));
-//				points.push_back(SPoint(400, 400));
-//				points.push_back(SPoint(400, 0));
-//				points.push_back(SPoint(0, 0));
-//				//points.push_back(SPoint(100, 0));
-//				
-//				//now send...
-//				serialConnection->sendCollection(points);
-//				previewPtr->setStartedDrawing(true);
-//			}
-//			else if (tokens.size() != 5) {
-//				comment = "usage: rect x y w h";
-//			} 
-//			
-//			
-//			else {
-//				
-//				//same as above
-//				short int c[4];
-//				for (int i = 1; i < 5; i++) {
-//					c[i-1] = (short int) atoi(tokens[i].c_str());
-//					if (c[i-1] == 0 && tokens[i] != "0") {
-//						comment = "rect: " + tokens[i] + ": argument is not a number";
-//						break;
-//					}
-//				}
-//				
-//				if (comment == "") {
-//					
-//					//now make the SPoint vector
-//					vector<SPoint> points;
-//					points.push_back(SPoint(c[0], c[1]));
-//					points.push_back(SPoint(c[0]+c[2], c[1]));
-//					points.push_back(SPoint(c[0]+c[2], c[1]+c[3]));
-//					points.push_back(SPoint(c[0], c[1]+c[3]));
-//					points.push_back(SPoint(c[0], c[1]));
-//					
-//					//now send...
-//					serialConnection->sendCollection(points);
-//					previewPtr->setStartedDrawing(true);
-//				}
-//				
-//			}
-			
+		else if (tokens[0] == "move")	{
+			comment = commander->move(tokens, options);
 		}
-		
-		// - - MOVE - -
-		// this command moves the pen from its current position to 
-		// the specified position
-		
-		else if (tokens[0] == "move") {
-			
-			//check for 2 arguments
-			if (tokens.size() != 3) {
-				comment = "usage: move x y";
-			} 
-			
-			else {
-				
-				short int c[2];
-				for (int i = 1; i < 3; i++) {
-					
-					c[i-1] = (short int) atoi(tokens[i].c_str());
-					if (c[i-1] == 0 && tokens[i] != "0") {
-						comment = "line: " + tokens[i] + ": argument is not a number";
-						break;
-					}
-				}
-				
-				//now send...
-				if (comment == "") {
-					serialConnection->sendMove(c[0], c[1]);
-				}
-				
-			}
-			
-		}
-		
-		// - - - GET - - -
-		
 		else if (tokens[0] == "get") {
-			
-			
 			comment = commander->get(tokens, options);
-			
 		}
-		
 		else if (tokens[0] == "pen") {
-				
 			comment = commander->pen(tokens, options);
 		}
-		
-		// - - - CIRCLE - - -
-		
 		else if (tokens[0] == "circle") {
-			
-			//resolution & radius
-			int res, rad;
-			
-			//check for 1 argument
-			//this is for the default resolution of 30
-			if (tokens.size() == 2 || tokens.size() == 3) {
-				short int c;
-				//convert to int					
-				c = (short int) atoi(tokens[1].c_str());
-				if (c == 0 && tokens[1] != "0") {
-					comment = "circle: " + tokens[1] + ": argument is not a number";
-				}
-				rad = c;
-				//set res to default i.e. 30, this will be overridden later if res is specified
-				res = 30;
-			}
-			
-			//2 arguments, user specified resolution
-			if (tokens.size() == 3) {
-				short int c;
-				//convert to int					
-				c = (short int) atoi(tokens[2].c_str());
-				if (c == 0 && tokens[2] != "0") {
-					comment = "circle: " + tokens[2] + ": argument is not a number";
-				}
-				//set resolution
-				res = c;
-			}
-			
-			if (tokens.size() != 2 && tokens.size() != 3) {
-				comment = "usage: circle r (res)";
-			} 
-
-			//calculate and send
-			if (comment == "") {
-				
-				//calc circle
-				SPoint fp;
-				vector<SPoint> p;
-				
-				int cinc = 360/res; //circle increment
-				
-				for (int i = 0; i < 360; i+= cinc) {
-					short int x = (sin(ofDegToRad(i))+1) * rad;
-					short int y = (cos(ofDegToRad(i))+1) * rad;
-					
-					p.push_back(SPoint(x, y));
-					printf("x = %i y = %i\n", x, y);
-					if (i == 0) fp = SPoint(x, y);
-				}
-				//go full circle, push back first point
-				p.push_back(fp);
-			
-				serialConnection->sendCollection(p);
-				previewPtr->startedDrawing();
-				
-			}
-
+			comment = commander->circle(tokens, options);
 		}
+		else if (tokens[0] == "poly") {
+			comment = commander->poly(tokens, options);
+		}
+		else if (tokens[0] == "delay") {
+			comment = commander->delay(tokens, options);
+		}
+
 		
+		//if doesn't match anything...
 		else {
 			comment = tokens[0] +	": command not found";
 		}
@@ -515,8 +366,9 @@ void STerm::process(string command) {
 //it takes a string and splits the separate words into tokens,
 //extra white space is removed in the process
 
-//in bash fashion words starting with a '-' are treated as options...
-//we can't have negative values in our plotter to this works.
+//in UNIX fashion words starting with a '-' are treated as options...
+//we can't have negative values in our plotter so this works.
+//consecutive characters after a single hypen are still accepted, in UNIX fashion...
 
 void STerm::explode(string command, char sep, vector<string> &tokens, vector<char> &options) {
 	tokens.clear();
@@ -529,7 +381,7 @@ void STerm::explode(string command, char sep, vector<string> &tokens, vector<cha
 			//don't add things starting with a space..
 			//or an empty string...
 			if (t[0] != ' ' && t != "") {
-				printf("t is: '%s'\n", t.c_str());
+				//printf("t is: '%s'\n", t.c_str());
 				tokens.push_back(t);
 				t = "";
 			}
@@ -540,11 +392,6 @@ void STerm::explode(string command, char sep, vector<string> &tokens, vector<cha
 	// but don't add it if it's a space... or nothing
 	if (t != " " && t != "") {
 		tokens.push_back(t);
-	}
-	
-	printf("no of tokens = %i\n", (int) tokens.size());
-	for (int i = 0; i < tokens.size(); i++) {
-		printf("tokens %i = \"%s\"\n", i, tokens[i].c_str());
 	}
 	
 	//now do the options...
@@ -563,15 +410,7 @@ void STerm::explode(string command, char sep, vector<string> &tokens, vector<cha
 			i--;
 		}
 	}
-	printf("again...\n");
-	printf("no of tokens = %i\n", (int) tokens.size());
-	for (int i = 0; i < tokens.size(); i++) {
-		printf("tokens %i = \"%s\"\n", i, tokens[i].c_str());
-	}
-	
-	for (int i = 0; i < options.size(); i++) {
-		printf("options %i = '%c'\n", i, options[i]);
-	}
+
 	
 }
 
@@ -585,8 +424,10 @@ void STerm::setCommands(vector<string> &c) {
 	c.push_back("arc");
 	c.push_back("move");
 	c.push_back("circle");
+	c.push_back("poly");
 	c.push_back("rect");
 	c.push_back("get");
+	c.push_back("delay");
 	
 }
 

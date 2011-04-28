@@ -22,12 +22,13 @@ class SCommand {
 	
 private:
 	
-	int stringToInt(string source, string &comment);
 	
 	SSerial* serialConnection;
 	SPreview* previewPtr;
 	
+	int stringToInt(string source, string &comment);
 	SPoint getPlotterPos();
+	void createPointsInCircle(int nPoints, int rad, SPoint pos, vector<SPoint> &points);
 	
 public:
 	SCommand(SSerial* sc);
@@ -36,7 +37,9 @@ public:
 	//drawing methods
 	string line(vector<string> &tokens, vector<char> &options);
 	string circle(vector<string> &tokens, vector<char> &options);
+	string arc(vector<string> &tokens, vector<char> &options);
 	string rect(vector<string> &tokens, vector<char> &options);
+	string poly(vector<string> &tokens, vector<char> &options);
 	
 	string pen(vector<string> &tokens, vector<char> &options);
 	

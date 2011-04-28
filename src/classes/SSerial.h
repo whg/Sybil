@@ -40,6 +40,7 @@ public:
 	void sendCollection(vector<SPoint> &points);
 	void sendMove(int x, int y);
 	bool sendPen(string command);
+	void sendDelayChange(int d);
 	
 	SPoint getPos();
 	

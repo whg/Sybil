@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>EEE0E3A51368A8F5005329AB</string>
+						<string>EEE0E3AA1368C802005329AB</string>
 						<key>history</key>
 						<array>
 							<string>EE338045136586AA008EFF7F</string>
@@ -257,7 +257,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>EEE0E3A61368A8F5005329AB</string>
+						<string>EEE0E3AB1368C802005329AB</string>
 						<key>history</key>
 						<array>
 							<string>EE338067136594F7008EFF7F</string>
@@ -298,7 +298,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>EEE0E3A71368A8F5005329AB</string>
+						<string>EEE0E3AC1368C802005329AB</string>
 						<key>history</key>
 						<array>
 							<string>EE3380791365A7D5008EFF7F</string>
@@ -452,7 +452,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>EEE0E3A21368A8F5005329AB</string>
+										<string>EEE0E3A91368C802005329AB</string>
 										<key>history</key>
 										<array>
 											<string>EE4A8E421324F61B003150AA</string>
@@ -681,11 +681,15 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>EEE0E3B41368C802005329AB</string>
+		<string>EEE0E3B51368C802005329AB</string>
+		<string>1C78EAAD065D492600B07095</string>
+		<string>1CD10A99069EF8BA00B06720</string>
 		<string>EEBF875712F7101B00CC4FFB</string>
 		<string>EE337FB713649EC4008EFF7F</string>
 		<string>EE338065136594F7008EFF7F</string>
-		<string>EE338043136586AA008EFF7F</string>
 		<string>/Users/WHG/Code/oF/apps/plotter/Sybil/Sybil.xcodeproj</string>
+		<string>EE338043136586AA008EFF7F</string>
 	</array>
 	<key>WindowString</key>
 	<string>301 79 1064 799 0 0 1440 878 </string>
@@ -887,13 +891,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>EE337C1E13619E8A008EFF7F</string>
+				<string>EEE0E3AD1368C802005329AB</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>EE337C1F13619E8A008EFF7F</string>
-				<string>EE337C2013619E8A008EFF7F</string>
-				<string>EE337C2113619E8A008EFF7F</string>
-				<string>EE337C2213619E8A008EFF7F</string>
-				<string>EE337C2313619E8A008EFF7F</string>
+				<string>EEE0E3AE1368C802005329AB</string>
+				<string>EEE0E3AF1368C802005329AB</string>
+				<string>EEE0E3B01368C802005329AB</string>
+				<string>EEE0E3B11368C802005329AB</string>
+				<string>EEE0E3B21368C802005329AB</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
@@ -1020,8 +1024,6 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1057,7 +1059,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C78EAAD065D492600B07095</string>
-				<string>EE337C2413619E8A008EFF7F</string>
+				<string>EEE0E3B31368C802005329AB</string>
 				<string>1C78EAAC065D492600B07095</string>
 			</array>
 			<key>ToolbarConfiguration</key>
@@ -1067,7 +1069,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

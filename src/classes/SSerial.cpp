@@ -216,13 +216,13 @@ SPoint SSerial::getPos() {
 		
 	//wait until all results are there...
 	//don't allow yourself to get into an infinite loop
-	//wait until you can count to a big number
-	unsigned long l = 0;
-	while (serial.available() != 4 && l < 99999) { 
+	//wait until you can count to a big number... 
+	int l = 0;
+	while (serial.available() != 4 && l < 9999) { 
 		l++;
 	}
 	
-	if (l != 99999) {
+	if (l != 9999) {
 	
 		printf("no bytes available = %i \n", serial.available());
 		
@@ -264,4 +264,14 @@ bool SSerial::sendPen(string command) {
 	//if none of the above worked return false
 	return false;
 
+}
+
+void SSerial::sendDelayChange(int d) {
+	
+	serial.writeByte((unsigned char) 1);
+	serial.writeByte((unsigned char) d);
+	for (int i = 0; i < 7; i++) {
+		serial.writeByte(0);
+	}
+	
 }

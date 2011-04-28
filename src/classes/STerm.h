@@ -51,7 +51,7 @@ private:
 	vector<string> lines;
 	vector<string> results;
 	
-	vector<string> commands;
+	vector<string> availableCommands;
 	void setCommands(vector<string> &c);
 	
 	int cl; //current line

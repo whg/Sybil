@@ -22,9 +22,10 @@ class SCommand {
 	
 private:
 	
-	
 	SSerial* serialConnection;
 	SPreview* previewPtr;
+		
+	bool doingFile;
 	
 	int stringToInt(string source, string &comment);
 	SPoint getPlotterPos();
@@ -34,6 +35,11 @@ public:
 	SCommand(SSerial* sc);
 	~SCommand();
 	
+	void setDoingFile(bool b);
+	bool isDoingFile();
+	
+	bool isReadyForNext();
+
 	//drawing methods
 	string line(vector<string> &tokens, vector<char> &options);
 	string circle(vector<string> &tokens, vector<char> &options);
@@ -47,6 +53,8 @@ public:
 	string get(vector<string> &tokens, vector<char> &options);
 	string move(vector<string> &tokens, vector<char> &options);
 	string delay(vector<string> &tokens, vector<char> &options);
+	string flush(vector<string> &tokens, vector<char> &options);
+	
 	
 };
 

@@ -15,12 +15,12 @@
 
 #include "ofMain.h"
 #include "STypes.h"
-#include "SSerial.h"
 #include "SPreview.h"
 #include "SCommand.h"
+#include <iostream>
+#include <fstream>
 
 class SPreview;
-class SSerial;
 class SCommand;
 
 typedef struct {
@@ -52,26 +52,35 @@ private:
 	vector<string> results;
 	
 	vector<string> availableCommands;
-	void setCommands(vector<string> &c);
 	
 	int cl; //current line
 	
-	SSerial* serialConnection;
 	SPreview* previewPtr;
 	SCommand* commander;
 	
-	vector<SPoint> cc;
+	string filesDirectory;
+	int flc; //file line counter
+	vector<string> fileLines;
 	
+	void process(string command);
+	void explode(string command, char sep, vector<string> &tokens, vector<char> &options);
+	string sendCommand(string command);
+	void setCommands(vector<string> &c);
+	
+	string readFile(string path, vector<string> &fileLines);
+	string processFile(vector<string> &tokens);
 	
 public:
-	STerm(SCommand* c, SSerial* sc);
+	STerm(SCommand* c);
 	~STerm();
 	
 	void draw();
 	void update();
 	void keyPressed(int key);
-	void process(string command);
-	void explode(string command, char sep, vector<string> &tokens, vector<char> &options);
+	
+	bool iterateFile();
+
+
 	
 };
 

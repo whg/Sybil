@@ -11,11 +11,10 @@
 
 
 //--------------------------------------------------------------
-STerm::STerm(SCommand* c, SSerial* sc) {
+STerm::STerm(SCommand* c) {
 
 	//set the commander
 	commander = c;
-	serialConnection = sc;
 	
 	previewPtr = (SPreview*) ofGetAppPtr();
 	
@@ -24,7 +23,7 @@ STerm::STerm(SCommand* c, SSerial* sc) {
 	lineHeight = (int) font.getLineHeight();
 	characterWidth = (int) font.stringWidth("a") - 3; //this is the same for all... monospace
 	spaceWidth = characterWidth-1;
-	printf("characterWidth = %i\n", characterWidth);
+	//printf("characterWidth = %i\n", characterWidth);
 	cl = 0;
 	screenYPos = 0;
 	noResults = 0;
@@ -42,6 +41,11 @@ STerm::STerm(SCommand* c, SSerial* sc) {
 	basicWidth = stringWidth;
 	prevCommand = 0;
 	
+	filesDirectory = "/Users/WHG/Desktop/";
+	flc = 0;
+	vector<string> fileLines = vector<string>();
+
+	
 	//load the commands...
 	setCommands(availableCommands);
 	
@@ -49,6 +53,25 @@ STerm::STerm(SCommand* c, SSerial* sc) {
 }
 
 STerm::~STerm() {
+	
+}
+
+//this is a bit of a rubbish way of doing things but this whole thing
+//was done very quickly, it would be nice if it read files so new commands
+//could be added easier but hey... whatever
+
+void STerm::setCommands(vector<string> &c) {
+	c.clear();
+	c.push_back("line");
+	c.push_back("arc");
+	c.push_back("move");
+	c.push_back("circle");
+	c.push_back("poly");
+	c.push_back("rect");
+	c.push_back("get");
+	c.push_back("delay");
+	c.push_back("read");
+	c.push_back("pen");
 	
 }
 
@@ -306,57 +329,73 @@ void STerm::process(string command) {
 	//don't try and process an empty line
 	if (command != "") {
 		
-		//split the line up into tokens
-		vector<string> tokens;
-		vector<char> options;
-		explode(command, ' ', tokens, options);
+		
 		string comment = "";
 		
 		//process first token... 
 		// i.e. the command...
-		
-	
-	  if (tokens[0] == "line") {
-			comment = commander->line(tokens, options);
-		}
-		else if (tokens[0] == "rect")	{
-			comment = commander->rect(tokens, options);
-		}
-		else if (tokens[0] == "move")	{
-			comment = commander->move(tokens, options);
-		}
-		else if (tokens[0] == "get") {
-			comment = commander->get(tokens, options);
-		}
-		else if (tokens[0] == "pen") {
-			comment = commander->pen(tokens, options);
-		}
-		else if (tokens[0] == "circle") {
-			comment = commander->circle(tokens, options);
-		}
-		else if (tokens[0] == "poly") {
-			comment = commander->poly(tokens, options);
-		}
-		else if (tokens[0] == "delay") {
-			comment = commander->delay(tokens, options);
-		}
-
-		
-		//if doesn't match anything...
-		else {
-			comment = tokens[0] +	": command not found";
-		}
+		comment = sendCommand(command);
+	  
 		
 		//show the comment if there is one and increment prompt.y
 		if (comment != "") {
 			results.push_back(comment);
+			//need an extra lineHeight added to prompt.y
 			prompt.y+= lineHeight;
 		}
 		
 	}
 	
+	//prepare for next line...
 	lines.push_back("");
 	results.push_back("");
+	
+}
+
+//this is done this way so we can optionally use the returned comment...
+string STerm::sendCommand(string command) {
+	
+	//split the line up into tokens
+	vector<string> tokens;
+	vector<char> options;
+	explode(command, ' ', tokens, options);
+	
+	if (tokens[0] == "line") {
+		return commander->line(tokens, options);
+	}
+	else if (tokens[0] == "rect")	{
+		return commander->rect(tokens, options);
+	}
+	else if (tokens[0] == "move")	{
+		return commander->move(tokens, options);
+	}
+	else if (tokens[0] == "get") {
+		return commander->get(tokens, options);
+	}
+	else if (tokens[0] == "pen") {
+		return commander->pen(tokens, options);
+	}
+	else if (tokens[0] == "circle") {
+		return commander->circle(tokens, options);
+	}
+	else if (tokens[0] == "poly") {
+		return commander->poly(tokens, options);
+	}
+	else if (tokens[0] == "delay") {
+		return commander->delay(tokens, options);
+	}
+	else if(tokens[0] == "flush") {
+		return commander->flush(tokens, options);
+	}
+	else if(tokens[0] == "read") {
+		return processFile(tokens);
+	}
+	
+	
+	//if doesn't match anything...
+	else {
+		return tokens[0] +	": command not found";
+	}
 	
 }
 
@@ -414,20 +453,103 @@ void STerm::explode(string command, char sep, vector<string> &tokens, vector<cha
 	
 }
 
-//this is a bit of a rubbish way of doing things but this whole thing
-//was done very quickly, it would be nice if it read files so new commands
-//could be added easier but hey... whatever
 
-void STerm::setCommands(vector<string> &c) {
-	c.clear();
-	c.push_back("line");
-	c.push_back("arc");
-	c.push_back("move");
-	c.push_back("circle");
-	c.push_back("poly");
-	c.push_back("rect");
-	c.push_back("get");
-	c.push_back("delay");
+
+/*
+ - - - FILE HANDLING - - -
+ */
+string STerm::processFile(vector<string> &tokens) {
+		
+	string comment = "";
+	
+	if (tokens.size() != 2) {
+		return "usage: read file";
+	}
+		
+	else {
+		comment = readFile(tokens[1], fileLines);
+	}
+	
+	if (comment == "") {
+		//set file line counter to 0
+		flc = 0;
+		
+		//tell the commander we about to iterate through a file
+		commander->setDoingFile(true);
+		
+		printf("sent first iterateFile()\n");
+		//start the iteration process...
+		iterateFile();
+		
+	}
+	
+	return comment;
+}
+
+bool STerm::iterateFile() {
+	
+	if (flc < fileLines.size()) {
+		
+		if (commander->isReadyForNext()) {
+			
+			//process the line
+			sendCommand(fileLines[flc]);
+			printf("processed %s\n", fileLines[flc].c_str());
+			flc++;
+			
+			//add a dot to the previous result
+			//int lr = (int) results.size()-1;
+//			results[lr] += ".";
+			
+			return false;
+		}
+	}
+	
+	//this is when we have got through all lines
+	else {
+		printf("we have finished iterateFile\n");
+		//commander->setDoingFile(false);
+		return true;
+	}
+
 	
 }
 
+string STerm::readFile(string path, vector<string> &fileLines) {
+
+	//set up stream
+	ifstream file;
+	
+	if (path.at(0) == '/') {
+		file.open(path.c_str());
+	}
+	
+	//if the path is not absolute look in specified directory
+	else {
+		string p = filesDirectory + path;
+		file.open(p.c_str());
+	}
+		
+	fileLines.clear();
+	
+	//check to see something is open
+	if (file.is_open()) {
+		
+		while (file.good()) {
+			string line;
+			getline(file, line);
+			fileLines.push_back(line);
+		}
+		
+		//and close...
+		file.close();
+		
+		return "";
+	}
+	
+	else {
+		return "could not open file";
+	}
+
+	
+}

@@ -44,11 +44,11 @@ void SPreview::setup(){
 	//instantiate serial
 	serial = new SSerial();
 	
-	//now instantiate commander, passing pointer to serial pointer
+	//now instantiate commander, passing serial pointer
 	commander = new SCommand(serial);
 	
-	//instantiate terminal, passing pointer to commander pointer
-	terminal = new STerm(commander, serial);
+	//instantiate terminal, passing commander pointer
+	terminal = new STerm(commander);
 	
 	setViewMode(TERMINAL);
 	
@@ -66,8 +66,17 @@ void SPreview::setup(){
 
 void SPreview::update(){
 	
+	//printf("SSerial done is %i\n", serial->isDone());
+	
 	if (isDrawing) {
 		serial->update();
+		
+		if (serial->isDone() && commander->isDoingFile()) {
+			printf("we are iterating\n");
+			if (!terminal->iterateFile()) {
+				commander->setDoingFile(false);
+			}
+		}
 	}
 	
 }
@@ -258,11 +267,3 @@ void SPreview::stoppedDrawing() {
 	isDrawing = false;
 	ofSetFrameRate(NORMAL_FRAMERATE);
 }
-
-//void SPreview::setStartedDrawing(bool b) {
-//	startedDrawing = b;
-//}
-//
-//bool SPreview::getStartedDrawing() {
-//	return startedDrawing;
-//}

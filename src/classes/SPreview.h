@@ -56,8 +56,6 @@ public:
 			
 	void setFocus(int i);
 	int getFocus();
-//	void setStartedDrawing(bool b);
-//	bool getStartedDrawing();
 	
 	void startedDrawing();
 	void stoppedDrawing();

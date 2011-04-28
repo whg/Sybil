@@ -22,6 +22,7 @@ class SSerial {
 private:
 	ofSerial serial;
 	bool readyToSendNext;
+	bool done;
 	bool finished;
 	
 	int pc; //point counter
@@ -30,21 +31,29 @@ private:
 	
 	vector<SPoint> points;
 	
+	bool multipleMove;
+	
 public:
 	SSerial();
 	~SSerial();
 	
+	void setDone(bool b);
+	bool isDone();
+	
 	void update();
 	void sendLine(int x0, int y0, int x1, int y1);
 	void sendSingleLine(int x0, int y0, int x1, int y1);
-	void sendCollection(vector<SPoint> &points);
+	void sendSingleMove(int x, int y);
 	void sendMove(int x, int y);
+	void sendMultipleMove(vector<SPoint> &points);
+	
 	bool sendPen(string command);
-	void sendDelayChange(int d);
+	void sendDelayChange(int delay_ms);
 	
 	SPoint getPos();
 	
 	void checkInput();
+	void flush();
 
 	
 };

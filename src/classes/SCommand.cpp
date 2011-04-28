@@ -15,6 +15,7 @@ SCommand::SCommand(SSerial* sc) {
 	serialConnection = sc;
 	previewPtr = (SPreview*) ofGetAppPtr();
 
+	doingFile = false;
 	
 }
 
@@ -69,6 +70,28 @@ void SCommand::createPointsInCircle(int nPoints, int rad, SPoint pos, vector<SPo
 	
 }
 
+
+/*
+ 
+ - - - UTIL METHODS - - -
+ 
+ */
+
+bool SCommand::isDoingFile() {
+	return doingFile;
+}
+
+void SCommand::setDoingFile(bool b) {
+	doingFile = b;
+	
+	if (b) 	previewPtr->startedDrawing();
+	else previewPtr->stoppedDrawing();
+}
+
+bool SCommand::isReadyForNext() {
+	printf("asked if ready for next\n");
+	return serialConnection->isDone();
+}
 
 /*
 
@@ -186,6 +209,10 @@ string SCommand::rect(vector<string> &tokens, vector<char> &options) {
 		y-= h/2;
 	}
 	
+	if (x < 0 || y < 0 || w < 0 || h < 0) {
+		return "invalid arguments: check for negative values";
+	}
+	
 	printf("x = %i, y = %i, w = %i, h = %i; r = %i, c = %i\n", x, y, w, h, rel, cor);
 	
 	//now make the SPoint vector
@@ -197,7 +224,8 @@ string SCommand::rect(vector<string> &tokens, vector<char> &options) {
 	points.push_back(SPoint(x, y));
 	
 	//now send...
-	serialConnection->sendCollection(points);
+	serialConnection->sendMultipleMove(points);
+	printf("sent multiple points...\n");
 	previewPtr->startedDrawing();
 			
 	return "";
@@ -271,8 +299,14 @@ string SCommand::circle(vector<string> &tokens, vector<char> &options) {
 	vector<SPoint> points = vector<SPoint>();
 	createPointsInCircle(360, rad, SPoint(x, y), points);
 	
+	for (int i = 0; i < points.size(); i++) {
+		if (points[i].x < 0 || points[i].y < 0) {
+			return "invalid arguments: check for negative values";
+		}
+	}
+	
 	//now send...
-	serialConnection->sendCollection(points);
+	serialConnection->sendMultipleMove(points);
 	previewPtr->startedDrawing();
 	
 	return "";
@@ -347,14 +381,20 @@ string SCommand::poly(vector<string> &tokens, vector<char> &options) {
 	vector<SPoint> points = vector<SPoint>();
 	createPointsInCircle(nSides, rad, SPoint(x, y), points);
 	
+	//check for negative values
+	for (int i = 0; i < points.size(); i++) {
+		if (points[i].x < 0 || points[i].y < 0) {
+			return "invalid arguments: check for negative values";
+		}
+	}
+	
 	//now send...
-	serialConnection->sendCollection(points);
+	serialConnection->sendMultipleMove(points);
 	previewPtr->startedDrawing();
 	
 	return "";
 	
 }
-
 
 string SCommand::get(vector<string> &tokens, vector<char> &options) {
 	
@@ -406,7 +446,7 @@ string SCommand::delay(vector<string> &tokens, vector<char> &options) {
 	else {
 		string comment = "";
 		//convert to int
-		int d = stringToInt(tokens[1], comment);
+		int delay = stringToInt(tokens[1], comment);
 		
 		//check for number...
 		if (comment != "") {
@@ -414,7 +454,7 @@ string SCommand::delay(vector<string> &tokens, vector<char> &options) {
 		} 
 		
 		else {
-			serialConnection->sendDelayChange(d);
+			serialConnection->sendDelayChange(delay);
 		}
 
 	}
@@ -463,9 +503,18 @@ string SCommand::move(vector<string> &tokens, vector<char> &options) {
 	}
 	
 	//and send...
-	serialConnection->sendMove(c[0], c[1]);
+	serialConnection->sendSingleMove(c[0], c[1]);
 		
 	
 	return "";
 }
 
+string SCommand::flush(vector<string> &tokens, vector<char> &options) {
+	
+	if (tokens.size() != 1) {
+		return "usage: flush";
+	}
+	
+	serialConnection->flush();
+	return "";
+}

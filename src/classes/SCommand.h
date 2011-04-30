@@ -49,12 +49,18 @@ public:
 	
 	string pen(vector<string> &tokens, vector<char> &options);
 	
+	void collection(vector<SPoint> &points);
+	
+	
 	//util methods
 	string get(vector<string> &tokens, vector<char> &options);
 	string move(vector<string> &tokens, vector<char> &options);
 	string delay(vector<string> &tokens, vector<char> &options);
 	string flush(vector<string> &tokens, vector<char> &options);
 	
+	string query(vector<string> &tokens, vector<char> &options);
+	string start(vector<string> &tokens, vector<char> &options);
+	string available(vector<string> &tokens, vector<char> &options);
 	
 };
 

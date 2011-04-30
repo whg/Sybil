@@ -33,6 +33,8 @@ private:
 	
 	bool multipleMove;
 	
+	int counter;
+	
 public:
 	SSerial();
 	~SSerial();
@@ -44,7 +46,11 @@ public:
 	void sendLine(int x0, int y0, int x1, int y1);
 	void sendSingleLine(int x0, int y0, int x1, int y1);
 	void sendSingleMove(int x, int y);
-	void sendMove(int x, int y);
+	
+	void sendMove(int t, int x, int y);
+	void sendMoveAbs(int x, int y);
+	void sendMoveRel(int x, int y);
+	
 	void sendMultipleMove(vector<SPoint> &points);
 	
 	bool sendPen(string command);
@@ -54,7 +60,12 @@ public:
 	
 	void checkInput();
 	void flush();
-
+	
+	int queryDelayed();
+	void start();
+	int available();
+	
+	bool checkOKtoSend();
 	
 };
 

@@ -58,8 +58,8 @@ void SCommand::createPointsInCircle(int nPoints, int rad, SPoint pos, vector<SPo
 	SPoint fp;
 	
 	for (int i = 0; i < 360; i+= inc) {
-		short int x = cos(ofDegToRad(i)) * rad;
-		short int y = sin(ofDegToRad(i)) * rad;
+		short int x = round(cos(ofDegToRad(i))) * rad;
+		short int y = round(sin(ofDegToRad(i))) * rad;
 		points.push_back(SPoint(x+pos.x, y+pos.y));
 		
 		if (i == 0) fp = SPoint(x+pos.x, y+pos.y);
@@ -90,7 +90,8 @@ void SCommand::setDoingFile(bool b) {
 
 bool SCommand::isReadyForNext() {
 	printf("asked if ready for next\n");
-	return serialConnection->isDone();
+	//return serialConnection->isDone();
+	return true;
 }
 
 /*
@@ -383,6 +384,7 @@ string SCommand::poly(vector<string> &tokens, vector<char> &options) {
 	
 	//check for negative values
 	for (int i = 0; i < points.size(); i++) {
+		printf("x = %i, y = %i\n", points[i].x, points[i].y);
 		if (points[i].x < 0 || points[i].y < 0) {
 			return "invalid arguments: check for negative values";
 		}
@@ -503,7 +505,7 @@ string SCommand::move(vector<string> &tokens, vector<char> &options) {
 	}
 	
 	//and send...
-	serialConnection->sendSingleMove(c[0], c[1]);
+	serialConnection->sendMoveAbs(c[0], c[1]);
 		
 	
 	return "";
@@ -518,3 +520,39 @@ string SCommand::flush(vector<string> &tokens, vector<char> &options) {
 	serialConnection->flush();
 	return "";
 }
+
+string SCommand::query(vector<string> &tokens, vector<char> &options) {
+
+	if (tokens.size() == 1) {
+		int n = serialConnection->queryDelayed();
+		stringstream ss;
+		ss << n;
+		return "number of commands = " + ss.str();
+	}
+	
+	
+	return "didn't work...";
+}
+
+string SCommand::start(vector<string> &tokens, vector<char> &options) {
+	
+	if (tokens.size() == 1) {
+		serialConnection->start();
+		return "";
+	}
+
+	return "error";
+}
+
+string SCommand::available(vector<string> &tokens, vector<char> &options) {
+
+	if (tokens.size() == 1) {
+		int n = serialConnection->available();
+		stringstream ss;
+		ss << n;
+		return "number of bytes available = " + ss.str();
+	}
+	
+	return "error";
+}
+	

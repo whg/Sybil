@@ -66,16 +66,14 @@ void SPreview::setup(){
 
 void SPreview::update(){
 	
-	//printf("SSerial done is %i\n", serial->isDone());
-	
+		
 	if (isDrawing) {
 		serial->update();
 		
-		if (serial->isDone() && commander->isDoingFile()) {
-			printf("we are iterating\n");
-			if (!terminal->iterateFile()) {
-				commander->setDoingFile(false);
-			}
+		//serial->
+		
+		if (commander->isDoingFile()) {
+			terminal->iterateFile();
 		}
 	}
 	

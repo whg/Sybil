@@ -72,6 +72,10 @@ void STerm::setCommands(vector<string> &c) {
 	c.push_back("delay");
 	c.push_back("read");
 	c.push_back("pen");
+	c.push_back("available");
+	c.push_back("start");
+	c.push_back("query");
+	c.push_back("flush");
 	
 }
 
@@ -391,6 +395,15 @@ string STerm::sendCommand(string command) {
 		return processFile(tokens);
 	}
 	
+	else if(tokens[0] == "query") {
+		return commander->query(tokens, options);
+	}
+	else if(tokens[0] == "start") {
+		return commander->start(tokens, options);
+	}
+	else if(tokens[0] == "available") {
+		return commander->available(tokens, options);
+	}
 	
 	//if doesn't match anything...
 	else {
@@ -494,7 +507,7 @@ bool STerm::iterateFile() {
 			
 			//process the line
 			sendCommand(fileLines[flc]);
-			printf("processed %s\n", fileLines[flc].c_str());
+			//printf("processed %s\n", fileLines[flc].c_str());
 			flc++;
 			
 			//add a dot to the previous result
@@ -507,7 +520,7 @@ bool STerm::iterateFile() {
 	
 	//this is when we have got through all lines
 	else {
-		printf("we have finished iterateFile\n");
+		//printf("we have finished iterateFile\n");
 		//commander->setDoingFile(false);
 		return true;
 	}

@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>EEB8243E1370B6FB00811E61</string>
+						<string>EEB8245D1371A2B300811E61</string>
 						<key>history</key>
 						<array>
 							<string>EEB823571370938100811E61</string>
@@ -257,7 +257,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>EEB8243F1370B6FB00811E61</string>
+						<string>EEB8245E1371A2B300811E61</string>
 						<key>history</key>
 						<array>
 							<string>EEEFD70D136B33300035E9EE</string>
@@ -298,7 +298,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>EEB824401370B6FB00811E61</string>
+						<string>EEB8245F1371A2B300811E61</string>
 						<key>history</key>
 						<array>
 							<string>EE73823C13699AD5007A76B7</string>
@@ -398,7 +398,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>15</integer>
+									<integer>16</integer>
 									<integer>4</integer>
 									<integer>0</integer>
 								</array>
@@ -441,7 +441,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SConstants.h</string>
+								<string>SSerial.cpp</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -449,11 +449,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SConstants.h</string>
+										<string>SSerial.cpp</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>EEB8243D1370B6FB00811E61</string>
+										<string>EEB8245C1371A2B300811E61</string>
 										<key>history</key>
 										<array>
 											<string>EE4A8E421324F61B003150AA</string>
@@ -484,10 +484,10 @@
 											<string>EE9698A2136CE2AA000EC07F</string>
 											<string>EEB8234A1370931F00811E61</string>
 											<string>EEB823AD1370A69E00811E61</string>
-											<string>EEB823B61370A77B00811E61</string>
 											<string>EEB8220A136F06AA00811E61</string>
+											<string>EEB8244A1371A02A00811E61</string>
+											<string>EEB8244B1371A02A00811E61</string>
 											<string>EEB823EC1370AF6D00811E61</string>
-											<string>EEB823B51370A77B00811E61</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -685,16 +685,16 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>EEB824411370B6FB00811E61</string>
+		<string>EEB824601371A2B300811E61</string>
 		<string>EEB821DE136ED97700811E61</string>
 		<string>EEB821DF136ED97700811E61</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>EEBF875712F7101B00CC4FFB</string>
 		<string>EE73822813698F89007A76B7</string>
 		<string>EE7381FE13698AF7007A76B7</string>
-		<string>/Users/WHG/Code/oF/apps/plotter/sybil/Sybil.xcodeproj</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>EE7381FB13698AF7007A76B7</string>
+		<string>1C78EAAD065D492600B07095</string>
+		<string>/Users/WHG/Code/oF/apps/plotter/sybil/Sybil.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>270 79 1064 799 0 0 1440 878 </string>

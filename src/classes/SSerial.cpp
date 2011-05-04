@@ -54,52 +54,52 @@ void SSerial::update() {
 		printf("\n");
 	}
 	
-//	if (serial.available()) {
-//		printf("%c", serial.readByte());
-//	}
 	
 	if (checkSendMore()) {
-		printf("send more\n");
-		counter+= 20;
-		sendNext = true;
+		
+		if (counter < points.size()) {
+			sendMoveAbs(points[counter].x, points[counter].y);
+			counter++;
+		}
+		printf("sent %i\n", counter);
 		
 	}
 	
-	if (sendNext) {
-		
-		bool finished = false;
-		
-		for (int i = 0; i < 20; i++) {
-			
-			if ((counter+i) > points.size()) {
-				sendFinish();
-				printf("sent finished\n");
-				finished = true;
-				//now exit loop as we have done all points...
-				break;
-			}
-			
-			sendMoveAbs(points[counter+i].x, points[counter+i].y);
-			printf("sent %i\n", counter+i);
-			
-		}
-		
-		
-		
-		//if (!finished) {
-			//this sees if the next lot of points to be sent is the last lot to be sent...
-			bool ll = ((counter + 20) > points.size());
-			sendLastLot(ll);
-			printf("sent last lot: %i\n", ll);
-			
-			sendStart();
-			printf("sent start\n");
-		//}
-		
-		
-		
-		sendNext = false;
-	}
+//	if (sendNext) {
+//		
+//		bool finished = false;
+//		
+//		for (int i = 0; i < 20; i++) {
+//			
+//			if ((counter+i) > points.size()) {
+//				sendFinish();
+//				printf("sent finished\n");
+//				finished = true;
+//				//now exit loop as we have done all points...
+//				break;
+//			}
+//			
+//			sendMoveAbs(points[counter+i].x, points[counter+i].y);
+//			printf("sent %i\n", counter+i);
+//			
+//		}
+//		
+//		
+//		
+//		//if (!finished) {
+//			//this sees if the next lot of points to be sent is the last lot to be sent...
+//			bool ll = ((counter + 20) > points.size());
+//			sendLastLot(ll);
+//			printf("sent last lot: %i\n", ll);
+//			
+//			sendStart();
+//			printf("sent start\n");
+//		//}
+//		
+//		
+//		
+//		sendNext = false;
+//	}
 	
 //	if (checkSendMore()) {
 //		counter+= 10;
@@ -224,6 +224,9 @@ void SSerial::sendMultipleMove(vector<SPoint> &points) {
 	for (int i = 0; i < points.size(); i++) {
 		printf("x = %i, y = %i\n", points[i].x, points[i].y);
 	}
+	
+	sendMoveAbs(points[counter].x, points[counter].y);
+	counter++;
 	
 }
 

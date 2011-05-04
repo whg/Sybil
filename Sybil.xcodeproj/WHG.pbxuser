@@ -307,6 +307,16 @@
 			EEB8243E1370B6FB00811E61 /* PBXTextBookmark */ = EEB8243E1370B6FB00811E61 /* PBXTextBookmark */;
 			EEB8243F1370B6FB00811E61 /* PBXTextBookmark */ = EEB8243F1370B6FB00811E61 /* PBXTextBookmark */;
 			EEB824401370B6FB00811E61 /* PBXTextBookmark */ = EEB824401370B6FB00811E61 /* PBXTextBookmark */;
+			EEB8244A1371A02A00811E61 /* PBXTextBookmark */ = EEB8244A1371A02A00811E61 /* PBXTextBookmark */;
+			EEB8244B1371A02A00811E61 /* PBXTextBookmark */ = EEB8244B1371A02A00811E61 /* PBXTextBookmark */;
+			EEB8244C1371A02A00811E61 /* PBXTextBookmark */ = EEB8244C1371A02A00811E61 /* PBXTextBookmark */;
+			EEB8244D1371A02A00811E61 /* PBXTextBookmark */ = EEB8244D1371A02A00811E61 /* PBXTextBookmark */;
+			EEB8244E1371A02A00811E61 /* PBXTextBookmark */ = EEB8244E1371A02A00811E61 /* PBXTextBookmark */;
+			EEB8244F1371A02A00811E61 /* PBXTextBookmark */ = EEB8244F1371A02A00811E61 /* PBXTextBookmark */;
+			EEB8245C1371A2B300811E61 /* PBXTextBookmark */ = EEB8245C1371A2B300811E61 /* PBXTextBookmark */;
+			EEB8245D1371A2B300811E61 /* PBXTextBookmark */ = EEB8245D1371A2B300811E61 /* PBXTextBookmark */;
+			EEB8245E1371A2B300811E61 /* PBXTextBookmark */ = EEB8245E1371A2B300811E61 /* PBXTextBookmark */;
+			EEB8245F1371A2B300811E61 /* PBXTextBookmark */ = EEB8245F1371A2B300811E61 /* PBXTextBookmark */;
 			EEE0E3A01368A8F5005329AB = EEE0E3A01368A8F5005329AB /* PBXTextBookmark */;
 			EEEA4C62133C209900833743 = EEEA4C62133C209900833743 /* PBXTextBookmark */;
 			EEEFD70D136B33300035E9EE = EEEFD70D136B33300035E9EE /* PBXTextBookmark */;
@@ -511,7 +521,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {769, 806}}";
 			sepNavSelRange = "{219, 0}";
-			sepNavVisRange = "{3, 973}";
+			sepNavVisRange = "{3, 977}";
 			sepNavWindowFrame = "{{15, 4}, {790, 873}}";
 		};
 	};
@@ -688,7 +698,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {769, 1079}}";
 			sepNavSelRange = "{1127, 0}";
-			sepNavVisRange = "{318, 910}";
+			sepNavVisRange = "{334, 894}";
 		};
 	};
 	EE7384131369B9C5007A76B7 /* STerm.cpp */ = {
@@ -703,7 +713,7 @@
 		fRef = EE927C59136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 315";
 		rLen = 0;
-		rLoc = 1724;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 1075;
 		vrLoc = 5634;
@@ -730,7 +740,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 81";
 		rLen = 0;
-		rLoc = 1724;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 874;
 		vrLoc = 483;
@@ -917,7 +927,7 @@
 		fRef = EE969980136E0402000EC07F /* SSerial.cpp */;
 		name = "SSerial.cpp: 339";
 		rLen = 0;
-		rLoc = 8144;
+		rLoc = 8289;
 		rType = 0;
 		vrLen = 1072;
 		vrLoc = 5637;
@@ -944,7 +954,7 @@
 		fRef = EE969984136E0402000EC07F /* SSerial.cpp */;
 		name = "SSerial.cpp: 81";
 		rLen = 0;
-		rLoc = 1724;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 937;
 		vrLoc = 483;
@@ -986,7 +996,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 315";
 		rLen = 0;
-		rLoc = 1724;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 1074;
 		vrLoc = 5634;
@@ -1006,7 +1016,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 81";
 		rLen = 0;
-		rLoc = 1724;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 874;
 		vrLoc = 483;
@@ -1026,7 +1036,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 340";
 		rLen = 0;
-		rLoc = 8221;
+		rLoc = 8366;
 		rType = 0;
 		vrLen = 1048;
 		vrLoc = 5705;
@@ -1046,7 +1056,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 81";
 		rLen = 0;
-		rLoc = 1724;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 825;
 		vrLoc = 483;
@@ -1066,7 +1076,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 71";
 		rLen = 0;
-		rLoc = 1724;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 916;
 		vrLoc = 573;
@@ -1086,7 +1096,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 81";
 		rLen = 0;
-		rLoc = 1724;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 845;
 		vrLoc = 483;
@@ -1106,7 +1116,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 73";
 		rLen = 0;
-		rLoc = 1724;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 820;
 		vrLoc = 573;
@@ -1126,7 +1136,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 86";
 		rLen = 0;
-		rLoc = 1724;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 874;
 		vrLoc = 483;
@@ -1146,7 +1156,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 68";
 		rLen = 0;
-		rLoc = 1724;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 899;
 		vrLoc = 637;
@@ -1166,7 +1176,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 86";
 		rLen = 0;
-		rLoc = 1724;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 854;
 		vrLoc = 483;
@@ -1186,7 +1196,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 69";
 		rLen = 0;
-		rLoc = 1724;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 909;
 		vrLoc = 637;
@@ -1206,7 +1216,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 86";
 		rLen = 0;
-		rLoc = 1724;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 864;
 		vrLoc = 483;
@@ -1236,7 +1246,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 79";
 		rLen = 0;
-		rLoc = 1724;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 1006;
 		vrLoc = 637;
@@ -1254,8 +1264,8 @@
 		isa = PBXTextBookmark;
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 64";
-		rLen = 4;
-		rLoc = 1440;
+		rLen = 0;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 961;
 		vrLoc = 637;
@@ -1275,7 +1285,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 90";
 		rLen = 0;
-		rLoc = 1724;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 909;
 		vrLoc = 483;
@@ -1295,7 +1305,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 63";
 		rLen = 0;
-		rLoc = 1408;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 879;
 		vrLoc = 573;
@@ -1305,7 +1315,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 90";
 		rLen = 0;
-		rLoc = 1724;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 907;
 		vrLoc = 483;
@@ -1335,7 +1345,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 63";
 		rLen = 0;
-		rLoc = 1408;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 881;
 		vrLoc = 412;
@@ -1395,7 +1405,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 367";
 		rLen = 0;
-		rLoc = 7898;
+		rLoc = 8043;
 		rType = 0;
 		vrLen = 1238;
 		vrLoc = 1778;
@@ -1495,7 +1505,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 91";
 		rLen = 0;
-		rLoc = 1668;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 843;
 		vrLoc = 894;
@@ -1505,7 +1515,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 91";
 		rLen = 0;
-		rLoc = 1668;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 820;
 		vrLoc = 917;
@@ -1545,7 +1555,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 212";
 		rLen = 49;
-		rLoc = 4098;
+		rLoc = 4177;
 		rType = 0;
 		vrLen = 809;
 		vrLoc = 894;
@@ -1585,7 +1595,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 91";
 		rLen = 0;
-		rLoc = 1662;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 919;
 		vrLoc = 838;
@@ -1625,7 +1635,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 95";
 		rLen = 0;
-		rLoc = 1716;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 873;
 		vrLoc = 898;
@@ -1665,7 +1675,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 75";
 		rLen = 0;
-		rLoc = 1169;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 929;
 		vrLoc = 1016;
@@ -1715,7 +1725,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 90";
 		rLen = 0;
-		rLoc = 1586;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 996;
 		vrLoc = 1059;
@@ -1775,7 +1785,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 267";
 		rLen = 0;
-		rLoc = 5076;
+		rLoc = 5221;
 		rType = 0;
 		vrLen = 882;
 		vrLoc = 4607;
@@ -1835,7 +1845,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 267";
 		rLen = 0;
-		rLoc = 5076;
+		rLoc = 5221;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 2819;
@@ -1875,7 +1885,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 267";
 		rLen = 0;
-		rLoc = 5076;
+		rLoc = 5221;
 		rType = 0;
 		vrLen = 1152;
 		vrLoc = 3035;
@@ -1915,7 +1925,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 91";
 		rLen = 0;
-		rLoc = 1610;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 905;
 		vrLoc = 948;
@@ -1954,8 +1964,8 @@
 		isa = PBXTextBookmark;
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 74";
-		rLen = 119;
-		rLoc = 1207;
+		rLen = 0;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 897;
 		vrLoc = 990;
@@ -2014,8 +2024,8 @@
 		isa = PBXTextBookmark;
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 74";
-		rLen = 119;
-		rLoc = 1207;
+		rLen = 0;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 998;
 		vrLoc = 1054;
@@ -2034,8 +2044,8 @@
 		isa = PBXTextBookmark;
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 83";
-		rLen = 4;
-		rLoc = 1440;
+		rLen = 0;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 991;
 		vrLoc = 4408;
@@ -2065,7 +2075,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 62";
 		rLen = 0;
-		rLoc = 1037;
+		rLoc = 944;
 		rType = 0;
 		vrLen = 950;
 		vrLoc = 838;
@@ -2115,7 +2125,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 92";
 		rLen = 0;
-		rLoc = 1610;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 916;
 		vrLoc = 914;
@@ -2135,7 +2145,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 62";
 		rLen = 0;
-		rLoc = 1037;
+		rLoc = 944;
 		rType = 0;
 		vrLen = 979;
 		vrLoc = 838;
@@ -2155,7 +2165,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 92";
 		rLen = 0;
-		rLoc = 1610;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 913;
 		vrLoc = 914;
@@ -2165,7 +2175,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 62";
 		rLen = 0;
-		rLoc = 1037;
+		rLoc = 944;
 		rType = 0;
 		vrLen = 919;
 		vrLoc = 898;
@@ -2195,7 +2205,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 89";
 		rLen = 0;
-		rLoc = 1461;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 913;
 		vrLoc = 914;
@@ -2205,7 +2215,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 62";
 		rLen = 0;
-		rLoc = 1037;
+		rLoc = 944;
 		rType = 0;
 		vrLen = 882;
 		vrLoc = 948;
@@ -2234,8 +2244,8 @@
 		isa = PBXTextBookmark;
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 84";
-		rLen = 4;
-		rLoc = 1440;
+		rLen = 0;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 985;
 		vrLoc = 917;
@@ -2255,7 +2265,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 62";
 		rLen = 0;
-		rLoc = 1037;
+		rLoc = 944;
 		rType = 0;
 		vrLen = 985;
 		vrLoc = 1082;
@@ -2295,7 +2305,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 225";
 		rLen = 0;
-		rLoc = 4357;
+		rLoc = 4436;
 		rType = 0;
 		vrLen = 938;
 		vrLoc = 3838;
@@ -2335,7 +2345,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 75";
 		rLen = 0;
-		rLoc = 1211;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 1193;
 		vrLoc = 2353;
@@ -2375,7 +2385,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 75";
 		rLen = 0;
-		rLoc = 1211;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 611;
@@ -2415,7 +2425,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 75";
 		rLen = 0;
-		rLoc = 1211;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 1048;
 		vrLoc = 637;
@@ -2425,7 +2435,7 @@
 		fRef = EE927C5E136E05AD0025AB01 /* SSerial.cpp */;
 		name = "SSerial.cpp: 75";
 		rLen = 0;
-		rLoc = 1211;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 1048;
 		vrLoc = 637;
@@ -2465,7 +2475,7 @@
 		fRef = EEB824301370B5DD00811E61 /* SSerial.cpp */;
 		name = "SSerial.cpp: 75";
 		rLen = 0;
-		rLoc = 1211;
+		rLoc = 1093;
 		rType = 0;
 		vrLen = 1048;
 		vrLoc = 637;
@@ -2477,9 +2487,9 @@
 		path = /Users/WHG/Code/oF/apps/plotter/Sybil/src/classes/SSerial.cpp;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {706, 5993}}";
-			sepNavSelRange = "{1081, 0}";
-			sepNavVisRange = "{917, 910}";
+			sepNavIntBoundsRect = "{{0, 0}, {706, 5980}}";
+			sepNavSelRange = "{1090, 0}";
+			sepNavVisRange = "{1035, 1014}";
 		};
 	};
 	EEB824311370B5DD00811E61 /* PBXTextBookmark */ = {
@@ -2517,7 +2527,7 @@
 		fRef = EEB824301370B5DD00811E61 /* SSerial.cpp */;
 		name = "SSerial.cpp: 66";
 		rLen = 0;
-		rLoc = 1081;
+		rLoc = 1090;
 		rType = 0;
 		vrLen = 910;
 		vrLoc = 917;
@@ -2533,6 +2543,106 @@
 		vrLoc = 8244;
 	};
 	EEB824401370B6FB00811E61 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE927C60136E05AD0025AB01 /* STerm.cpp */;
+		name = "STerm.cpp: 406";
+		rLen = 0;
+		rLoc = 8749;
+		rType = 0;
+		vrLen = 1351;
+		vrLoc = 7433;
+	};
+	EEB8244A1371A02A00811E61 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE634044135B8B9B004885E7 /* SConstants.h */;
+		name = "SConstants.h: 15";
+		rLen = 0;
+		rLoc = 219;
+		rType = 0;
+		vrLen = 977;
+		vrLoc = 3;
+	};
+	EEB8244B1371A02A00811E61 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE73829D1369A3B4007A76B7 /* SSerial.h */;
+		name = "SSerial.h: 72";
+		rLen = 0;
+		rLoc = 1127;
+		rType = 0;
+		vrLen = 894;
+		vrLoc = 334;
+	};
+	EEB8244C1371A02A00811E61 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EEB824301370B5DD00811E61 /* SSerial.cpp */;
+		name = "SSerial.cpp: 76";
+		rLen = 0;
+		rLoc = 1282;
+		rType = 0;
+		vrLen = 972;
+		vrLoc = 536;
+	};
+	EEB8244D1371A02A00811E61 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE927C60136E05AD0025AB01 /* STerm.cpp */;
+		name = "STerm.cpp: 406";
+		rLen = 0;
+		rLoc = 8749;
+		rType = 0;
+		vrLen = 1403;
+		vrLoc = 7433;
+	};
+	EEB8244E1371A02A00811E61 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EEB824301370B5DD00811E61 /* SSerial.cpp */;
+		name = "SSerial.cpp: 66";
+		rLen = 0;
+		rLoc = 1090;
+		rType = 0;
+		vrLen = 1060;
+		vrLoc = 921;
+	};
+	EEB8244F1371A02A00811E61 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
+		name = "SCommand.cpp: 455";
+		rLen = 0;
+		rLoc = 9117;
+		rType = 0;
+		vrLen = 1128;
+		vrLoc = 8244;
+	};
+	EEB8245C1371A2B300811E61 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EEB824301370B5DD00811E61 /* SSerial.cpp */;
+		name = "SSerial.cpp: 229";
+		rLen = 0;
+		rLoc = 4507;
+		rType = 0;
+		vrLen = 1203;
+		vrLoc = 3582;
+	};
+	EEB8245D1371A2B300811E61 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EEB824301370B5DD00811E61 /* SSerial.cpp */;
+		name = "SSerial.cpp: 66";
+		rLen = 0;
+		rLoc = 1090;
+		rType = 0;
+		vrLen = 1014;
+		vrLoc = 1035;
+	};
+	EEB8245E1371A2B300811E61 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE634528135EE3BF004885E7 /* SCommand.cpp */;
+		name = "SCommand.cpp: 455";
+		rLen = 0;
+		rLoc = 9117;
+		rType = 0;
+		vrLen = 1076;
+		vrLoc = 8244;
+	};
+	EEB8245F1371A2B300811E61 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = EE927C60136E05AD0025AB01 /* STerm.cpp */;
 		name = "STerm.cpp: 406";

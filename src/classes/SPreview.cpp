@@ -106,6 +106,9 @@ void SPreview::draw(){
 			break;
 
 	}
+	
+	ofSetColor(0, 0, 0);
+	ofDrawBitmapString(ofToString(ofGetFrameRate(), 1), 400, 300);
 
 }
 
@@ -259,9 +262,11 @@ void SPreview::setViewMode(int m) {
 void SPreview::startedDrawing() {
 	isDrawing = true;
 	ofSetFrameRate(SERIAL_FRAMERATE);
+	printf("startDrawing() called\n");
 }
 
 void SPreview::stoppedDrawing() {
 	isDrawing = false;
 	ofSetFrameRate(NORMAL_FRAMERATE);
+	printf("stoppedDrawing() called\n");
 }

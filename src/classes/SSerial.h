@@ -34,6 +34,9 @@ private:
 	bool multipleMove;
 	
 	int counter;
+	bool sendNext;
+	
+	vector<unsigned char> readBytes;
 	
 public:
 	SSerial();
@@ -62,10 +65,15 @@ public:
 	void flush();
 	
 	int queryDelayed();
-	void start();
+	void sendStart();
 	int available();
 	
+	void sendFinish();
+	void sendLastLot(bool isLast);
+	
 	bool checkOKtoSend();
+	bool checkSendMore();
+	bool checkSendMore(unsigned char byte);
 	
 };
 

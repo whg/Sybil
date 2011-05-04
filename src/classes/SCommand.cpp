@@ -58,8 +58,8 @@ void SCommand::createPointsInCircle(int nPoints, int rad, SPoint pos, vector<SPo
 	SPoint fp;
 	
 	for (int i = 0; i < 360; i+= inc) {
-		short int x = round(cos(ofDegToRad(i))) * rad;
-		short int y = round(sin(ofDegToRad(i))) * rad;
+		short int x = cos(ofDegToRad(i)) * rad;
+		short int y = sin(ofDegToRad(i)) * rad;
 		points.push_back(SPoint(x+pos.x, y+pos.y));
 		
 		if (i == 0) fp = SPoint(x+pos.x, y+pos.y);
@@ -144,7 +144,7 @@ string SCommand::line(vector<string> &tokens, vector<char> &options) {
 		c[3]+= currentPos.y;
 	}
 	
-	serialConnection->sendSingleLine(c[0], c[1], c[2], c[3]);
+	//§serialConnection->sendSingleLine(c[0], c[1], c[2], c[3]);
 			
 	return "";
 	
@@ -384,7 +384,7 @@ string SCommand::poly(vector<string> &tokens, vector<char> &options) {
 	
 	//check for negative values
 	for (int i = 0; i < points.size(); i++) {
-		printf("x = %i, y = %i\n", points[i].x, points[i].y);
+		printf("point %i: x = %i, y = %i\n", i, points[i].x, points[i].y);
 		if (points[i].x < 0 || points[i].y < 0) {
 			return "invalid arguments: check for negative values";
 		}
@@ -537,7 +537,7 @@ string SCommand::query(vector<string> &tokens, vector<char> &options) {
 string SCommand::start(vector<string> &tokens, vector<char> &options) {
 	
 	if (tokens.size() == 1) {
-		serialConnection->start();
+		serialConnection->sendStart();
 		return "";
 	}
 

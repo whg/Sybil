@@ -10,11 +10,12 @@
 #ifndef _SITEM
 #define _SITEM
 
+class SPreview;
+class SSerial;
+
 #include "STypes.h"
 #include "ofMain.h"
 #include "SConstants.h"
-
-class SPreview;
 
 class SItem {
 	
@@ -30,7 +31,10 @@ public:
 	bool focus;
 	SPoint pos, dim;
 	int resizeMargin;
+	
+	//pointers
 	SPreview *previewPtr;
+	SSerial *serialPtr;
 	
 	cursorTypes cursorType;
 
@@ -64,6 +68,8 @@ public:
 	virtual void updateWindow() {};
 	
 	virtual void hello();
+	
+	virtual void giveAllPoints(vector<SPoint> &points) = 0;
 	
 	
 };

@@ -34,12 +34,13 @@ void SPreview::setup(){
 	ofSetFrameRate(NORMAL_FRAMERATE);
 	ofEnableSmoothing();
 	ofEnableAlphaBlending();
-
 	
 	idc = 0;
 	fid = -1;
 	ztrans = 0;
 	isDrawing = false;
+	
+	space = SPoint(385, 280);
 	
 	//instantiate serial
 	serial = new SSerial();
@@ -91,7 +92,10 @@ void SPreview::draw(){
 			ofPushMatrix();
 			ofTranslate(0, 0, ztrans);
 			
-			ofSetColor(0, 0, 0);
+//			ofFill();
+//			ofSetColor(0, 0, 0);
+//			ofRect(0, 0, space.x, space.y);
+			
 			for (int i = 0; i < items.size(); i++) {
 				items[i]->draw();
 			}
@@ -137,7 +141,25 @@ void SPreview::keyPressed(int key){
 	if (mode == TERMINAL) {
 		terminal->keyPressed(key);
 	}
+	
+	else {
+		switch (key) {
+			case '-':
+				ztrans-= 10;
+				printf("pressed -\n");
+				break;
+			case '=':
+				ztrans+= 10;
+				printf("pressed +\n");
+			default:
+				break;
+		}
+		
+		printf("ztrans = %i\n", ztrans);
 
+	}
+
+	
 }
 
 void SPreview::keyReleased(int key){
@@ -193,7 +215,7 @@ void SPreview::mousePressed(int x, int y, int button){
 			for (int i = 0; i < items.size(); i++) {
 				items[i]->setFocus(false);
 			}
-			printf("fid = %i, size of items = %i\n", fid, (int) items.size());
+			//printf("fid = %i, size of items = %i\n", fid, (int) items.size());
 			if (fid != -1) items[fid]->setFocus(true);
 		}
 	}// end if
@@ -262,6 +284,7 @@ void SPreview::setViewMode(int m) {
 void SPreview::startedDrawing() {
 	isDrawing = true;
 	ofSetFrameRate(SERIAL_FRAMERATE);
+	serial->flush();
 	printf("startDrawing() called\n");
 }
 
@@ -269,4 +292,34 @@ void SPreview::stoppedDrawing() {
 	isDrawing = false;
 	ofSetFrameRate(NORMAL_FRAMERATE);
 	printf("stoppedDrawing() called\n");
+}
+
+bool SPreview::isCurrentlyDrawing() {
+	return isDrawing;
+}
+
+SPoint SPreview::getScalingVector() {
+	float factor = space.x/ofGetWidth();
+	return SPoint(factor, factor);
+}
+
+// - - -
+SSerial* SPreview::getSerialConnection() {
+	return serial;
+}
+
+// - - - PLOT EVERYTHING - - -
+void SPreview::plotEverything() {
+
+	vector<SPoint> allPoints = vector<SPoint>();
+	
+	//go through all items and collect their points...
+	//5 points will get you a hat, 20 points a stereo
+	//and 100 points will get a huge cuddly toy
+	for (int i = 0; i < items.size(); i++) {
+		items[i]->giveAllPoints(allPoints);
+	}
+	
+	printf("WE HAVE %i NUMBER OF POINTS\n", (int) allPoints.size());
+	
 }

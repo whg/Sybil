@@ -38,8 +38,8 @@ public:
 	void setDoingFile(bool b);
 	bool isDoingFile();
 	
-	bool isReadyForNext();
-
+	bool doNextLine();
+	
 	//drawing methods
 	string line(vector<string> &tokens, vector<char> &options);
 	string circle(vector<string> &tokens, vector<char> &options);
@@ -58,8 +58,6 @@ public:
 	string delay(vector<string> &tokens, vector<char> &options);
 	string flush(vector<string> &tokens, vector<char> &options);
 	
-	string query(vector<string> &tokens, vector<char> &options);
-	string start(vector<string> &tokens, vector<char> &options);
 	string available(vector<string> &tokens, vector<char> &options);
 	
 };

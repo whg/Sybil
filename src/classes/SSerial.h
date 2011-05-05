@@ -21,8 +21,6 @@ class SSerial {
 	
 private:
 	ofSerial serial;
-	bool readyToSendNext;
-	bool done;
 	bool finished;
 	
 	int pc; //point counter
@@ -34,16 +32,12 @@ private:
 	bool multipleMove;
 	
 	int counter;
-	bool sendNext;
 	
 	vector<unsigned char> readBytes;
 	
 public:
 	SSerial();
 	~SSerial();
-	
-	void setDone(bool b);
-	bool isDone();
 	
 	void update();
 	void sendLine(int x0, int y0, int x1, int y1);
@@ -69,11 +63,14 @@ public:
 	int available();
 	
 	void sendFinish();
-	void sendLastLot(bool isLast);
-	
-	bool checkOKtoSend();
+	void checkIsFinished();
+
 	bool checkSendMore();
-	bool checkSendMore(unsigned char byte);
+	
+	void sendInstruction(int x, int y);
+	
+	bool isFinished();
+		
 	
 };
 

@@ -66,6 +66,8 @@ public:
 	void setFixAspectRatio(bool b);
 	void drawOriginalImage(bool b);
 	
+	void giveAllPoints(vector<SPoint> &p);
+	
 };
 
 

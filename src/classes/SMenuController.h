@@ -24,8 +24,7 @@ class SPreview;
 - (IBAction) addImage: (id) sender;
 - (IBAction) changeToPreview: (id) sender;
 - (IBAction) changeToTerminal: (id) sender;
-
-//- (IBAction)showOpenPanel:(id)sender;
+- (IBAction) plotEverything: (id) sender;
 
 
 @end

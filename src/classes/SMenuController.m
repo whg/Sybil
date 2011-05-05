@@ -52,12 +52,18 @@
 	
 }
 
-
 - (IBAction) changeToTerminal: (id) sender {
 	previewPtr->setViewMode(1);
 	[previewMode setState:NSOffState];
 	[terminalMode setState:NSOnState];
 }
+
+- (IBAction) plotEverything: (id) sender {
+
+	previewPtr->plotEverything();
+	
+}
+
 
 
 @end

@@ -11,8 +11,8 @@
 #ifndef _SCONSTANTS
 #define _SCONSTANTS
 
-#define PREVIEW_WIDTH 800
-#define PREVIEW_HEIGHT 600
+#define PREVIEW_WIDTH 1155
+#define PREVIEW_HEIGHT 840
 
 #define TERMINAL_WIDTH 600
 #define TERMINAL_HEIGHT 400
@@ -32,7 +32,9 @@
 #define COMMAND_CODE_FINISH 9
 #define COMMAND_CODE_NUM_COMMANDS 10
 
+//these come from the plotter...
 #define SEND_FOR_NEXT_COMMANDS 213
+#define PLOTTER_FINISHED_DRAWING 182
 
 #define RX_BUFFER_FULL 5
 #define RX_SEND_NEXT 7
@@ -41,6 +43,9 @@
 #define SERIAL_DLE 0x10
 #define SERIAL_STX 0x02
 #define SERIAL_ETX 0x03
+
+#define PEN_UP_POINT -1
+#define PEN_DOWN_POINT -2
 
 
 enum viewModes {

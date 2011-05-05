@@ -394,13 +394,7 @@ string STerm::sendCommand(string command) {
 	else if(tokens[0] == "read") {
 		return processFile(tokens);
 	}
-	
-	else if(tokens[0] == "query") {
-		return commander->query(tokens, options);
-	}
-	else if(tokens[0] == "start") {
-		return commander->start(tokens, options);
-	}
+
 	else if(tokens[0] == "available") {
 		return commander->available(tokens, options);
 	}
@@ -503,13 +497,16 @@ bool STerm::iterateFile() {
 	
 	if (flc < fileLines.size()) {
 		
-		if (commander->isReadyForNext()) {
+		if (commander->doNextLine()) {
 			
-			//process the line
-			sendCommand(fileLines[flc]);
-			//printf("processed %s\n", fileLines[flc].c_str());
+			if (fileLines[flc] != "") {
+				//process the line
+				sendCommand(fileLines[flc]);
+				printf("processed %s\n", fileLines[flc].c_str());
+			}
+			
 			flc++;
-			
+
 			//add a dot to the previous result
 			//int lr = (int) results.size()-1;
 //			results[lr] += ".";
@@ -520,8 +517,8 @@ bool STerm::iterateFile() {
 	
 	//this is when we have got through all lines
 	else {
-		//printf("we have finished iterateFile\n");
-		//commander->setDoingFile(false);
+		printf("we have finished iterateFile\n");
+		commander->setDoingFile(false);
 		return true;
 	}
 
@@ -552,6 +549,7 @@ string STerm::readFile(string path, vector<string> &fileLines) {
 			string line;
 			getline(file, line);
 			fileLines.push_back(line);
+			printf("line is: %s\n", line.c_str());
 		}
 		
 		//and close...

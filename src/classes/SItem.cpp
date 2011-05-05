@@ -10,6 +10,8 @@
 
 #include "SItem.h"
 #include "SPreview.h"
+#include "SSerial.h"
+
 
 SItem::SItem(int i) {
 	uid = i; //set unique id
@@ -25,6 +27,9 @@ SItem::SItem(int i) {
 	
 	//pointer to preview
 	previewPtr = (SPreview*) ofGetAppPtr();
+	
+	//pointer to serial
+	serialPtr = previewPtr->getSerialConnection();
 	
 }
 

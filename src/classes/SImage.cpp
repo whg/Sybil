@@ -278,4 +278,12 @@ void SImage::drawOriginalImage(bool b) {
 	showImage = b;
 }
 	
+// - - - GIVE ALL POINTS - - -
+void SImage::giveAllPoints(vector<SPoint> &p) {
+
+	for (int i = 0; i < points.size(); i++) {
+		p.push_back(points[i]);
+	}
+	
+}
 

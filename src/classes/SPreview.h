@@ -20,6 +20,7 @@
 #include "SConstants.h"
 #include "SSerial.h"
 #include "SCommand.h"
+#include "STypes.h"
 
 class SItem;
 class SImage;
@@ -36,9 +37,15 @@ private:
 	bool isDrawing;
 	int ztrans;
 	
+	viewModes mode;
+	
+	//this is the operating space
+	SPoint space;
+
 	STerm* terminal;
 	SCommand* commander;
-	
+	SSerial* serial;
+
 public:
 	
 	~SPreview();
@@ -59,6 +66,7 @@ public:
 	
 	void startedDrawing();
 	void stoppedDrawing();
+	bool isCurrentlyDrawing();
 	
 	void setViewMode(int m);
 			
@@ -69,10 +77,12 @@ public:
 	void addImageItem(string file);
 	void removeItem(int i);
 	
-	SSerial* serial;
+	SPoint getScalingVector();
 	
+	SSerial* getSerialConnection();
 	
-	viewModes mode;
+	void plotEverything();
+	
 	
 };
 

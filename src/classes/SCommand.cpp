@@ -55,14 +55,19 @@ void SCommand::createPointsInCircle(int nPoints, int rad, SPoint pos, vector<SPo
 	
 	int inc = 360/nPoints;
 	points.clear();
-	SPoint fp;
+	SPoint fp; //first point
+	
+	points.push_back(SPoint(PEN_UP_POINT, 0));
 	
 	for (int i = 0; i < 360; i+= inc) {
 		short int x = cos(ofDegToRad(i)) * rad;
 		short int y = sin(ofDegToRad(i)) * rad;
 		points.push_back(SPoint(x+pos.x, y+pos.y));
 		
-		if (i == 0) fp = SPoint(x+pos.x, y+pos.y);
+		if (i == 0) {
+			points.push_back(SPoint(PEN_DOWN_POINT, 0));
+			fp = SPoint(x+pos.x, y+pos.y);
+		}
 	}
 	
 	//go full circle, push back first point
@@ -84,15 +89,14 @@ bool SCommand::isDoingFile() {
 void SCommand::setDoingFile(bool b) {
 	doingFile = b;
 	
-	if (b) 	previewPtr->startedDrawing();
-	else previewPtr->stoppedDrawing();
+//	if (b) 	previewPtr->startedDrawing();
+//	else previewPtr->stoppedDrawing();
 }
 
-bool SCommand::isReadyForNext() {
-	printf("asked if ready for next\n");
-	//return serialConnection->isDone();
-	return true;
+bool SCommand::doNextLine() {
+	return serialConnection->isFinished();
 }
+
 
 /*
 
@@ -218,7 +222,9 @@ string SCommand::rect(vector<string> &tokens, vector<char> &options) {
 	
 	//now make the SPoint vector
 	vector<SPoint> points;
+	points.push_back(SPoint(PEN_UP_POINT, 0));
 	points.push_back(SPoint(x, y));
+	points.push_back(SPoint(PEN_DOWN_POINT, 0));
 	points.push_back(SPoint(x+w, y));
 	points.push_back(SPoint(x+w, y+h));
 	points.push_back(SPoint(x, y+h));
@@ -382,11 +388,16 @@ string SCommand::poly(vector<string> &tokens, vector<char> &options) {
 	vector<SPoint> points = vector<SPoint>();
 	createPointsInCircle(nSides, rad, SPoint(x, y), points);
 	
+	//add pen up and down
+	
+	
 	//check for negative values
 	for (int i = 0; i < points.size(); i++) {
 		printf("point %i: x = %i, y = %i\n", i, points[i].x, points[i].y);
 		if (points[i].x < 0 || points[i].y < 0) {
-			return "invalid arguments: check for negative values";
+			if ((points[i].x != PEN_UP_POINT ||  points[i].x != PEN_DOWN_POINT) && points[i].y != 0) {
+				return "invalid arguments: check for negative values";
+			}
 		}
 	}
 	
@@ -521,28 +532,7 @@ string SCommand::flush(vector<string> &tokens, vector<char> &options) {
 	return "";
 }
 
-string SCommand::query(vector<string> &tokens, vector<char> &options) {
 
-	if (tokens.size() == 1) {
-		int n = serialConnection->queryDelayed();
-		stringstream ss;
-		ss << n;
-		return "number of commands = " + ss.str();
-	}
-	
-	
-	return "didn't work...";
-}
-
-string SCommand::start(vector<string> &tokens, vector<char> &options) {
-	
-	if (tokens.size() == 1) {
-		serialConnection->sendStart();
-		return "";
-	}
-
-	return "error";
-}
 
 string SCommand::available(vector<string> &tokens, vector<char> &options) {
 

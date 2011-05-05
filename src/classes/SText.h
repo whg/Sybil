@@ -10,12 +10,13 @@
 #ifndef _STEXT
 #define _STEXT
 
-@class STextController;
-
 #include "ofMain.h"
 #include "SItem.h"
 #import <Cocoa/Cocoa.h>
 #import "STextController.h"
+#include "STypes.h"
+
+@class STextController;
 
 class SText : public SItem {
 	
@@ -23,6 +24,7 @@ private:
 
 	string text;
 	vector<ofPoint> refPoints;
+	vector<SPoint> textPoints;
 	
 	ofTrueTypeFont ttf;
 	float lineHeight, genCharWidth;
@@ -31,6 +33,11 @@ private:
 	string fontName;
 	
 	STextController* windowController;
+	
+	void wrapLines();
+	void setYDim();
+	
+	void findTextPoints();
 	
 public:
 	
@@ -42,16 +49,15 @@ public:
 	void setText(string s);
 	void setFont(string fontname);
 	void setFontSize(int s);
-	
+		
 	void updateWindow();
-	
-	void wrapLines();
-	void setYDim();
-	
+
 	void draw();
 	void update();
 
 	void hello();
+	
+	void giveAllPoints(vector<SPoint> &points);
 	
 
 };

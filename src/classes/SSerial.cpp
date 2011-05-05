@@ -12,14 +12,20 @@
 //constructor
 SSerial::SSerial() {
 	
+	serial.enumerateDevices();
+	
 	//connect to serial port
-	if(serial.setup("/dev/cu.usbserial-A600eI53", 28800)) {
-		printf("serial connected\n");
-	}
+	//if(serial.setup("/dev/cu.usbserial-A600eI53", 28800)) {
+//		printf("serial connected\n");
+//	}
+	
+	if(serial.setup("/dev/cu.usbserial-A700eyPP", 28800)) {
+			printf("serial connected\n");
+		}
+	
+	
 	
 	//init variables
-	readyToSendNext = true;
-	done = true;
 	finished = true;
 	pc = 0;
 	multipleMove = false;
@@ -31,7 +37,6 @@ SSerial::SSerial() {
 	serial.setVerbose(true);
 	
 	counter = 0;
-	sendNext = true;
 }
 
 //destructor
@@ -58,97 +63,47 @@ void SSerial::update() {
 	if (checkSendMore()) {
 		
 		if (counter < points.size()) {
-			sendMoveAbs(points[counter].x, points[counter].y);
+			
+			sendInstruction(points[counter].x, points[counter].y);
+
+			counter++;
+			
+			
+		}
+		
+		if (counter == points.size()) {
+			sendFinish();
+			printf("sent stop\n");
+			printf("point size = %i", (int) points.size());
 			counter++;
 		}
+		
 		printf("sent %i\n", counter);
 		
 	}
 	
-//	if (sendNext) {
-//		
-//		bool finished = false;
-//		
-//		for (int i = 0; i < 20; i++) {
-//			
-//			if ((counter+i) > points.size()) {
-//				sendFinish();
-//				printf("sent finished\n");
-//				finished = true;
-//				//now exit loop as we have done all points...
-//				break;
-//			}
-//			
-//			sendMoveAbs(points[counter+i].x, points[counter+i].y);
-//			printf("sent %i\n", counter+i);
-//			
-//		}
-//		
-//		
-//		
-//		//if (!finished) {
-//			//this sees if the next lot of points to be sent is the last lot to be sent...
-//			bool ll = ((counter + 20) > points.size());
-//			sendLastLot(ll);
-//			printf("sent last lot: %i\n", ll);
-//			
-//			sendStart();
-//			printf("sent start\n");
-//		//}
-//		
-//		
-//		
-//		sendNext = false;
-//	}
 	
-//	if (checkSendMore()) {
-//		counter+= 10;
-//		sendNext = true;
-//		
-//	}
-
+	checkIsFinished();
 	
-//	while (serial.available()) {
-//		char ch = (char) serial.readByte();
-//		int in = (int) ch;
-//		printf("char = %c, int = %i\n", ch, in);
-//		
-////		if (checkSendMore((unsigned char) ch)) {
-////			counter+= 10;
-////			sendNext = true;
-////		}
-//	}
 	
 }
 
-
-int SSerial::queryDelayed() {
+void SSerial::sendInstruction(int x, int y) {
 	
-	serial.writeByte((unsigned char) SERIAL_STX);
-	serial.writeByte((unsigned char) COMMAND_CODE_QUERY_DELAYED);
-	
-	serial.writeByte((unsigned char) SERIAL_ETX);
-	
-	long l = 0;
-	while (serial.available() != 1 && l < 99999) { 
-		l++;
+	switch (x) {
+		case PEN_UP_POINT:
+			sendPen("up");
+			break;
+		case PEN_DOWN_POINT:
+			sendPen("down");
+			break;
+			
+		default:
+			sendMoveAbs(x, y);
+			printf("sent moveAbs: x = %i, y = %i\n", x, y);
+			break;
 	}
 	
-	if (l != 99999) {		
-		//fetch result
-		unsigned char in = serial.readByte();
-		
-		return (int) in;
-	}
-
-	return -1;
-}
-
-void SSerial::sendStart() {
-	
-	serial.writeByte((unsigned char) SERIAL_STX);
-	serial.writeByte((unsigned char) COMMAND_CODE_EXECUTE_COMMANDS);
-	serial.writeByte((unsigned char) SERIAL_ETX);
 }
 
 void SSerial::sendFinish() {
@@ -157,123 +112,50 @@ void SSerial::sendFinish() {
 	serial.writeByte((unsigned char) SERIAL_ETX);
 }
 
-void SSerial::sendLastLot(bool isLast) {
+void SSerial::checkIsFinished() {
 	
-	serial.writeByte((unsigned char) SERIAL_STX);
-	serial.writeByte((unsigned char) COMMAND_CODE_LAST_LOT);
-
-	if (isLast) {
-		serial.writeByte((unsigned char) 1);
-	} else {
-		serial.writeByte((unsigned char) 0);
-	}
+//	for (int i = 0; i < readBytes.size(); i++) {
+//		if (readBytes[i] == (unsigned char) SEND_FOR_NEXT_COMMANDS) {
+//			return;
+//		}
+//	}
 	
-	serial.writeByte((unsigned char) SERIAL_ETX);
-	
-}
-
-	
-
-void SSerial::sendLine(int x0, int y0, int x1, int y1) {
-
-	//convert to 1 byte
-	unsigned char x00 = (unsigned char) x0;
-	unsigned char x01 = (unsigned char) (x0>>8);
-	unsigned char y00 = (unsigned char) y0;
-	unsigned char y01 = (unsigned char) (y0>>8);
-	
-	
-	unsigned char x10 = (unsigned char) x1;
-	unsigned char x11 = (unsigned char) (x1>>8);
-	unsigned char y10 = (unsigned char) y1;
-	unsigned char y11 = (unsigned char) (y1>>8);
-	
-	//write type
-	serial.writeByte((unsigned char) 2);
-	
-	serial.writeByte(x00);
-	serial.writeByte(x01);
-	serial.writeByte(y00);
-	serial.writeByte(y01);
-	serial.writeByte(x10);
-	serial.writeByte(x11);
-	serial.writeByte(y10);
-	serial.writeByte(y11);
-	
-	
-	//these are just for printing out...
-	int xs0 = ((x01<<8) | x00);
-	int ys0 = ((y01<<8) | y00);	
-	int xs1 = ((x11<<8) | x10);
-	int ys1 = ((y11<<8) | y10);
-	
-	printf("wrote via serial %i %i %i %i %i \n", 2, xs0, ys0, xs1, ys1);
-	
-	setDone(false);
+	for (int i = 0; i < readBytes.size(); i++) {
+		if (readBytes[i] == (unsigned char) PLOTTER_FINISHED_DRAWING) {
+			previewPtr->stoppedDrawing();
+			finished = true;
+		}
+	}	
 	
 }
+	
 
 void SSerial::sendMultipleMove(vector<SPoint> &points) {
 
 	this->points.clear();
 	this->points = points;
+	this->points.push_back(SPoint(PEN_UP_POINT, 0));
+	
 	counter = 0;
-	sendNext = true;
-	serial.flush(false, true);
+	
+	
 		
 	for (int i = 0; i < points.size(); i++) {
-		printf("x = %i, y = %i\n", points[i].x, points[i].y);
+		printf("x = %i, y = %i\n", this->points[i].x, this->points[i].y);
 	}
 	
-	sendMoveAbs(points[counter].x, points[counter].y);
+	//send the first, get the ball rolling...
+	sendInstruction(this->points[counter].x, this->points[counter].y);
 	counter++;
+		
+	finished = false;
 	
+	//get rid of any nasties that might be lurking in the buffer
+	serial.flush(true, true);
 }
 
-void SSerial::checkInput() {
-	
-	//printf("checking input\n");
-	
-	if (serial.available()) {
-		//printf("no bytes available = %i \n", serial.available());
-		
-		unsigned char recievedByte = serial.readByte();
-		printf("recievedByte = %i\n", (unsigned char) recievedByte);
-		
-		
-		switch (recievedByte) {
-			
-			default:
-				break;
-		}
-		
-		//now flush
-		//serial.flush(true, false);
-	}
-	
-	//setDone(false);
 
-}
-
-bool SSerial::checkOKtoSend() {
-	
-	for (int i = 0; i < readBytes.size(); i++) {
-		if (readBytes[i] == (unsigned char) RX_BUFFER_FULL) {
-			return false;
-		}
-	}
-	
-	return true;
-	
-//	if (serial.available()) {
-//		if (serial.readByte() == (unsigned char) RX_BUFFER_FULL) {
-//			return false;
-//		}
-//	}-
-//	
-//	return true;
-}
-
+//looks through readBytes array to see if there is a send next...
 bool SSerial::checkSendMore() {
 	
 	for (int i = 0; i < readBytes.size(); i++) {
@@ -283,21 +165,8 @@ bool SSerial::checkSendMore() {
 	}
 	
 	return false;
-	
-//	if(serial.available()) {
-//		if (serial.readByte() == (unsigned char) RX_SEND_NEXT) {
-//			return true;
-//		}
-//	}
-//	return false;
 }
 
-bool SSerial::checkSendMore(unsigned char byte) {
-	if (byte == (unsigned char) RX_SEND_NEXT) {
-		return true;
-	}
-	return false;
-}
 
 
 void SSerial::sendMoveAbs(int x, int y) {
@@ -337,11 +206,7 @@ void SSerial::sendMove(int t, int x, int y) {
 	//these are just for printing out...
 	int xs0 = ((x01<<8) | x00);
 	int ys0 = ((y01<<8) | y00);	
-	
-	//printf("wrote via serial %i %i %i\n", 4, xs0, ys0);
-	
-	//setDone(false);
-	
+			
 }
 
 SPoint SSerial::getPos() {
@@ -381,7 +246,6 @@ SPoint SSerial::getPos() {
 		return SPoint(x, y);
 	}
 	
-	setDone(false);
 	//this is not possible, ie. the get didn't work
 	return SPoint(-1, -1);
 	
@@ -425,6 +289,43 @@ void SSerial::sendDelayChange(int delay_ms) {
 	serial.writeByte((unsigned char) SERIAL_ETX);
 }
 
+void SSerial::sendLine(int x0, int y0, int x1, int y1) {
+	
+	//convert to 1 byte
+	unsigned char x00 = (unsigned char) x0;
+	unsigned char x01 = (unsigned char) (x0>>8);
+	unsigned char y00 = (unsigned char) y0;
+	unsigned char y01 = (unsigned char) (y0>>8);
+	
+	
+	unsigned char x10 = (unsigned char) x1;
+	unsigned char x11 = (unsigned char) (x1>>8);
+	unsigned char y10 = (unsigned char) y1;
+	unsigned char y11 = (unsigned char) (y1>>8);
+	
+	//write type
+	serial.writeByte((unsigned char) 2);
+	
+	serial.writeByte(x00);
+	serial.writeByte(x01);
+	serial.writeByte(y00);
+	serial.writeByte(y01);
+	serial.writeByte(x10);
+	serial.writeByte(x11);
+	serial.writeByte(y10);
+	serial.writeByte(y11);
+	
+	
+	//these are just for printing out...
+	int xs0 = ((x01<<8) | x00);
+	int ys0 = ((y01<<8) | y00);	
+	int xs1 = ((x11<<8) | x10);
+	int ys1 = ((y11<<8) | y10);
+	
+	printf("wrote via serial %i %i %i %i %i \n", 2, xs0, ys0, xs1, ys1);
+		
+}
+
 void SSerial::flush() {
 	serial.flush(true, true);
 }
@@ -433,10 +334,6 @@ int SSerial::available() {
 	return serial.available();
 }
 
-void SSerial::setDone(bool b) {
-	done = b;
-}
-
-bool SSerial::isDone() {
-	return done;
+bool SSerial::isFinished() {
+	return finished;
 }

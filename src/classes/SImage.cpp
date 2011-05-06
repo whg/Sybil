@@ -108,13 +108,37 @@ void SImage::draw() {
 		//this shows the lines...
 		else {
 			
-			ofNoFill();
-			ofSetColor(0x111111);
+		//	ofNoFill();
+//			ofSetColor(0x111111);
+//			
+//			for (int i = 0; i < points.size(); i++) {
+//				if (points[i].x == PEN_UP_POINT) ofNextContour(true);
+//				else ofVertex(points[i].x, points[i].y);
+//			}
+			
+			ofBeginShape();
 			
 			for (int i = 0; i < points.size(); i++) {
-				if (points[i].x == -1) ofNextContour(true);
-				else ofVertex(points[i].x, points[i].y);
+				
+				ofNoFill();
+				ofSetColor(0, 0, 0);
+				
+				if (points[i].x == PEN_UP_POINT) {
+					ofNextContour(true);
+				} 
+				else if (points[i].x == PEN_DOWN_POINT) {}
+				else {
+					ofVertex(points[i].x, points[i].y);
+					
+					//ofNoFill();
+					//ofSetColor(50, 100, 200);
+					//ofCircle(textPoints[i].x, textPoints[i].y, 1);
+				}
+				
+				
 			}
+			
+			ofEndShape(true);
 			
 		}
 		
@@ -127,7 +151,7 @@ void SImage::draw() {
 // - - -
 // uses openCV to find blobs and the contours of those blobs
 // all coordinates are in one big STL vector...
-// points with (-1, 0) are to separate contours
+// points with (PEN_UP_POINT, 0) are for separate contours
 void SImage::findPoints() {
 
 	initialPoints.clear();
@@ -158,14 +182,22 @@ void SImage::findPoints() {
 		
 		//this loob is for blobs
 		for (int i = 0; i < contourFinder.nBlobs; i++) {
+			
+			initialPoints.push_back(SPoint(PEN_UP_POINT, 0));
+			
+			//push first position
+			initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[0]));
+			
+			initialPoints.push_back(SPoint(PEN_DOWN_POINT, 0));
+			
 			//this loop is for points within a blob
-			for (int j = 0; j < contourFinder.blobs[i].pts.size(); j++) {
-				int x = round(contourFinder.blobs[i].pts[j].x);
-				int y = round(contourFinder.blobs[i].pts[j].y);
-				initialPoints.push_back(SPoint(x, y));
+			//add all the points... NB starting at 1 as we have already added 0
+			for (int j = 1; j < contourFinder.blobs[i].pts.size(); j++) {
+				initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j]));
 			}
-			//put in pen up vector... this is for drawing only
-			initialPoints.push_back(SPoint(-1, 0));
+			
+			//add last point...
+			initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[0]));
 		}
 		
 	} //end for
@@ -175,6 +207,7 @@ void SImage::findPoints() {
 	
 	points.clear();
 	
+	//smoothed points...
 	if (doSmoothing) {
 		
 		
@@ -185,26 +218,25 @@ void SImage::findPoints() {
 		int n = smoothingRadius;
 		
 		for (int i = 0; i < initialPoints.size()-n; i++) {
-			if (initialPoints[i].x == -1) {
-				points.push_back(SPoint(-1, 0));
+			if (initialPoints[i].x < 0) {
+				points.push_back(initialPoints[i]);
 			}
 			
 			//this is so we don't get lines coming out of nowhere
 			//it looks ahead to see if the next contour is n number of steps ahead
 			bool a = false;
 			for (int j = 0; j < n; j++) {
-				if (initialPoints[i+j].x == -1) {
+				if (initialPoints[i+j].x < 0) {
 					a = true;
 				}				
 			}
 			
 			if (a) continue;
-			
 			else {
 				int j = 0;
 				ofPoint av = ofPoint(0, 0);
 				while (j < n) {
-					if (initialPoints[i+j].x != -1) {
+					if (initialPoints[i+j].x >= 0) {
 						av.x+= initialPoints[i+j].x;
 						av.y+= initialPoints[i+j].y;
 					}
@@ -214,8 +246,7 @@ void SImage::findPoints() {
 					j++;
 				}
 				av/= n;
-				SPoint sav = SPoint(av.x, av.y);
-				points.push_back(sav);
+				points.push_back(SPoint(av.x, av.y));
 			}
 		} //end for 
 	} //end if
@@ -230,7 +261,7 @@ void SImage::findPoints() {
 
 void SImage::update() {
 
-	findPoints();
+	if (!showImage) findPoints();
 	
 }
 

@@ -16,7 +16,7 @@
 	
 //	NSArray* noLinesSelection;
 //	IBOutlet NSArrayController* arrayController;
-
+	IBOutlet NSTextField* numPoints;
 }
 
 

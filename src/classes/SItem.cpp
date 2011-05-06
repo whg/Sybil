@@ -17,8 +17,8 @@ SItem::SItem(int i) {
 	uid = i; //set unique id
 	
 	//set initial attributes
-	pos = SPoint((int) ofRandom(0, 100), (int) ofRandom(0, 100));
-	dim = SPoint(150, 50);
+	pos = SPoint((int) ofRandom(0, 1000), (int) ofRandom(0, 1000));
+	dim = SPoint(1500, 500);
 
 	//init variables
 	resizeMargin = 20;

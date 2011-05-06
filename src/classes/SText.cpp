@@ -15,7 +15,7 @@ SText::SText(int i)
 : SItem(i) {
 		
 	fontName = "Georgia";
-	fontSize = 20;
+	fontSize = 256;
 	
 	//this loads the font and does a new things such as set the lineHeight
 	update();
@@ -45,7 +45,7 @@ SText::~SText() {
 
 
 void SText::draw() {
-	
+		
 	ofPushMatrix();
 	ofTranslate(pos.x, pos.y);
 		
@@ -56,21 +56,24 @@ void SText::draw() {
 	//to place the characters nicely, we have to draw each character...
 	//...character by character, one by one 
 	//and place each character where wrapLines() says
-	//int j = 0;
-//	for (int i = 0; i < text.length(); i++) {
-//
-//		ofPushMatrix();
-//		ofTranslate(refPoints[j].x, refPoints[j].y, 0);
-//		if (text[i] != ' ') {
-//		
-//			int cy = ((unsigned char)text[i]) - NUM_CHARACTER_TO_START;
-//			ttf.drawCharAsShape(cy, 0, 0);
-//			j++;
-//		}
-//		
-//		ofPopMatrix();
-//		
-//	}
+	int j = 0;
+	for (int i = 0; i < text.length(); i++) {
+
+		ofPushMatrix();
+		ofTranslate(refPoints[j].x, refPoints[j].y, 0);
+		if (text[i] != ' ') {
+		
+			int cy = ((unsigned char)text[i]) - NUM_CHARACTER_TO_START;
+			ttf.drawCharAsShape(cy, 0, 0);
+			j++;
+		}
+		
+		ofPopMatrix();
+		
+	}
+	
+	ofPopMatrix();
+	
 	
 	ofBeginShape();
 	
@@ -95,17 +98,15 @@ void SText::draw() {
 	}
 	
 	ofEndShape(true);
-	
-	ofPopMatrix();
 
 }
 
-void SText::findTextPoints() {
-	
-	vector<ofPoint> points;
-	
+//this method puts all the points of the object into one vector...
+//the position of the object is added so the letters are translated as necessary
 
-	//textPoints.clear();
+void SText::findTextPoints() {
+		
+	textPoints.clear();
 	
 	int n = 0;
 	int refn = 0;
@@ -117,20 +118,20 @@ void SText::findTextPoints() {
 		
 		for (int i = 0; i < letter.contours.size(); i++) {
 			
-			points.push_back(ofPoint(PEN_UP_POINT, 0));
+			textPoints.push_back(SPoint(PEN_UP_POINT, 0));
 			
 			//move to first position
-			points.push_back(ofPoint(letter.contours[i].pts[0] + refPoints[refn]));
+			textPoints.push_back(SPoint(letter.contours[i].pts[0] + refPoints[refn]) + pos);
 			
-			points.push_back(ofPoint(PEN_DOWN_POINT, 0));
+			textPoints.push_back(SPoint(PEN_DOWN_POINT, 0));
 			
 			//add all points 
 			for (int j = 1; j < letter.contours[i].pts.size(); j++) {
-				points.push_back(ofPoint(letter.contours[i].pts[j] + refPoints[refn]));
+				textPoints.push_back(SPoint(letter.contours[i].pts[j] + refPoints[refn]) + pos);
 			}
 			
 			//add last point, so we go full circle
-			points.push_back(ofPoint(letter.contours[i].pts[0] + refPoints[refn]));
+			textPoints.push_back(SPoint(letter.contours[i].pts[0] + refPoints[refn]) + pos);
 			
 			
 		}//end contour
@@ -138,8 +139,8 @@ void SText::findTextPoints() {
 		refn++;
 		
 		if (refn != (int) refPoints.size()) {
-			points.push_back(ofPoint(PEN_UP_POINT, 0));
-			points.push_back(ofPoint(refPoints[refn]));
+			textPoints.push_back(SPoint(PEN_UP_POINT, 0));
+			textPoints.push_back(SPoint(refPoints[refn]) + pos);
 		}
 		
 		n++;
@@ -152,15 +153,19 @@ void SText::findTextPoints() {
 		
 	}// end while
 	
-	//now to get the stuff the right size we must scale everything by
-	//an amount related to the window size (that can change)
+//	//now to get the stuff the right size we must scale everything by
+//	//an amount related to the window size (that can change)
+//	
+//	textPoints.clear();
+//	for (int i = 0; i < points.size(); i++) {
+//		textPoints.push_back(SPoint(points[i].x, points[i].y));
+////		textPoints[i]*= SPoint(3, 3);
+//	}
 	
-	textPoints.clear();
-	for (int i = 0; i < points.size(); i++) {
-		textPoints.push_back(SPoint(points[i].x*1, points[i].y*1));
-//		textPoints[i]*= SPoint(3, 3);
-	}
-		
+//	for (int i = 0; i < textPoints.size(); i++) {
+//		iftextPoints[i]+= pos;
+//	}
+
 }
 
 void SText::update() {

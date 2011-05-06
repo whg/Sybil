@@ -97,7 +97,9 @@ void SSerial::sendInstruction(int x, int y) {
 		case PEN_DOWN_POINT:
 			sendPen("down");
 			break;
-			
+		case -5:
+			sendDelayChange(y);
+			break;
 		default:
 			sendMoveAbs(x, y);
 			printf("sent moveAbs: x = %i, y = %i\n", x, y);
@@ -137,13 +139,13 @@ void SSerial::sendMultipleMove(vector<SPoint> &points) {
 	
 	//add a pen up to finish...
 	this->points.push_back(SPoint(PEN_UP_POINT, 0));
-	
+	this->points.push_back(SPoint(-5, 8));
 	//and move to origin
 	this->points.push_back(SPoint(0, 0));
 	
 	counter = 0;
 	
-	
+	sendDelayChange(16);
 		
 	for (int i = 0; i < points.size(); i++) {
 		printf("x = %i, y = %i\n", this->points[i].x, this->points[i].y);
@@ -163,13 +165,18 @@ void SSerial::sendMultipleMove(vector<SPoint> &points) {
 //looks through readBytes array to see if there is a send next...
 bool SSerial::checkSendMore() {
 	
-//	for (int i = 0; i < readBytes.size(); i++) {
-//		if (readBytes[i] == (unsigned char) 87) {
-//			counter--;
-//			printf("FOUND IT - - - - - - - - - - - - - - - - - - -\n");
-//			return true;
-//		}
-//	}
+	for (int i = 0; i < readBytes.size(); i++) {
+		if (readBytes[i] == (unsigned char) 87) {
+			counter--;
+			printf("FOUND 87");
+			return true;
+		}
+		else if (readBytes[i] == (unsigned char) 102) {
+			counter--;
+			printf("FOUND 102");
+			return true;
+		}
+	}
 	
 	for (int i = 0; i < readBytes.size(); i++) {
 		if (readBytes[i] == (unsigned char) SEND_FOR_NEXT_COMMANDS) {

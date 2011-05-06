@@ -76,9 +76,7 @@ void SPreview::update(){
 		
 	if (isDrawing) {
 		serial->update();
-		
-		//serial->
-		
+				
 		if (commander->isDoingFile()) {
 			terminal->iterateFile();
 		}
@@ -117,8 +115,8 @@ void SPreview::draw(){
 
 	}
 	
-//	ofSetColor(0, 0, 0);
-//	ofDrawBitmapString(ofToString(ofGetFrameRate(), 1), 400, 300);
+	ofSetColor(0, 0, 0);
+	ofDrawBitmapString(ofToString(ofGetFrameRate(), 1), 400, 300);
 
 }
 
@@ -155,6 +153,7 @@ void SPreview::keyPressed(int key){
 				break;
 			case '=':
 				ztrans+= 100;
+				break;
 			case 'p':
 				plotEverything();
 				break;

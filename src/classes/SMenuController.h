@@ -17,7 +17,6 @@ class SPreview;
 	SPreview* previewPtr;
 	IBOutlet NSMenuItem* previewMode;
 	IBOutlet NSMenuItem* terminalMode;
-	
 }
 
 - (IBAction) addText: (id) sender;

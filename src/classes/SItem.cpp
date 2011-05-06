@@ -21,7 +21,7 @@ SItem::SItem(int i) {
 	dim = SPoint(150, 50);
 
 	//init variables
-	resizeMargin = 5;
+	resizeMargin = 20;
 	focus = false;
 	cursorType = NONE;
 	
@@ -108,6 +108,12 @@ void SItem::cursor(int x, int y) {
 }
 
 void SItem::setCurrentParams(int x, int y) {
+	
+	//scale the points
+	SPoint scale = previewPtr->getDrawingArea();	
+	x*= scale.x/ofGetWidth();
+	y*= scale.y/ofGetHeight();
+	
 	offset.set(x - pos.x, y - pos.y);
 	initDim.set(dim.x, dim.y);
 	initPos.set(x, y);
@@ -115,6 +121,11 @@ void SItem::setCurrentParams(int x, int y) {
 }
 
 bool SItem::setCursorType(int x, int y) {
+	
+	//scale the points....
+	SPoint scale = previewPtr->getDrawingArea();
+	x*= scale.x/ofGetWidth();
+	y*= scale.y/ofGetHeight();
 	
 	//for moving, this shows a crosshair
 	if (x > pos.x && x < pos.x + dim.x &&
@@ -149,6 +160,10 @@ bool SItem::setCursorType(int x, int y) {
 
 bool SItem::setActionType(int x, int y, int b) {
 	
+	//scale the input points...
+	SPoint scale = previewPtr->getDrawingArea();	
+	x*= scale.x/ofGetWidth();
+	y*= scale.y/ofGetHeight();
 	
 	//for moving
 	if (x > pos.x && x < pos.x + dim.x &&
@@ -191,6 +206,11 @@ void SItem::resetCursorType() {
 }
 
 void SItem::mouseActions(int x, int y) {
+	
+	//do some scaling before hand...
+	SPoint scale = previewPtr->getDrawingArea();
+	x*= scale.x/ofGetWidth();
+	y*= scale.y/ofGetHeight();
 	
 	//this is to move
 	if (cursorType == MOVE) { 

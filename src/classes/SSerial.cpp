@@ -19,7 +19,7 @@ SSerial::SSerial() {
 //		printf("serial connected\n");
 //	}
 	
-	if(serial.setup("/dev/cu.usbserial-A700eyPP", 28800)) {
+	if(serial.setup("/dev/cu.usbserial-A700eyPP", 9600)) {
 			printf("serial connected\n");
 		}
 	
@@ -134,7 +134,12 @@ void SSerial::sendMultipleMove(vector<SPoint> &points) {
 
 	this->points.clear();
 	this->points = points;
+	
+	//add a pen up to finish...
 	this->points.push_back(SPoint(PEN_UP_POINT, 0));
+	
+	//and move to origin
+	this->points.push_back(SPoint(0, 0));
 	
 	counter = 0;
 	
@@ -157,6 +162,14 @@ void SSerial::sendMultipleMove(vector<SPoint> &points) {
 
 //looks through readBytes array to see if there is a send next...
 bool SSerial::checkSendMore() {
+	
+//	for (int i = 0; i < readBytes.size(); i++) {
+//		if (readBytes[i] == (unsigned char) 87) {
+//			counter--;
+//			printf("FOUND IT - - - - - - - - - - - - - - - - - - -\n");
+//			return true;
+//		}
+//	}
 	
 	for (int i = 0; i < readBytes.size(); i++) {
 		if (readBytes[i] == (unsigned char) SEND_FOR_NEXT_COMMANDS) {

@@ -32,6 +32,8 @@ public:
 	SPoint pos, dim;
 	int resizeMargin;
 	
+	SPoint screenPos;
+	
 	//pointers
 	SPreview *previewPtr;
 	SSerial *serialPtr;

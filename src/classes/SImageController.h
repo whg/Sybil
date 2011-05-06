@@ -30,7 +30,7 @@
 - (IBAction) enableSmoothingChanged: (id) sender;
 - (IBAction) smoothingRadiusChanged: (id) sender;
 
-
+- (IBAction) hello: (id) sender;
 
 - (IBAction) removeSelf: (id) sender;
 

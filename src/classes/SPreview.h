@@ -40,7 +40,7 @@ private:
 	viewModes mode;
 	
 	//this is the operating space
-	SPoint space;
+	SPoint drawingArea;
 
 	STerm* terminal;
 	SCommand* commander;
@@ -78,6 +78,7 @@ public:
 	void removeItem(int i);
 	
 	SPoint getScalingVector();
+	SPoint getDrawingArea();
 	
 	SSerial* getSerialConnection();
 	

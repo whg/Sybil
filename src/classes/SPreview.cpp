@@ -37,10 +37,16 @@ void SPreview::setup(){
 	
 	idc = 0;
 	fid = -1;
-	ztrans = 0;
+	ztrans = -1900;
 	isDrawing = false;
 	
-	space = SPoint(385, 280);
+//	drawingArea = SPoint(1155, 840);
+//	drawingArea = SPoint(1540, 1120);
+//	drawingArea = SPoint(2310, 1680);
+//	drawingArea = SPoint(4620, 3360);
+	drawingArea = SPoint(3850, 2800);
+//	drawingArea = SPoint(5775, 4200);
+//	drawingArea = SPoint(3080, 2200);
 	
 	//instantiate serial
 	serial = new SSerial();
@@ -51,7 +57,7 @@ void SPreview::setup(){
 	//instantiate terminal, passing commander pointer
 	terminal = new STerm(commander);
 	
-	setViewMode(TERMINAL);
+	setViewMode(PREVIEW);
 	
 	//set up cocoa part - do this last
 	NSApplicationMain(0, NULL);
@@ -90,11 +96,11 @@ void SPreview::draw(){
 		case PREVIEW:
 			
 			ofPushMatrix();
-			ofTranslate(0, 0, ztrans);
+			ofTranslate(-drawingArea.x/2.5, -drawingArea.y/2.5, ztrans);
 			
-//			ofFill();
-//			ofSetColor(0, 0, 0);
-//			ofRect(0, 0, space.x, space.y);
+			ofNoFill();
+			ofSetColor(0, 0, 0);
+			ofRect(0, 0, drawingArea.x, drawingArea.y);
 			
 			for (int i = 0; i < items.size(); i++) {
 				items[i]->draw();
@@ -111,8 +117,8 @@ void SPreview::draw(){
 
 	}
 	
-	ofSetColor(0, 0, 0);
-	ofDrawBitmapString(ofToString(ofGetFrameRate(), 1), 400, 300);
+//	ofSetColor(0, 0, 0);
+//	ofDrawBitmapString(ofToString(ofGetFrameRate(), 1), 400, 300);
 
 }
 
@@ -145,20 +151,22 @@ void SPreview::keyPressed(int key){
 	else {
 		switch (key) {
 			case '-':
-				ztrans-= 10;
-				printf("pressed -\n");
+				ztrans-= 100;
 				break;
 			case '=':
-				ztrans+= 10;
-				printf("pressed +\n");
+				ztrans+= 100;
+			case 'p':
+				plotEverything();
+				break;
+
+				
 			default:
 				break;
 		}
 		
-		printf("ztrans = %i\n", ztrans);
-
 	}
 
+	printf("key = %i\n", key);
 	
 }
 
@@ -270,10 +278,12 @@ void SPreview::setViewMode(int m) {
 		case PREVIEW:
 			mode = PREVIEW;
 			ofSetWindowShape(PREVIEW_WIDTH, PREVIEW_HEIGHT);
+			ofSetWindowPosition(50, 50);
 			break;
 		case TERMINAL:
 			mode = TERMINAL;
 			ofSetWindowShape(TERMINAL_WIDTH, TERMINAL_HEIGHT);
+			ofSetWindowPosition(440, 80);
 			break;
 
 	}
@@ -299,8 +309,12 @@ bool SPreview::isCurrentlyDrawing() {
 }
 
 SPoint SPreview::getScalingVector() {
-	float factor = space.x/ofGetWidth();
+	float factor = drawingArea.x/ofGetWidth();
 	return SPoint(factor, factor);
+}
+
+SPoint SPreview::getDrawingArea() {
+	return drawingArea;
 }
 
 // - - -
@@ -321,5 +335,8 @@ void SPreview::plotEverything() {
 	}
 	
 	printf("WE HAVE %i NUMBER OF POINTS\n", (int) allPoints.size());
+	
+	serial->sendMultipleMove(allPoints);
+	startedDrawing();
 	
 }

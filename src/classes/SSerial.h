@@ -49,6 +49,7 @@ public:
 	void sendMoveRel(int x, int y);
 	
 	void sendMultipleMove(vector<SPoint> &points);
+	void sendMultipleMove(vector<SPoint> &points, bool finish);
 	
 	bool sendPen(string command);
 	void sendDelayChange(int delay_ms);

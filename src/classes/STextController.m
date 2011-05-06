@@ -56,23 +56,18 @@
 	struct dirent *dirp;
 		
 	//say the directories you want to look in for fonts
-	vector<string> dirs = vector<string>();
-	dirs.push_back("/Library/Fonts");
-	//dirs.push_back("/Users/WHG/Library/Fonts");
-	
-	for (int i = 0; i < dirs.size(); i++) {
-		//try and open directory
-		if (dirPtr = opendir(dirs[i].c_str())) {
-			
-			//read all files in directory
-			while ((dirp = readdir(dirPtr)) != NULL) {
-				//convert to NSString and add to array
-				[fontList addObject:[ NSString stringWithCString:dirp->d_name ]];
-				//printf("name = %s, type = %i\n", dirp->d_name, dirp->d_type);
-			}
-			//and close...
-			closedir(dirPtr);
+	string dir = "/Library/Fonts";
+
+	//try and open directory
+	if (dirPtr = opendir(dir.c_str())) {
+		
+		//read all files in directory
+		while ((dirp = readdir(dirPtr)) != NULL) {
+			//convert to NSString and add to array
+			[fontList addObject:[ NSString stringWithCString:dirp->d_name ]];
 		}
+		//and close...
+		closedir(dirPtr);
 	}
 	
 	NSMutableIndexSet *indexSet;

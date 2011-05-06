@@ -29,8 +29,9 @@
 - (IBAction) minimumAreaChanged: (id) sender;
 - (IBAction) enableSmoothingChanged: (id) sender;
 - (IBAction) smoothingRadiusChanged: (id) sender;
+- (IBAction) skipPointsChanged: (id) sender;
 
-- (IBAction) hello: (id) sender;
+- (void) updateNumPoints: (int) n;
 
 - (IBAction) removeSelf: (id) sender;
 

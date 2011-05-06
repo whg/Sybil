@@ -21,6 +21,8 @@
 //	}
 //	noLinesSelection = [[NSArray alloc] initWithObjects:sel count:12];
 	
+	[window makeKeyWindow];
+	
 	[super loadWindow];
 	
 }
@@ -109,6 +111,16 @@
 	itemPtr->update();
 }
 
+- (IBAction) skipPointsChanged: (id) sender {
+	//same as numoflines...
+	((SImage*)itemPtr)->setSkipPoints(((int)[sender indexOfSelectedItem] )+1);
+	itemPtr->update();
+}
+
+- (void) updateNumPoints:(int)n {
+
+	[numPoints setIntValue:n];
+}
 
 - (IBAction) removeSelf: (id) sender {
 	NSLog(@"remove self from simage controller");

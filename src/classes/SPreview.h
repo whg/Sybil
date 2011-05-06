@@ -42,9 +42,16 @@ private:
 	//this is the operating space
 	SPoint drawingArea;
 
+	//pointers
 	STerm* terminal;
 	SCommand* commander;
 	SSerial* serial;
+	
+	//things for the progress window
+	unsigned int numPoints, pointsDone;
+	bool useProgressIndicator;
+	NSWindow* progressWindow;
+	NSProgressIndicator* progressIndicator;
 
 public:
 	
@@ -84,7 +91,11 @@ public:
 	
 	void plotEverything();
 	
-	
+	void showProgressWindow();
+	void closeProgressWindow();
+	void setPointsDone(int i);
+	void updateProgressIndicator();
+	void setUseProgressIndicator(bool b);
 };
 
 

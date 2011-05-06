@@ -41,6 +41,7 @@ private:
 	float baseThreshold, diff, minArea;
 	bool doSmoothing;
 	bool fixAspectRatio, showImage;
+	int skipPoints;
 
 	void findPoints();
 	
@@ -65,6 +66,7 @@ public:
 	void setLineSpacing(float v);
 	void setFixAspectRatio(bool b);
 	void drawOriginalImage(bool b);
+	void setSkipPoints(int i);
 	
 	void giveAllPoints(vector<SPoint> &p);
 	

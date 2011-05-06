@@ -230,8 +230,11 @@ string SCommand::rect(vector<string> &tokens, vector<char> &options) {
 	points.push_back(SPoint(x, y+h));
 	points.push_back(SPoint(x, y));
 	
+	//add pen up at end
+	points.push_back(SPoint(PEN_UP_POINT, 0));
+	
 	//now send...
-	serialConnection->sendMultipleMove(points);
+	serialConnection->sendMultipleMove(points, false);
 	printf("sent multiple points...\n");
 	previewPtr->startedDrawing();
 			
@@ -280,7 +283,6 @@ string SCommand::circle(vector<string> &tokens, vector<char> &options) {
 		}
 	}
 	
-	
 	//set default variables...
 	int x = c[0];
 	int y = c[1];
@@ -313,7 +315,7 @@ string SCommand::circle(vector<string> &tokens, vector<char> &options) {
 	}
 	
 	//now send...
-	serialConnection->sendMultipleMove(points);
+	serialConnection->sendMultipleMove(points, false);
 	previewPtr->startedDrawing();
 	
 	return "";
@@ -388,8 +390,8 @@ string SCommand::poly(vector<string> &tokens, vector<char> &options) {
 	vector<SPoint> points = vector<SPoint>();
 	createPointsInCircle(nSides, rad, SPoint(x, y), points);
 	
-	//add pen up and down
-	
+	//add pen up at end
+	points.push_back(SPoint(PEN_UP_POINT, 0));
 	
 	//check for negative values
 	for (int i = 0; i < points.size(); i++) {
@@ -402,7 +404,7 @@ string SCommand::poly(vector<string> &tokens, vector<char> &options) {
 	}
 	
 	//now send...
-	serialConnection->sendMultipleMove(points);
+	serialConnection->sendMultipleMove(points, false);
 	previewPtr->startedDrawing();
 	
 	return "";

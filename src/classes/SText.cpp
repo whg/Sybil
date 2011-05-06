@@ -50,19 +50,19 @@ void SText::draw() {
 	ofTranslate(pos.x, pos.y);
 		
 	if(focus) drawBoundingBox();
-		
-	
 	
 	//to place the characters nicely, we have to draw each character...
 	//...character by character, one by one 
 	//and place each character where wrapLines() says
+	
+	ofSetColor(10, 10, 10);
 	int j = 0;
 	for (int i = 0; i < text.length(); i++) {
 
 		ofPushMatrix();
 		ofTranslate(refPoints[j].x, refPoints[j].y, 0);
 		if (text[i] != ' ') {
-		
+			
 			int cy = ((unsigned char)text[i]) - NUM_CHARACTER_TO_START;
 			ttf.drawCharAsShape(cy, 0, 0);
 			j++;
@@ -75,29 +75,21 @@ void SText::draw() {
 	ofPopMatrix();
 	
 	
-	ofBeginShape();
+	//this bit below shows how the plotter draws, but the bit above looks nicer 
 	
-	for (int i = 0; i < textPoints.size(); i++) {
-		
-		ofNoFill();
-		ofSetColor(0, 0, 0);
-		
-		if (textPoints[i].x == PEN_UP_POINT) {
-			ofNextContour(true);
-		} 
-		else if (textPoints[i].x == PEN_DOWN_POINT) {}
-		else {
-			ofVertex(textPoints[i].x, textPoints[i].y);
-			
-			//ofNoFill();
-			//ofSetColor(50, 100, 200);
-			//ofCircle(textPoints[i].x, textPoints[i].y, 1);
-		}
-
-		
-	}
-	
-	ofEndShape(true);
+//	ofBeginShape();
+//	for (int i = 0; i < textPoints.size(); i++) {
+//		ofNoFill();
+//		ofSetColor(0, 0, 0);
+//		if (textPoints[i].x == PEN_UP_POINT) {
+//			ofNextContour(true);
+//		} 
+//		else if (textPoints[i].x == PEN_DOWN_POINT) {}
+//		else {
+//			ofVertex(textPoints[i].x, textPoints[i].y);
+//		}
+//	}
+//	ofEndShape(true);
 
 }
 
@@ -152,19 +144,6 @@ void SText::findTextPoints() {
 		}
 		
 	}// end while
-	
-//	//now to get the stuff the right size we must scale everything by
-//	//an amount related to the window size (that can change)
-//	
-//	textPoints.clear();
-//	for (int i = 0; i < points.size(); i++) {
-//		textPoints.push_back(SPoint(points[i].x, points[i].y));
-////		textPoints[i]*= SPoint(3, 3);
-//	}
-	
-//	for (int i = 0; i < textPoints.size(); i++) {
-//		iftextPoints[i]+= pos;
-//	}
 
 }
 
@@ -188,6 +167,7 @@ void SText::setText(string s) {
 	text = s;
 	wrapLines();
 	setYDim();
+	findTextPoints();
 }
 
 void SText::setFont(string fontname) {
@@ -211,9 +191,6 @@ void SText::setFontSize(int s) {
 	update();
 }
 
-void SText::hello() {
-	printf("hello from SText\n");
-}
 
 
 //this method wraps lines around a given box: given by the ofPoint: dim

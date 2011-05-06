@@ -46,6 +46,7 @@
 
 #define PEN_UP_POINT -1
 #define PEN_DOWN_POINT -2
+#define CHANGE_DELAY_POINT -3
 
 
 enum viewModes {

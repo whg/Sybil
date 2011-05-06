@@ -65,9 +65,7 @@ void SSerial::update() {
 		if (counter < points.size()) {
 			
 			sendInstruction(points[counter].x, points[counter].y);
-
-			counter++;
-			
+			counter++;			
 			
 		}
 		
@@ -82,7 +80,7 @@ void SSerial::update() {
 		
 	}
 	
-	
+	previewPtr->setPointsDone(counter);
 	checkIsFinished();
 	
 	
@@ -97,7 +95,7 @@ void SSerial::sendInstruction(int x, int y) {
 		case PEN_DOWN_POINT:
 			sendPen("down");
 			break;
-		case -5:
+		case CHANGE_DELAY_POINT:
 			sendDelayChange(y);
 			break;
 		default:
@@ -116,12 +114,6 @@ void SSerial::sendFinish() {
 
 void SSerial::checkIsFinished() {
 	
-//	for (int i = 0; i < readBytes.size(); i++) {
-//		if (readBytes[i] == (unsigned char) SEND_FOR_NEXT_COMMANDS) {
-//			return;
-//		}
-//	}
-	
 	for (int i = 0; i < readBytes.size(); i++) {
 		if (readBytes[i] == (unsigned char) PLOTTER_FINISHED_DRAWING) {
 			previewPtr->stoppedDrawing();
@@ -130,23 +122,24 @@ void SSerial::checkIsFinished() {
 	}	
 	
 }
+
+void SSerial::sendMultipleMove(vector<SPoint> &points, bool finish) {
 	
-
-void SSerial::sendMultipleMove(vector<SPoint> &points) {
-
 	this->points.clear();
 	this->points = points;
 	
-	//add a pen up to finish...
-	this->points.push_back(SPoint(PEN_UP_POINT, 0));
-	this->points.push_back(SPoint(-5, 8));
-	//and move to origin
-	this->points.push_back(SPoint(0, 0));
-	
+	if (finish) {
+		//add a pen up to finish...
+		this->points.push_back(SPoint(PEN_UP_POINT, 0));
+		this->points.push_back(SPoint(CHANGE_DELAY_POINT, 8));
+		//and move to origin
+		this->points.push_back(SPoint(0, 0));
+		this->points.push_back(SPoint(CHANGE_DELAY_POINT, 16));
+	}
+		
 	counter = 0;
 	
-	sendDelayChange(16);
-		
+	
 	for (int i = 0; i < points.size(); i++) {
 		printf("x = %i, y = %i\n", this->points[i].x, this->points[i].y);
 	}
@@ -154,11 +147,16 @@ void SSerial::sendMultipleMove(vector<SPoint> &points) {
 	//send the first, get the ball rolling...
 	sendInstruction(this->points[counter].x, this->points[counter].y);
 	counter++;
-		
+	
 	finished = false;
 	
 	//get rid of any nasties that might be lurking in the buffer
 	serial.flush(true, true);
+}
+
+void SSerial::sendMultipleMove(vector<SPoint> &points) {
+	
+	sendMultipleMove(points, true);
 }
 
 

@@ -29,6 +29,7 @@ SImage::SImage(int i, string file)
 	minArea = 5;
 	doSmoothing = false;
 	smoothingRadius = 5;
+	skipPoints = 0;
 	
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	windowController = [[SImageController alloc] initWithWindowNibName:@"SImageWindow"];
@@ -178,9 +179,49 @@ void SImage::findPoints() {
 		grayImg = colourImg;
 		grayImg.threshold(baseThreshold+(n*diff));
 		
+		//get the contours
 		contourFinder.findContours(grayImg, minArea, 50000, 100, true, true);
 		
-		//this loob is for blobs
+		//now these blobs will be spaced randomly... so sort them
+		//for speed we are using the blob's centroid position...
+		//we always start at the first blob, then we move to the closest one to that,
+		//then the closest one to that, that hasn't already been done, etc...
+		
+		int insertPoint = 1;
+		for (int i = 0; i < contourFinder.blobs.size()-1; i++) {
+			
+			ofPoint startPoint = contourFinder.blobs[insertPoint-1].centroid;
+			
+			int nearest = 1;
+			float dist = 9999;
+			
+			//find closest point
+			for (int i = insertPoint; i < contourFinder.blobs.size(); i++) {
+				float ndist = ofDist(startPoint.x, startPoint.y, 
+														 contourFinder.blobs[i].centroid.x, 
+														 contourFinder.blobs[i].centroid.y);
+				
+				//if the new distance (ndist) is less than the current dist, save the position, set the new nearest
+				if (ndist < dist) {
+					nearest = i;
+					dist = ndist;
+				}
+			}// end for
+			
+			//save and delete nearest from current position
+			ofxCvBlob tempBlob = contourFinder.blobs[nearest];
+			vector<ofxCvBlob>::iterator it = contourFinder.blobs.begin();
+			contourFinder.blobs.erase(it+nearest);
+			
+			//add to new position
+			it = contourFinder.blobs.begin();
+			contourFinder.blobs.insert(it+insertPoint, tempBlob);
+			
+			insertPoint++;
+			
+		}
+		
+		//now, loop through all blobs pushing all points into the huget vector
 		for (int i = 0; i < contourFinder.nBlobs; i++) {
 			
 			initialPoints.push_back(SPoint(PEN_UP_POINT, 0));
@@ -192,7 +233,7 @@ void SImage::findPoints() {
 			
 			//this loop is for points within a blob
 			//add all the points... NB starting at 1 as we have already added 0
-			for (int j = 1; j < contourFinder.blobs[i].pts.size(); j++) {
+			for (int j = 1; j < contourFinder.blobs[i].pts.size(); j+= (skipPoints+1)) {
 				initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j]));
 			}
 			
@@ -261,7 +302,10 @@ void SImage::findPoints() {
 
 void SImage::update() {
 
-	if (!showImage) findPoints();
+	if (!showImage) {
+		findPoints();
+		[windowController updateNumPoints:(int) points.size()];
+	}
 	
 }
 
@@ -307,6 +351,11 @@ void SImage::setFixAspectRatio(bool b) {
 
 void SImage::drawOriginalImage(bool b) {
 	showImage = b;
+}
+
+void SImage::setSkipPoints(int i) {
+	skipPoints = i;
+	printf("skipPoints set to %i\n", i);
 }
 	
 // - - - GIVE ALL POINTS - - -

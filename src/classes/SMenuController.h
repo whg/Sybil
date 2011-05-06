@@ -25,5 +25,7 @@ class SPreview;
 - (IBAction) changeToTerminal: (id) sender;
 - (IBAction) plotEverything: (id) sender;
 
+- (IBAction) test: (id) sender;
+
 
 @end

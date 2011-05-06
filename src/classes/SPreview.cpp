@@ -39,14 +39,11 @@ void SPreview::setup(){
 	fid = -1;
 	ztrans = -1900;
 	isDrawing = false;
-	
-//	drawingArea = SPoint(1155, 840);
-//	drawingArea = SPoint(1540, 1120);
-//	drawingArea = SPoint(2310, 1680);
-//	drawingArea = SPoint(4620, 3360);
+	pointsDone = 0;
+	useProgressIndicator = false;
+	numPoints = 1;
+
 	drawingArea = SPoint(3850, 2800);
-//	drawingArea = SPoint(5775, 4200);
-//	drawingArea = SPoint(3080, 2200);
 	
 	//instantiate serial
 	serial = new SSerial();
@@ -58,7 +55,7 @@ void SPreview::setup(){
 	terminal = new STerm(commander);
 	
 	setViewMode(PREVIEW);
-	
+		
 	//set up cocoa part - do this last
 	NSApplicationMain(0, NULL);
 
@@ -80,6 +77,8 @@ void SPreview::update(){
 		if (commander->isDoingFile()) {
 			terminal->iterateFile();
 		}
+		
+		updateProgressIndicator();
 	}
 	
 }
@@ -115,8 +114,8 @@ void SPreview::draw(){
 
 	}
 	
-	ofSetColor(0, 0, 0);
-	ofDrawBitmapString(ofToString(ofGetFrameRate(), 1), 400, 300);
+	//ofSetColor(0, 0, 0);
+//	ofDrawBitmapString(ofToString(ofGetFrameRate(), 1), 400, 300);
 
 }
 
@@ -147,19 +146,15 @@ void SPreview::keyPressed(int key){
 	}
 	
 	else {
+		//this is a little secret...
+		//ctrl - to zoom out 
+		//ctrl = to zoom in
 		switch (key) {
-			case '-':
+			case 31:
 				ztrans-= 100;
 				break;
-			case '=':
+			case 61:
 				ztrans+= 100;
-				break;
-			case 'p':
-				plotEverything();
-				break;
-
-				
-			default:
 				break;
 		}
 		
@@ -282,7 +277,7 @@ void SPreview::setViewMode(int m) {
 		case TERMINAL:
 			mode = TERMINAL;
 			ofSetWindowShape(TERMINAL_WIDTH, TERMINAL_HEIGHT);
-			ofSetWindowPosition(440, 80);
+			ofSetWindowPosition(440, 200);
 			break;
 
 	}
@@ -294,12 +289,21 @@ void SPreview::startedDrawing() {
 	isDrawing = true;
 	ofSetFrameRate(SERIAL_FRAMERATE);
 	serial->flush();
+	
+	if (useProgressIndicator) {
+		showProgressWindow();
+	}
 	printf("startDrawing() called\n");
 }
 
 void SPreview::stoppedDrawing() {
 	isDrawing = false;
 	ofSetFrameRate(NORMAL_FRAMERATE);
+	
+	if (useProgressIndicator) {
+		closeProgressWindow();
+		useProgressIndicator = false;
+	}	
 	printf("stoppedDrawing() called\n");
 }
 
@@ -336,6 +340,54 @@ void SPreview::plotEverything() {
 	printf("WE HAVE %i NUMBER OF POINTS\n", (int) allPoints.size());
 	
 	serial->sendMultipleMove(allPoints);
+	useProgressIndicator = true;
 	startedDrawing();
+	numPoints = allPoints.size();
 	
 }
+
+void SPreview::showProgressWindow() {
+	
+	progressWindow = [[NSWindow alloc] initWithContentRect:NSMakeRect(500, 500, 500, 200)
+																							 styleMask: (NSResizableWindowMask | NSClosableWindowMask | NSTitledWindowMask)
+																								 backing:NSBackingStoreBuffered
+																									 defer:FALSE];
+	
+	progressIndicator = [[NSProgressIndicator alloc] initWithFrame:NSMakeRect(50, 150, 400, 25)];
+	[progressIndicator setStyle:NSProgressIndicatorBarStyle];
+	[progressIndicator setIndeterminate:FALSE];
+	[progressIndicator setMinValue:0];
+	[progressIndicator setMaxValue:100];
+	[progressIndicator setDoubleValue:0];
+	
+	[[progressWindow contentView] addSubview:progressIndicator];
+	[progressWindow makeKeyAndOrderFront:nil];
+	
+	[progressWindow release];
+	
+}
+
+void SPreview::closeProgressWindow() {
+
+	[progressWindow close];
+}
+
+void SPreview::setPointsDone(int i) {
+	pointsDone = i;
+	
+}
+
+void SPreview::updateProgressIndicator() {
+	
+	double progress = (pointsDone/(double)numPoints) * 100.0;
+
+	[progressIndicator setDoubleValue:progress];
+	printf("progress set to %f\n", progress);
+}
+
+void SPreview::setUseProgressIndicator(bool b) {
+	useProgressIndicator = b;
+}
+
+
+

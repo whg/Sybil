@@ -64,6 +64,10 @@
 	
 }
 
+- (IBAction) test: (id) sender {
+	
+	previewPtr->showProgressWindow();
+}
 
 
 @end

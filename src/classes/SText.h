@@ -54,12 +54,9 @@ public:
 
 	void draw();
 	void update();
-
-	void hello();
 	
 	void giveAllPoints(vector<SPoint> &points);
 	
-
 };
 
 

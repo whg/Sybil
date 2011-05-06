@@ -45,7 +45,7 @@
 		EE6672111347693F00E906A6 /* STextWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE6672071347693F00E906A6 /* STextWindow.xib */; };
 		EE6672A51347A6BD00E906A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EE6672A31347A6BD00E906A6 /* InfoPlist.strings */; };
 		EE6672A61347A6BD00E906A6 /* Sybil-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EE6672A41347A6BD00E906A6 /* Sybil-Info.plist */; };
-		EE95D01B1349F249004A1263 /* SMenuController.mm in Sources */ = {isa = PBXBuildFile; fileRef = EE95D01A1349F249004A1263 /* SMenuController.mm */; };
+		EE95D01B1349F249004A1263 /* SMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE95D01A1349F249004A1263 /* SMenuController.m */; };
 		EE95D24C134A1FA0004A1263 /* install.xml in Resources */ = {isa = PBXBuildFile; fileRef = EE95D224134A1FA0004A1263 /* install.xml */; };
 		EE95D24D134A1FA0004A1263 /* openCV.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE95D23A134A1FA0004A1263 /* openCV.a */; };
 		EE95D24E134A1FA0004A1263 /* ofxCvColorImage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE95D23D134A1FA0004A1263 /* ofxCvColorImage.cpp */; };
@@ -160,7 +160,7 @@
 		EE6672A31347A6BD00E906A6 /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		EE6672A41347A6BD00E906A6 /* Sybil-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Sybil-Info.plist"; sourceTree = "<group>"; };
 		EE95D0191349F249004A1263 /* SMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMenuController.h; sourceTree = "<group>"; };
-		EE95D01A1349F249004A1263 /* SMenuController.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = SMenuController.mm; sourceTree = "<group>"; };
+		EE95D01A1349F249004A1263 /* SMenuController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = SMenuController.m; sourceTree = "<group>"; };
 		EE95D224134A1FA0004A1263 /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		EE95D228134A1FA0004A1263 /* cv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cv.h; sourceTree = "<group>"; };
 		EE95D229134A1FA0004A1263 /* cv.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = cv.hpp; sourceTree = "<group>"; };
@@ -529,7 +529,7 @@
 				EE95D124134A0BDB004A1263 /* SImage */,
 				EE95D123134A0BC8004A1263 /* SText */,
 				EE95D0191349F249004A1263 /* SMenuController.h */,
-				EE95D01A1349F249004A1263 /* SMenuController.mm */,
+				EE95D01A1349F249004A1263 /* SMenuController.m */,
 				EE633F481358C26C004885E7 /* STerm.h */,
 				EE633F491358C26C004885E7 /* STerm.cpp */,
 				EEB771FA1350F59A00B10568 /* STypes.h */,
@@ -826,7 +826,7 @@
 				EE66720C1347693F00E906A6 /* SText.cpp in Sources */,
 				EE66720D1347693F00E906A6 /* STextController.m in Sources */,
 				EE66720F1347693F00E906A6 /* main.cpp in Sources */,
-				EE95D01B1349F249004A1263 /* SMenuController.mm in Sources */,
+				EE95D01B1349F249004A1263 /* SMenuController.m in Sources */,
 				EE95D24E134A1FA0004A1263 /* ofxCvColorImage.cpp in Sources */,
 				EE95D24F134A1FA0004A1263 /* ofxCvContourFinder.cpp in Sources */,
 				EE95D250134A1FA0004A1263 /* ofxCvFloatImage.cpp in Sources */,

@@ -68,10 +68,10 @@
 	
 }
 
-- (IBAction) test: (id) sender {
-	
-	previewPtr->showProgressWindow();
-}
+- (IBAction) cancelDrawing: (id) sender {
 
+	previewPtr->cancelDrawing();
+	printf("cancel drawing called\n");
+}
 
 @end

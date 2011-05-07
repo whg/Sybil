@@ -44,7 +44,7 @@ void SPreview::setup(){
 	numPoints = 1;
 	audioNeeded = false;
 	drawingArea = SPoint(3850, 2800);
-	
+		
 	//instantiate serial
 	serial = new SSerial();
 	
@@ -279,11 +279,13 @@ void SPreview::setViewMode(int m) {
 			mode = PREVIEW;
 			ofSetWindowShape(PREVIEW_WIDTH, PREVIEW_HEIGHT);
 			ofSetWindowPosition(50, 50);
+			ofSetWindowTitle("Preview");
 			break;
 		case TERMINAL:
 			mode = TERMINAL;
 			ofSetWindowShape(TERMINAL_WIDTH, TERMINAL_HEIGHT);
 			ofSetWindowPosition(440, 200);
+			ofSetWindowTitle("Terminal");
 			break;
 
 	}
@@ -349,6 +351,16 @@ void SPreview::plotEverything() {
 	
 }
 
+void SPreview::cancelDrawing() {
+	vector<SPoint> cancelPoints;
+	cancelPoints.push_back(SPoint(PEN_UP_POINT, 0));
+	cancelPoints.push_back(SPoint(CHANGE_DELAY_POINT, 7));
+	cancelPoints.push_back(SPoint(0, 0));
+	cancelPoints.push_back(SPoint(CHANGE_DELAY_POINT, 16));
+	serial->sendMultipleMove(cancelPoints);
+	[progressWindow close];
+}
+
 /*
  - - - PROGRESS WINDOW - - -
  */
@@ -377,7 +389,7 @@ void SPreview::showProgressWindow() {
 	[percentageLabel setBezeled:FALSE];
 	[percentageLabel setBordered:FALSE];
 	
-	errorLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(30, 10, 400, 25)];
+	errorLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(30, 10, 300, 25)];
 	
 	[errorLabel setEditable:FALSE];
 	[errorLabel setSelectable:FALSE];
@@ -386,6 +398,18 @@ void SPreview::showProgressWindow() {
 	[errorLabel setBordered:FALSE];
 	[errorLabel setStringValue:@"hello"];
 	
+	NSButton* stopButton = [[NSButton alloc] initWithFrame:NSMakeRect(350, 5, 80, 30)];
+	[stopButton setBezelStyle:NSRoundedBezelStyle];
+	[stopButton setTitle:@"Cancel"];
+	
+	SMenuController* mc = [[SMenuController alloc] init];
+	
+	[stopButton setTarget:mc];
+	[stopButton setAction:@selector(cancelDrawing:)];
+	
+	[mc release];
+	
+	[[progressWindow contentView] addSubview:stopButton];
 	[[progressWindow contentView] addSubview:errorLabel];
 	[[progressWindow contentView] addSubview:percentageLabel];
 	[[progressWindow contentView] addSubview:progressIndicator];

@@ -8,6 +8,7 @@
 
 #import "SAudioClipController.h"
 #include "SPreview.h"
+#include "SAudioClip.h"
 
 @implementation SAudioClipController
 
@@ -30,6 +31,8 @@
 }
 
 - (IBAction) resetPressed: (id) sender {
+	printf("reset pressed\n");
+	((SAudioClip*)itemPtr)->reset();
 }
 
 

@@ -128,11 +128,19 @@ bool SItem::setCursorType(int x, int y) {
 	y*= scale.y/ofGetHeight();
 	
 	//for moving, this shows a crosshair
-	if (x > pos.x && x < pos.x + dim.x &&
-			y > pos.y && y < pos.y + dim.y) {
+	if (x > pos.x && x < pos.x + dim.x - resizeMargin &&
+			y > pos.y && y < pos.y + dim.y - resizeMargin) {
 		glutSetCursor(GLUT_CURSOR_CROSSHAIR); 	
 		return true;
 	} 
+	
+	//this is for increasing x & y, ie bottom right corner
+	else if (x > pos.x + dim.x - resizeMargin && x < pos.x + dim.x + resizeMargin &&
+					 y > pos.y + dim.y - resizeMargin && y < pos.y + dim.y + resizeMargin &&
+					 dim.x > 0 && dim.y > 0) {
+		glutSetCursor(GLUT_CURSOR_BOTTOM_RIGHT_CORNER);	
+		return true;
+	}
 	
 	//this is for increasing x, ie right border
 	else if (x > pos.x + dim.x - resizeMargin && x < pos.x + dim.x + resizeMargin &&
@@ -166,8 +174,8 @@ bool SItem::setActionType(int x, int y, int b) {
 	y*= scale.y/ofGetHeight();
 	
 	//for moving
-	if (x > pos.x && x < pos.x + dim.x &&
-			y > pos.y && y < pos.y + dim.y) {
+	if (x > pos.x && x < pos.x + dim.x - resizeMargin &&
+			y > pos.y && y < pos.y + dim.y - resizeMargin) {
 		if (b) { // if mousepressed
 			cursorType = MOVE;
 			focus = true;
@@ -175,6 +183,17 @@ bool SItem::setActionType(int x, int y, int b) {
 			return true;
 		}
 	} 
+	
+	//this is for increasing x and y at the same time, ie bottom right corner
+	else if (x > pos.x + dim.x - resizeMargin && x < pos.x + dim.x + resizeMargin &&
+					 y > pos.y + dim.y - resizeMargin && y < pos.y + dim.y + resizeMargin) {
+		if (b) { // if mousepressed
+			cursorType = RESIZEBOTH;
+			focus = true;
+			previewPtr->setFocus(uid);
+			return true;
+		}
+	}
 	
 	//this is for increasing x, ie right border
 	else if (x > pos.x + dim.x - resizeMargin && x < pos.x + dim.x + resizeMargin &&
@@ -219,9 +238,13 @@ void SItem::mouseActions(int x, int y) {
 	}
 	
 	//this is to resize
+	else if (cursorType == RESIZEBOTH) {
+		dim.x = initDim.x + x - initPos.x;
+		dim.y = initDim.y + y - initPos.y;
+	}
+	
 	else if (cursorType == RESIZEX) {
 		dim.x = initDim.x + x - initPos.x;
-		//do the line wrapping as well
 	}
 	
 	else if (cursorType == RESIZEY) {

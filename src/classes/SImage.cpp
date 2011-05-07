@@ -389,6 +389,7 @@ void SImage::giveAllPoints(vector<SPoint> &p) {
 	
 	//push all your points into the vector provided...
 	for (int i = 0; i < points.size(); i++) {
+		points[i]+= pos;
 		p.push_back(points[i]);
 	}
 	

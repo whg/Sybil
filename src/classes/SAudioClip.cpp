@@ -16,6 +16,7 @@ SAudioClip::SAudioClip(int i)
 	points = vector<SPoint>();
 	rawAudio = vector<float>();
 	rawAudio.push_back(0);
+	halt = false;
 
 	//this is a fix to a bug that i don't quite understand...
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
@@ -34,10 +35,7 @@ SAudioClip::~SAudioClip() {
 	[windowController release];
 }
 
-void SAudioClip::update() {
-
-	
-}
+void SAudioClip::update() { }
 
 void SAudioClip::updateWindow() {
 	
@@ -47,7 +45,7 @@ void SAudioClip::updateWindow() {
 }
 
 void SAudioClip::draw() {
-	
+		
 	scaleAudio();
 	
 	ofPushMatrix();
@@ -63,7 +61,7 @@ void SAudioClip::draw() {
 	}
 	
 	ofPopMatrix();
-	
+		
 }
 
 void SAudioClip::audioReceived(float* input) {
@@ -88,6 +86,32 @@ void SAudioClip::scaleAudio() {
 		
 }
 
-void SAudioClip::giveAllPoints(vector<SPoint> &points) {
+void SAudioClip::reset() {
+	rawAudio.clear();
+	rawAudio.push_back(0);
+}
 
+void SAudioClip::setForDraw() {
+
+	//translate
+	for (int i = 0; i < points.size(); i++) {
+		points[i]+= pos;
+	}
+	
+	//insert a pen up at begining
+	points.insert(points.begin(), SPoint(PEN_UP_POINT, 0));
+	//insert pen down when it got to first point
+	points.insert(points.begin()+2, SPoint(PEN_DOWN_POINT, 0));
+	//add pen up at end
+	points.push_back(SPoint(PEN_UP_POINT, 0));
+	
+}
+
+void SAudioClip::giveAllPoints(vector<SPoint> &p) {
+
+	setForDraw();
+	
+	for (int i = 0; i < points.size(); i++) {
+		p.push_back(points[i]);
+	}
 }

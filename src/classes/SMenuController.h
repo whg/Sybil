@@ -26,5 +26,7 @@ class SPreview;
 - (IBAction) changeToTerminal: (id) sender;
 - (IBAction) plotEverything: (id) sender;
 
+//this is for the progress window, i thought this was the best place to put it
+- (IBAction) cancelDrawing: (id) sender;
 
 @end

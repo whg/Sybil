@@ -450,7 +450,6 @@
 				EEBB0FD012F8C44500855BED /* addons */,
 				E4B69B5B0A3A1756003C02F2 /* SybilDebug.app */,
 				E45BE0360E8CC5DE009D7055 /* libs */,
-				EE11C1EC1375DCD300043F38 /* SAudioClipWindow.xib */,
 			);
 			sourceTree = "<group>";
 		};
@@ -568,6 +567,7 @@
 			isa = PBXGroup;
 			children = (
 				EE6672061347693F00E906A6 /* MainMenu.nib */,
+				EE11C1EC1375DCD300043F38 /* SAudioClipWindow.xib */,
 				EE95D29C134A2F3C004A1263 /* SImageWindow.xib */,
 				EE6672071347693F00E906A6 /* STextWindow.xib */,
 			);

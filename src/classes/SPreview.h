@@ -22,6 +22,7 @@
 #include "SSerial.h"
 #include "SCommand.h"
 #include "STypes.h"
+#import "SMenuController.h"
 
 class SItem;
 class SImage;
@@ -96,6 +97,7 @@ public:
 	SSerial* getSerialConnection();
 	
 	void plotEverything();
+	void cancelDrawing();
 	
 	//progress window stuff
 	void showProgressWindow();

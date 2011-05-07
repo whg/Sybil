@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="113"/>
+			<integer value="112"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -377,7 +377,7 @@
 											<object class="NSComboBoxCell" key="NSCell" id="613783360">
 												<int key="NSCellFlags">343014976</int>
 												<int key="NSCellFlags2">4195328</int>
-												<string key="NSContents">12</string>
+												<string key="NSContents">256</string>
 												<reference key="NSSupport" ref="259426592"/>
 												<reference key="NSControlView" ref="726172048"/>
 												<bool key="NSDrawsBackground">YES</bool>
@@ -389,15 +389,16 @@
 												<object class="NSComboTableView" key="NSTableView" id="801262107">
 													<reference key="NSNextResponder"/>
 													<int key="NSvFlags">274</int>
-													<string key="NSFrameSize">{15, 0}</string>
+													<string key="NSFrameSize">{54, 18}</string>
 													<reference key="NSSuperview"/>
 													<reference key="NSWindow"/>
+													<reference key="NSNextKeyView"/>
 													<bool key="NSEnabled">YES</bool>
 													<object class="NSMutableArray" key="NSTableColumns">
 														<bool key="EncodedWithXMLCoder">YES</bool>
 														<object class="NSTableColumn">
 															<integer value="0" key="NSIdentifier"/>
-															<double key="NSWidth">12</double>
+															<double key="NSWidth">51</double>
 															<double key="NSMinWidth">10</double>
 															<double key="NSMaxWidth">1000</double>
 															<object class="NSTableHeaderCell" key="NSHeaderCell">

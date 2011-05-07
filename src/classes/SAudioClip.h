@@ -25,6 +25,8 @@ private:
 	vector<float> rawAudio;
 	vector<SPoint> points;
 	
+	bool halt;
+	
 	SAudioClipController *windowController;
 	
 public:
@@ -37,8 +39,10 @@ public:
 	
 	void audioReceived(float* input);
 	void scaleAudio();
+	void reset();
 	
-	void giveAllPoints(vector<SPoint> &points);
+	void setForDraw();
+	void giveAllPoints(vector<SPoint> &p);
 
 };
 

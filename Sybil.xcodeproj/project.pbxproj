@@ -32,6 +32,9 @@
 		E4C2429410CC5C38004149E2 /* freetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2429310CC5C38004149E2 /* freetype.a */; };
 		E4C242CD10CC650E004149E2 /* libfmodex.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C242CC10CC650E004149E2 /* libfmodex.dylib */; };
 		E4C246DA10CCAE22004149E2 /* freeimage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C246D910CCAE22004149E2 /* freeimage.a */; };
+		EE11C09B1375CBE600043F38 /* SAudioClipController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE11C09A1375CBE600043F38 /* SAudioClipController.m */; };
+		EE11C1ED1375DCD300043F38 /* SAudioClipWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE11C1EC1375DCD300043F38 /* SAudioClipWindow.xib */; };
+		EE3EA958137597CE0083A125 /* SAudioClip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE3EA957137597CE0083A125 /* SAudioClip.cpp */; };
 		EE633F4A1358C26C004885E7 /* STerm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE633F491358C26C004885E7 /* STerm.cpp */; };
 		EE63406A135C36C7004885E7 /* SSerial.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE634069135C36C7004885E7 /* SSerial.cpp */; };
 		EE634529135EE3BF004885E7 /* SCommand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EE634528135EE3BF004885E7 /* SCommand.cpp */; };
@@ -137,6 +140,11 @@
 		E4C2429310CC5C38004149E2 /* freetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freetype.a; path = ../../../libs/freetype/lib/osx/freetype.a; sourceTree = SOURCE_ROOT; };
 		E4C242CC10CC650E004149E2 /* libfmodex.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libfmodex.dylib; path = ../../../libs/fmodex/lib/osx/libfmodex.dylib; sourceTree = SOURCE_ROOT; };
 		E4C246D910CCAE22004149E2 /* freeimage.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = freeimage.a; path = ../../../libs/FreeImage/lib/osx/freeimage.a; sourceTree = SOURCE_ROOT; };
+		EE11C0991375CBE600043F38 /* SAudioClipController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAudioClipController.h; sourceTree = "<group>"; };
+		EE11C09A1375CBE600043F38 /* SAudioClipController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = SAudioClipController.m; sourceTree = "<group>"; };
+		EE11C1EC1375DCD300043F38 /* SAudioClipWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SAudioClipWindow.xib; sourceTree = "<group>"; };
+		EE3EA956137597CE0083A125 /* SAudioClip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAudioClip.h; sourceTree = "<group>"; };
+		EE3EA957137597CE0083A125 /* SAudioClip.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = SAudioClip.cpp; sourceTree = "<group>"; };
 		EE633F481358C26C004885E7 /* STerm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STerm.h; sourceTree = "<group>"; };
 		EE633F491358C26C004885E7 /* STerm.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = STerm.cpp; sourceTree = "<group>"; };
 		EE634044135B8B9B004885E7 /* SConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SConstants.h; sourceTree = "<group>"; };
@@ -442,6 +450,7 @@
 				EEBB0FD012F8C44500855BED /* addons */,
 				E4B69B5B0A3A1756003C02F2 /* SybilDebug.app */,
 				E45BE0360E8CC5DE009D7055 /* libs */,
+				EE11C1EC1375DCD300043F38 /* SAudioClipWindow.xib */,
 			);
 			sourceTree = "<group>";
 		};
@@ -520,6 +529,17 @@
 			path = ../../../libs/FreeImage/lib/osx;
 			sourceTree = SOURCE_ROOT;
 		};
+		EE3EA959137598420083A125 /* SAudioClip */ = {
+			isa = PBXGroup;
+			children = (
+				EE3EA956137597CE0083A125 /* SAudioClip.h */,
+				EE3EA957137597CE0083A125 /* SAudioClip.cpp */,
+				EE11C0991375CBE600043F38 /* SAudioClipController.h */,
+				EE11C09A1375CBE600043F38 /* SAudioClipController.m */,
+			);
+			name = SAudioClip;
+			sourceTree = "<group>";
+		};
 		EE6671F81347693F00E906A6 /* classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -528,6 +548,7 @@
 				EE95D125134A0C35004A1263 /* SItem */,
 				EE95D124134A0BDB004A1263 /* SImage */,
 				EE95D123134A0BC8004A1263 /* SText */,
+				EE3EA959137598420083A125 /* SAudioClip */,
 				EE95D0191349F249004A1263 /* SMenuController.h */,
 				EE95D01A1349F249004A1263 /* SMenuController.m */,
 				EE633F481358C26C004885E7 /* STerm.h */,
@@ -791,6 +812,7 @@
 				EE6672A61347A6BD00E906A6 /* Sybil-Info.plist in Resources */,
 				EE95D24C134A1FA0004A1263 /* install.xml in Resources */,
 				EE95D29D134A2F3C004A1263 /* SImageWindow.xib in Resources */,
+				EE11C1ED1375DCD300043F38 /* SAudioClipWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -838,6 +860,8 @@
 				EE633F4A1358C26C004885E7 /* STerm.cpp in Sources */,
 				EE63406A135C36C7004885E7 /* SSerial.cpp in Sources */,
 				EE634529135EE3BF004885E7 /* SCommand.cpp in Sources */,
+				EE3EA958137597CE0083A125 /* SAudioClip.cpp in Sources */,
+				EE11C09B1375CBE600043F38 /* SAudioClipController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

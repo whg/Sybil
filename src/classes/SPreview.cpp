@@ -42,6 +42,7 @@ void SPreview::setup(){
 	pointsDone = 0;
 	useProgressIndicator = false;
 	numPoints = 1;
+	audioNeeded = false;
 	drawingArea = SPoint(3850, 2800);
 	
 	//instantiate serial
@@ -54,6 +55,11 @@ void SPreview::setup(){
 	terminal = new STerm(commander);
 	
 	setViewMode(PREVIEW);
+	
+	//set up audio
+	//this is a very minimal mono setup
+	ofSoundStreamSetup(0,1,this, 44100, 256, 1);	
+
 		
 	//set up cocoa part - do this last
 	NSApplicationMain(0, NULL);
@@ -94,6 +100,7 @@ void SPreview::draw(){
 			ofPushMatrix();
 			ofTranslate(-drawingArea.x/2.5, -drawingArea.y/2.5, ztrans);
 			
+			//draw the drawing area...
 			ofNoFill();
 			ofSetColor(0, 0, 0);
 			ofRect(0, 0, drawingArea.x, drawingArea.y);
@@ -146,10 +153,10 @@ void SPreview::keyPressed(int key){
 	
 	else {
 		//this is a little secret...
-		//ctrl - to zoom out 
-		//ctrl = to zoom in
+		// - to zoom out 
+		// = to zoom in
 		switch (key) {
-			case 31:
+			case 45:
 				ztrans-= 100;
 				break;
 			case 61:
@@ -234,15 +241,15 @@ void SPreview::mouseReleased(int x, int y, int button){
 // - - - ITEM HOUSEWORK - - -
 
 void SPreview::addTextItem() {
-	
-	items.push_back(new SText(idc++));
-	
+	items.push_back(new SText(idc++));	
 }
 
 void SPreview::addImageItem(string file) {
-	
 	items.push_back(new SImage(idc++, file));
-	
+}
+
+void SPreview::addAudioClipItem() {
+	items.push_back(new SAudioClip(idc++));
 }
 
 void SPreview::removeItem(int i) {
@@ -420,4 +427,17 @@ void SPreview::writeProgressErrorMessage(string message) {
 	[errorLabel setStringValue:[[NSString alloc] initWithCString:message.c_str()]];
 }
 
+// - - - AUDIO - - -
+
+void SPreview::audioReceived(float* input, int bufferSize, int nChannels) {
+
+	if (audioNeeded) {
+		((SAudioClip*)items[fid])->audioReceived(input);
+	}
+	
+}
+
+void SPreview::setAudioNeeded(bool b) {
+	audioNeeded = b;	
+}
 

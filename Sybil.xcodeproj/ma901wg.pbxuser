@@ -1,5 +1,33 @@
 // !$*UTF8*$!
 {
+	65B9B1F01375A18700B60EA2 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = EE95D01A1349F249004A1263 /* SMenuController.m */;
+	};
+	65B9B1F21375A18900B60EA2 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = EE95D01A1349F249004A1263 /* SMenuController.m */;
+	};
+	65B9B1FA1375A1BB00B60EA2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE95D01A1349F249004A1263 /* SMenuController.m */;
+		name = "SMenuController.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 605;
+		vrLoc = 0;
+	};
+	65B9B1FB1375A1BB00B60EA2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = EE95D01A1349F249004A1263 /* SMenuController.m */;
+		name = "SMenuController.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 534;
+		vrLoc = 0;
+	};
 	65D58CD613743FC1003B661C /* Sybil */ = {
 		isa = PBXExecutable;
 		activeArgIndices = (
@@ -57,7 +85,7 @@
 					20,
 					617,
 					20,
-					48.16259765625,
+					48,
 					43,
 					43,
 					20,
@@ -72,8 +100,14 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 326385601;
-			PBXWorkspaceStateSaveDate = 326385601;
+			PBXPerProjectTemplateStateSaveDate = 326476152;
+			PBXWorkspaceStateSaveDate = 326476152;
+		};
+		perUserProjectItems = {
+			65B9B1F01375A18700B60EA2 /* PBXBookmark */ = 65B9B1F01375A18700B60EA2 /* PBXBookmark */;
+			65B9B1F21375A18900B60EA2 /* PBXBookmark */ = 65B9B1F21375A18900B60EA2 /* PBXBookmark */;
+			65B9B1FA1375A1BB00B60EA2 /* PBXTextBookmark */ = 65B9B1FA1375A1BB00B60EA2 /* PBXTextBookmark */;
+			65B9B1FB1375A1BB00B60EA2 /* PBXTextBookmark */ = 65B9B1FB1375A1BB00B60EA2 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 65D58CFB13743FCF003B661C /* Source Control */;
 		userBuildSettings = {
@@ -84,5 +118,13 @@
 		executables = (
 			65D58CD613743FC1003B661C /* Sybil */,
 		);
+	};
+	EE95D01A1349F249004A1263 /* SMenuController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {795, 988}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 605}";
+			sepNavWindowFrame = "{{15, 465}, {750, 558}}";
+		};
 	};
 }

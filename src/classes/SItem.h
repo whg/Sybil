@@ -22,8 +22,7 @@ class SItem {
 private: 	
 	
 	//these are used for mouse actions
-	SPoint offset, initPos, initDim;
-	
+	SPoint offset, initPos, initDim;	
 	
 public:
 	

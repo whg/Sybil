@@ -45,6 +45,10 @@
 	
 }
 
+- (IBAction) addAudioClip: (id) sender {
+	previewPtr->addAudioClipItem();	
+}
+
 - (IBAction) changeToPreview: (id) sender {
 	previewPtr->setViewMode(0);
 	[previewMode setState:NSOnState];

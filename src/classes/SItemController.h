@@ -26,6 +26,7 @@ class SPreview;
 	int uid;
 }
 
+- (void) getPreviewPtr;
 - (void) setParent: (SItem*) p;
 
 - (void) updatePosFields: (int) x : (int) y;

@@ -16,6 +16,7 @@
 #include "SItem.h"
 #include "SText.h"
 #include "SImage.h"
+#include "SAudioClip.h"
 #include "STerm.h"
 #include "SConstants.h"
 #include "SSerial.h"
@@ -24,6 +25,7 @@
 
 class SItem;
 class SImage;
+class SAudioClip;
 @class SItemController;
 class STerm;
 class SCommand;
@@ -36,6 +38,7 @@ private:
 	int fid; //focused id
 	bool isDrawing;
 	int ztrans;
+	bool audioNeeded;
 	
 	viewModes mode;
 	
@@ -68,7 +71,8 @@ public:
 	void mouseDragged(int x, int y, int button);
 	void mousePressed(int x, int y, int button);
 	void mouseReleased(int x, int y, int button);
-			
+	void audioReceived(float* input, int bufferSize, int nChannels);
+	
 	void setFocus(int i);
 	int getFocus();
 	
@@ -83,6 +87,7 @@ public:
 	
 	void addTextItem();
 	void addImageItem(string file);
+	void addAudioClipItem();
 	void removeItem(int i);
 	
 	SPoint getScalingVector();
@@ -92,6 +97,7 @@ public:
 	
 	void plotEverything();
 	
+	//progress window stuff
 	void showProgressWindow();
 	void closeProgressWindow();
 	void setNumPoints(int i);
@@ -100,6 +106,8 @@ public:
 	void setUseProgressIndicator(bool b);
 	
 	void writeProgressErrorMessage(string message);
+	
+	void setAudioNeeded(bool b);
 };
 
 

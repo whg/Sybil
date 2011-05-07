@@ -20,11 +20,16 @@ class SPreview;
 
 // - - - INIT - - -
 
-- (void) loadWindow{
+- (void) loadWindow {
 	
 	previewPtr = (SPreview*) ofGetAppPtr();
 	[super loadWindow];
 	
+}
+
+- (void) getPreviewPtr {
+	//this is used by the audio clip
+	previewPtr = (SPreview*) ofGetAppPtr();
 }
 
 - (void) setParent:(SItem*)p {

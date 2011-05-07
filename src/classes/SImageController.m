@@ -15,8 +15,6 @@
 // init...
 - (void) loadWindow{
 	
-	
-		
 	[super loadWindow];
 	
 }

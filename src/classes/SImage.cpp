@@ -7,15 +7,11 @@
  *
  */
 
-
-
 #include "SImage.h"
 
 SImage::SImage(int i, string file)
 :SItem(i){
-	printf("constructed SImage\n");
-	
-		
+
 	//init variables
 	imageSet = false;
 	imgRatio = 0;
@@ -135,7 +131,7 @@ void SImage::draw() {
 		
 		ofPopMatrix();
 		
-	}
+	}//end if image set
 	
 }
 

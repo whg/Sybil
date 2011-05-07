@@ -21,11 +21,10 @@ class SPreview;
 
 - (IBAction) addText: (id) sender;
 - (IBAction) addImage: (id) sender;
+- (IBAction) addAudioClip: (id) sender;
 - (IBAction) changeToPreview: (id) sender;
 - (IBAction) changeToTerminal: (id) sender;
 - (IBAction) plotEverything: (id) sender;
-
-- (IBAction) test: (id) sender;
 
 
 @end

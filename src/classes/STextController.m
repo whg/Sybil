@@ -143,6 +143,7 @@
 	//set font to default
 	[fontSelection selectItemWithTitle:defaultFont];
 	
+	//just for show...
 	NSBeep();
 	
 }

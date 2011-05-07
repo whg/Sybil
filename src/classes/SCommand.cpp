@@ -24,9 +24,6 @@ SCommand::~SCommand() {
 
 }
 
-/*
- - - - PRIVATE METHODS - - - 
- */
 
 /*
  this method is a little helper, 
@@ -89,8 +86,10 @@ bool SCommand::isDoingFile() {
 void SCommand::setDoingFile(bool b) {
 	doingFile = b;
 	
-//	if (b) 	previewPtr->startedDrawing();
-//	else previewPtr->stoppedDrawing();
+	if(b) {
+		//set finished to true here, so we force it to start a new file
+		serialConnection->setFinished(true);
+	}
 }
 
 bool SCommand::doNextLine() {
@@ -303,10 +302,11 @@ string SCommand::circle(vector<string> &tokens, vector<char> &options) {
 	printf("circle with: x = %i, y = %i, rad = %i, r = %i, c = %i\n", x, y, rad, rel, cor);
 	
 	//now calculate the circle...
-	//here we are making a polygon with 360 sides...
+	//here we are making a polygon with radius/6 sides...
+	//there is no explicit reason why i chose 6, but it is a perfect number...
 	
 	vector<SPoint> points = vector<SPoint>();
-	createPointsInCircle(360, rad, SPoint(x, y), points);
+	createPointsInCircle(rad/6, rad, SPoint(x, y), points);
 	
 	for (int i = 0; i < points.size(); i++) {
 		if (points[i].x < 0 || points[i].y < 0) {

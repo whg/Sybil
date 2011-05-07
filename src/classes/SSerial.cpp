@@ -152,6 +152,8 @@ void SSerial::sendMultipleMove(vector<SPoint> &points, bool finish) {
 	
 	//get rid of any nasties that might be lurking in the buffer
 	serial.flush(true, true);
+	
+	previewPtr->setNumPoints((int) this->points.size());
 }
 
 void SSerial::sendMultipleMove(vector<SPoint> &points) {
@@ -164,16 +166,29 @@ void SSerial::sendMultipleMove(vector<SPoint> &points) {
 bool SSerial::checkSendMore() {
 	
 	for (int i = 0; i < readBytes.size(); i++) {
-		if (readBytes[i] == (unsigned char) 87) {
+		if (readBytes[i] == (unsigned char) RX_BUFFER_STX_ERROR) {
 			counter--;
-			printf("FOUND 87");
+			printf("FOUND RX_BUFFER_STX_ERROR");
+			previewPtr->writeProgressErrorMessage("ERROR: No Start Command Found; resending data...");
 			return true;
 		}
-		else if (readBytes[i] == (unsigned char) 102) {
+		else if (readBytes[i] == (unsigned char) RX_BUFFER_ETX_ERROR) {
 			counter--;
-			printf("FOUND 102");
+			printf("FOUND RX_BUFFER_ETX_ERROR");
+			previewPtr->writeProgressErrorMessage("ERROR: Message length invalid; resending data...");
 			return true;
 		}
+		else if (readBytes[i] == (unsigned char) RX_BUFFER_LENGTH_ERROR) {
+			counter--;
+			printf("FOUND RX_BUFFER_LENGTH_ERROR");
+			previewPtr->writeProgressErrorMessage("ERROR: No End Command Found; resending data...");
+			return true;
+		}
+		else {
+			//clear the error writting if it's all ok now...
+			previewPtr->writeProgressErrorMessage("");
+		}
+
 	}
 	
 	for (int i = 0; i < readBytes.size(); i++) {
@@ -354,4 +369,8 @@ int SSerial::available() {
 
 bool SSerial::isFinished() {
 	return finished;
+}
+
+void SSerial::setFinished(bool b) {
+	finished = b;
 }

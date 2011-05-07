@@ -21,18 +21,14 @@ class SSerial {
 	
 private:
 	ofSerial serial;
-	bool finished;
-	
+	bool finished;	
 	int pc; //point counter
 	
 	SPreview* previewPtr;
 	
 	vector<SPoint> points;
-	
 	bool multipleMove;
-	
 	int counter;
-	
 	vector<unsigned char> readBytes;
 	
 public:
@@ -71,7 +67,7 @@ public:
 	void sendInstruction(int x, int y);
 	
 	bool isFinished();
-		
+	void setFinished(bool b);
 	
 };
 

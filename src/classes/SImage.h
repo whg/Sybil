@@ -32,7 +32,6 @@ private:
 	//these will hold the points... integer coordinates (SPoint)...
 	vector<SPoint> initialPoints, points;
 	
-	
 	float imgRatio;
 	bool imageSet;
 	SImageController *windowController;
@@ -42,6 +41,9 @@ private:
 	bool doSmoothing;
 	bool fixAspectRatio, showImage;
 	int skipPoints;
+	
+	string currentStyle;
+	float styleParameter;
 
 	void findPoints();
 	
@@ -67,9 +69,13 @@ public:
 	void setFixAspectRatio(bool b);
 	void drawOriginalImage(bool b);
 	void setSkipPoints(int i);
+	void setStyle(string s);
+	void setStyleParameter(float v);
+	
+	void enableStyleSlider(BOOL show);
 	
 	void giveAllPoints(vector<SPoint> &p);
-	
+
 };
 
 

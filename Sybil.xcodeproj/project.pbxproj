@@ -200,7 +200,7 @@
 		EE95D29F134A2F51004A1263 /* SImageController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = SImageController.m; sourceTree = "<group>"; };
 		EE95D2B5134A3212004A1263 /* SItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SItemController.h; sourceTree = "<group>"; };
 		EE95D2B6134A3212004A1263 /* SItemController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = SItemController.m; sourceTree = "<group>"; };
-		EEB771FA1350F59A00B10568 /* STypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = STypes.h; path = ../../STypes.h; sourceTree = "<group>"; };
+		EEB771FA1350F59A00B10568 /* STypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STypes.h; sourceTree = "<group>"; };
 		EEBB0FD212F8C45400855BED /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		EEBB0FD412F8C45400855BED /* ofxMatrix3x3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMatrix3x3.cpp; sourceTree = "<group>"; };
 		EEBB0FD512F8C45400855BED /* ofxMatrix3x3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMatrix3x3.h; sourceTree = "<group>"; };

@@ -6,19 +6,13 @@
 //  Copyright 2011 . All rights reserved.
 //
 
-//#include "SItem.h"
-//#include "SPreview.h"
 #import "SItemController.h"
 #import <Cocoa/Cocoa.h>
 
-
 @interface SImageController : SItemController {
-	
-//	NSArray* noLinesSelection;
-//	IBOutlet NSArrayController* arrayController;
 	IBOutlet NSTextField* numPoints;
+	IBOutlet NSSlider* styleSlider;
 }
-
 
 - (IBAction) openFile: (id) sender;
 - (IBAction) fixAspectRatio: (id) sender;
@@ -30,8 +24,11 @@
 - (IBAction) enableSmoothingChanged: (id) sender;
 - (IBAction) smoothingRadiusChanged: (id) sender;
 - (IBAction) skipPointsChanged: (id) sender;
+- (IBAction) styleChanged: (id) sender;
+- (IBAction) styleSliderChanged: (id) sender;
 
 - (void) updateNumPoints: (int) n;
+- (void) showStyleSlider: (BOOL) show;
 
 - (IBAction) removeSelf: (id) sender;
 

@@ -30,6 +30,7 @@ SImage::SImage(int i, string file)
 	doSmoothing = false;
 	smoothingRadius = 5;
 	skipPoints = 0;
+	styleParameter = 400;
 	
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
 	windowController = [[SImageController alloc] initWithWindowNibName:@"SImageWindow"];
@@ -47,7 +48,9 @@ SImage::SImage(int i, string file)
 	
 	//do an update
 	updateWindow();
-
+	
+	//set current style to normal
+	setStyle("Normal");
 	
 }
 
@@ -109,14 +112,6 @@ void SImage::draw() {
 		//this shows the lines...
 		else {
 			
-		//	ofNoFill();
-//			ofSetColor(0x111111);
-//			
-//			for (int i = 0; i < points.size(); i++) {
-//				if (points[i].x == PEN_UP_POINT) ofNextContour(true);
-//				else ofVertex(points[i].x, points[i].y);
-//			}
-			
 			ofBeginShape();
 			
 			for (int i = 0; i < points.size(); i++) {
@@ -130,13 +125,8 @@ void SImage::draw() {
 				else if (points[i].x == PEN_DOWN_POINT) {}
 				else {
 					ofVertex(points[i].x, points[i].y);
-					
-					//ofNoFill();
-					//ofSetColor(50, 100, 200);
-					//ofCircle(textPoints[i].x, textPoints[i].y, 1);
 				}
-				
-				
+
 			}
 			
 			ofEndShape(true);
@@ -192,8 +182,8 @@ void SImage::findPoints() {
 			
 			ofPoint startPoint = contourFinder.blobs[insertPoint-1].centroid;
 			
-			int nearest = 1;
-			float dist = 9999;
+			int nearest = 1; 
+			float dist = 9999; //a large number
 			
 			//find closest point
 			for (int i = insertPoint; i < contourFinder.blobs.size(); i++) {
@@ -221,7 +211,7 @@ void SImage::findPoints() {
 			
 		}
 		
-		//now, loop through all blobs pushing all points into the huget vector
+		//now, loop through all blobs pushing all points into the huge vector
 		for (int i = 0; i < contourFinder.nBlobs; i++) {
 			
 			initialPoints.push_back(SPoint(PEN_UP_POINT, 0));
@@ -234,7 +224,27 @@ void SImage::findPoints() {
 			//this loop is for points within a blob
 			//add all the points... NB starting at 1 as we have already added 0
 			for (int j = 1; j < contourFinder.blobs[i].pts.size(); j+= (skipPoints+1)) {
-				initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j]));
+				
+				if (currentStyle == "Normal") {
+					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j]));
+					printf("did normal\n");
+				}
+				else if (currentStyle == "Lines") {
+					ofPoint lineOffset = ofPoint(styleParameter, 0);
+					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j]));
+					initialPoints.push_back(SPoint(PEN_DOWN_POINT, 0));
+					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j] + lineOffset));
+					initialPoints.push_back(SPoint(PEN_UP_POINT, 0));
+				}
+				else if (currentStyle == "Squares") {
+					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j] + ofPoint(styleParameter, styleParameter)));
+					initialPoints.push_back(SPoint(PEN_DOWN_POINT, 0));
+					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j] + ofPoint(styleParameter, -styleParameter)));
+					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j] + ofPoint(-styleParameter, -styleParameter)));
+					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j] + ofPoint(-styleParameter, styleParameter)));
+					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j] + ofPoint(styleParameter, styleParameter)));
+					initialPoints.push_back(SPoint(PEN_UP_POINT, 0));
+				}
 			}
 			
 			//add last point...
@@ -298,6 +308,9 @@ void SImage::findPoints() {
 		points = initialPoints;
 	}
 	
+	//now offset the whole thing by its position...
+	
+	
 }
 
 void SImage::update() {
@@ -355,15 +368,36 @@ void SImage::drawOriginalImage(bool b) {
 
 void SImage::setSkipPoints(int i) {
 	skipPoints = i;
-	printf("skipPoints set to %i\n", i);
+}
+
+void SImage::setStyle(string s) {
+	if (s == "Normal") {
+		enableStyleSlider(FALSE);
+	}
+	else if (s == "Lines") {
+		enableStyleSlider(TRUE);
+	}
+	else if (s == "Squares") {
+		enableStyleSlider(TRUE);
+	}
+	
+	currentStyle = s;
+}
+
+void SImage::setStyleParameter(float v) {
+	styleParameter = v;
 }
 	
 // - - - GIVE ALL POINTS - - -
 void SImage::giveAllPoints(vector<SPoint> &p) {
-
+	
+	//push all your points into the vector provided...
 	for (int i = 0; i < points.size(); i++) {
 		p.push_back(points[i]);
 	}
 	
 }
 
+void SImage::enableStyleSlider(BOOL show) {
+	[windowController showStyleSlider:show];
+}

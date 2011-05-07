@@ -52,6 +52,7 @@ private:
 	bool useProgressIndicator;
 	NSWindow* progressWindow;
 	NSProgressIndicator* progressIndicator;
+	NSTextField* percentageLabel, *errorLabel;
 
 public:
 	
@@ -93,9 +94,12 @@ public:
 	
 	void showProgressWindow();
 	void closeProgressWindow();
+	void setNumPoints(int i);
 	void setPointsDone(int i);
 	void updateProgressIndicator();
 	void setUseProgressIndicator(bool b);
+	
+	void writeProgressErrorMessage(string message);
 };
 
 

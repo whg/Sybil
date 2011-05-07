@@ -15,14 +15,8 @@
 // init...
 - (void) loadWindow{
 	
-//	int sel[12];
-//	for (int i = 0; i < 12; i++) {
-//		sel[i] = i+1;
-//	}
-//	noLinesSelection = [[NSArray alloc] initWithObjects:sel count:12];
 	
-	[window makeKeyWindow];
-	
+		
 	[super loadWindow];
 	
 }
@@ -45,7 +39,7 @@
 	else {
 		previewPtr->removeItem(uid);
 	}
-	
+		
 }
 
 //very simple, allows you to toggle a fixed aspect ratio
@@ -117,9 +111,26 @@
 	itemPtr->update();
 }
 
+- (IBAction) styleChanged: (id) sender {
+	
+	((SImage*)itemPtr)->setStyle([[sender titleOfSelectedItem] UTF8String]);
+	itemPtr->update();
+}
+
+- (IBAction) styleSliderChanged: (id) sender {
+
+	((SImage*)itemPtr)->setStyleParameter([sender floatValue]);
+	itemPtr->update();
+}
+
 - (void) updateNumPoints:(int)n {
 
 	[numPoints setIntValue:n];
+}
+
+- (void) showStyleSlider:(BOOL)show {
+
+	[styleSlider setEnabled:show];
 }
 
 - (IBAction) removeSelf: (id) sender {
@@ -129,10 +140,7 @@
 }
 
 - (void) finalize {
-	
-//	[noLinesSelection release];
-//	[arrayController release];
-	
+		
 	NSLog(@"finalized from SImageController");
 	[super finalize];
 	

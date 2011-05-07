@@ -42,7 +42,6 @@ void SPreview::setup(){
 	pointsDone = 0;
 	useProgressIndicator = false;
 	numPoints = 1;
-
 	drawingArea = SPoint(3850, 2800);
 	
 	//instantiate serial
@@ -156,6 +155,7 @@ void SPreview::keyPressed(int key){
 			case 61:
 				ztrans+= 100;
 				break;
+
 		}
 		
 	}
@@ -165,7 +165,6 @@ void SPreview::keyPressed(int key){
 }
 
 void SPreview::keyReleased(int key){
-	
 }
 
 /*
@@ -336,45 +335,68 @@ void SPreview::plotEverything() {
 	for (int i = 0; i < items.size(); i++) {
 		items[i]->giveAllPoints(allPoints);
 	}
-	
-	printf("WE HAVE %i NUMBER OF POINTS\n", (int) allPoints.size());
-	
+		
 	serial->sendMultipleMove(allPoints);
 	useProgressIndicator = true;
 	startedDrawing();
-	numPoints = allPoints.size();
 	
 }
 
+/*
+ - - - PROGRESS WINDOW - - -
+ */
+
 void SPreview::showProgressWindow() {
 	
-	progressWindow = [[NSWindow alloc] initWithContentRect:NSMakeRect(500, 500, 500, 200)
+	progressWindow = [[NSWindow alloc] initWithContentRect:NSMakeRect(500, 500, 500, 90)
 																							 styleMask: (NSResizableWindowMask | NSClosableWindowMask | NSTitledWindowMask)
 																								 backing:NSBackingStoreBuffered
 																									 defer:FALSE];
 	
-	progressIndicator = [[NSProgressIndicator alloc] initWithFrame:NSMakeRect(50, 150, 400, 25)];
+	progressIndicator = [[NSProgressIndicator alloc] initWithFrame:NSMakeRect(25, 40, 400, 25)];
+	
+	//set the indicator to look nice...
 	[progressIndicator setStyle:NSProgressIndicatorBarStyle];
 	[progressIndicator setIndeterminate:FALSE];
 	[progressIndicator setMinValue:0];
 	[progressIndicator setMaxValue:100];
 	[progressIndicator setDoubleValue:0];
 	
+	percentageLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(430, 38, 50, 25)];
+	
+	[percentageLabel setEditable:FALSE];
+	[percentageLabel setSelectable:FALSE];
+	[percentageLabel setDrawsBackground:FALSE];
+	[percentageLabel setBezeled:FALSE];
+	[percentageLabel setBordered:FALSE];
+	
+	errorLabel = [[NSTextField alloc] initWithFrame:NSMakeRect(30, 10, 400, 25)];
+	
+	[errorLabel setEditable:FALSE];
+	[errorLabel setSelectable:FALSE];
+	[errorLabel setDrawsBackground:FALSE];
+	[errorLabel setBezeled:FALSE];
+	[errorLabel setBordered:FALSE];
+	[errorLabel setStringValue:@"hello"];
+	
+	[[progressWindow contentView] addSubview:errorLabel];
+	[[progressWindow contentView] addSubview:percentageLabel];
 	[[progressWindow contentView] addSubview:progressIndicator];
 	[progressWindow makeKeyAndOrderFront:nil];
-	
-	[progressWindow release];
-	
 }
 
 void SPreview::closeProgressWindow() {
 
 	[progressWindow close];
+	printf("closed progress window\n");
 }
 
 void SPreview::setPointsDone(int i) {
-	pointsDone = i;
-	
+	pointsDone = i;	
+}
+
+void SPreview::setNumPoints(int i) {
+	numPoints = i;
 }
 
 void SPreview::updateProgressIndicator() {
@@ -382,12 +404,20 @@ void SPreview::updateProgressIndicator() {
 	double progress = (pointsDone/(double)numPoints) * 100.0;
 
 	[progressIndicator setDoubleValue:progress];
-	printf("progress set to %f\n", progress);
+	[percentageLabel setIntValue:round(progress)];
+		
+	string ps = ofToString(progress, 1) + "%";
+	NSString* percentageString = [[NSString alloc] initWithCString:ps.c_str()];
+	
+	[percentageLabel setStringValue:percentageString];
 }
 
 void SPreview::setUseProgressIndicator(bool b) {
 	useProgressIndicator = b;
 }
 
+void SPreview::writeProgressErrorMessage(string message) {
+	[errorLabel setStringValue:[[NSString alloc] initWithCString:message.c_str()]];
+}
 
 

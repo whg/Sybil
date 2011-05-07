@@ -139,7 +139,7 @@ void STerm::draw() {
  - - - KEY ACTIONS - - -
  
  this is where all the key presses are interpreted
- i am trying to copy bash, so at the moment,
+ i am trying to copy the bash/UNIX shell, so at the moment,
  we are implementing:
  
  - up and down for previous commands 
@@ -152,14 +152,7 @@ void STerm::draw() {
 
 void STerm::keyPressed(int key) {
 	
-	//printf("key = %i\n", key);
-	//printf("prev command before = %i\n", prevCommand);
-	//lines[cl] += (char) key;
-	
 	string::iterator it = lines[cl].begin();
-	
-	//int p =  ceil(prompt.x/characterWidth);
-	//printf("p = %i\n", p);
 	
 	//space
 	if (key == 32) {
@@ -332,14 +325,11 @@ void STerm::process(string command) {
 	
 	//don't try and process an empty line
 	if (command != "") {
-		
-		
+	
 		string comment = "";
 		
-		//process first token... 
-		// i.e. the command...
-		comment = sendCommand(command);
-	  
+		//process the command...
+		comment = sendCommand(command);	  
 		
 		//show the comment if there is one and increment prompt.y
 		if (comment != "") {
@@ -427,7 +417,6 @@ void STerm::explode(string command, char sep, vector<string> &tokens, vector<cha
 			//don't add things starting with a space..
 			//or an empty string...
 			if (t[0] != ' ' && t != "") {
-				//printf("t is: '%s'\n", t.c_str());
 				tokens.push_back(t);
 				t = "";
 			}
@@ -478,7 +467,7 @@ string STerm::processFile(vector<string> &tokens) {
 	}
 	
 	if (comment == "") {
-		//set file line counter to 0
+		//reset file line counter
 		flc = 0;
 		
 		//tell the commander we about to iterate through a file
@@ -506,10 +495,6 @@ bool STerm::iterateFile() {
 			}
 			
 			flc++;
-
-			//add a dot to the previous result
-			//int lr = (int) results.size()-1;
-//			results[lr] += ".";
 			
 			return false;
 		}

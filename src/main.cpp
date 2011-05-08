@@ -9,7 +9,7 @@
 int main() {
 
 	ofAppGlutWindow window;
-	ofSetupOpenGL(&window, PREVIEW_WIDTH, PREVIEW_HEIGHT, OF_WINDOW);
+	ofSetupOpenGL(&window, PREVIEW_A3_LANDSCAPE_WIDTH, PREVIEW_A3_PORTRAIT_HEIGHT, OF_WINDOW);
 	ofRunApp(new SPreview());
 
 }

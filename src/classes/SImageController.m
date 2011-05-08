@@ -22,6 +22,12 @@
 - (IBAction)openFile:(id)sender {
 	NSOpenPanel *op = [NSOpenPanel openPanel];
 	
+	//this doesn't work!!!! WHY!!!!!????!!!!
+	NSArray* types = [NSArray arrayWithObjects:@"jpg", @"JPG", @"PNG", @"png", nil];
+	[op setCanChooseFiles:YES];
+	[op setCanChooseDirectories:NO];
+	[op setAllowsMultipleSelection:NO];
+	[op setAllowedFileTypes:types];
 	//display the window
 	int result = [op runModal];
 	
@@ -32,6 +38,8 @@
 		((SImage*)itemPtr)->loadImage( [p UTF8String] );
 		[u release];
 		[p release];
+		
+		[self setMessageLabel:@""];
 	}
 	//if nothing is selected remove item...
 	else {
@@ -129,6 +137,11 @@
 - (void) showStyleSlider:(BOOL)show {
 
 	[styleSlider setEnabled:show];
+}
+
+- (void) setMessageLabel:(NSString *)message {
+
+	[messageLabel setStringValue:message];
 }
 
 - (IBAction) removeSelf: (id) sender {

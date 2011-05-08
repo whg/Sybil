@@ -12,6 +12,7 @@
 @interface SImageController : SItemController {
 	IBOutlet NSTextField* numPoints;
 	IBOutlet NSSlider* styleSlider;
+	IBOutlet NSTextField* messageLabel;
 }
 
 - (IBAction) openFile: (id) sender;
@@ -26,6 +27,8 @@
 - (IBAction) skipPointsChanged: (id) sender;
 - (IBAction) styleChanged: (id) sender;
 - (IBAction) styleSliderChanged: (id) sender;
+
+- (void) setMessageLabel: (NSString*) message;
 
 - (void) updateNumPoints: (int) n;
 - (void) showStyleSlider: (BOOL) show;

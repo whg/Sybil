@@ -34,6 +34,7 @@ SImage::SImage(int i, string file)
 	//do this now so we can delete it if no file is opened
 	[windowController setUid: i];
 	[windowController setParent:this];
+	[windowController setMessageLabel:@""];
 	
 	//if it's all good show the window
 	[windowController showWindow:nil];
@@ -162,11 +163,28 @@ void SImage::findPoints() {
 	
 	//this loop is for the each contour
 	for (int n = 0; n < numOf; n++) {
+		
+		//convert colour image to grayscale, ofxCV operator overloading...
 		grayImg = colourImg;
-		grayImg.threshold(baseThreshold+(n*diff));
+		
+		float thresh = baseThreshold + (n*diff);
+		
+		//if we have gone over 
+		if (thresh > 255) {
+			[windowController setMessageLabel:@"Max threshold reached"];
+			break;
+		}
+		else {
+			[windowController setMessageLabel:@""];
+			grayImg.threshold(baseThreshold+(n*diff));
+		}
+		
+		// - - - - - - - - - - - - - - - -
 		
 		//get the contours
 		contourFinder.findContours(grayImg, minArea, 50000, 100, true, true);
+		
+		// - - - - - - - - - - - - - - - -
 		
 		//now these blobs will be spaced randomly... so sort them
 		//for speed we are using the blob's centroid position...
@@ -174,7 +192,7 @@ void SImage::findPoints() {
 		//then the closest one to that, that hasn't already been done, etc...
 		
 		int insertPoint = 1;
-		for (int i = 0; i < contourFinder.blobs.size()-1; i++) {
+		for (int i = 0; i < contourFinder.blobs.size()-2; i++) {
 			
 			ofPoint startPoint = contourFinder.blobs[insertPoint-1].centroid;
 			
@@ -182,10 +200,10 @@ void SImage::findPoints() {
 			float dist = 9999; //a large number
 			
 			//find closest point
-			for (int i = insertPoint; i < contourFinder.blobs.size(); i++) {
+			for (int j = insertPoint; j < contourFinder.blobs.size()-3; j++) {
 				float ndist = ofDist(startPoint.x, startPoint.y, 
-														 contourFinder.blobs[i].centroid.x, 
-														 contourFinder.blobs[i].centroid.y);
+														 contourFinder.blobs[j].centroid.x, 
+														 contourFinder.blobs[j].centroid.y);
 				
 				//if the new distance (ndist) is less than the current dist, save the position, set the new nearest
 				if (ndist < dist) {
@@ -207,6 +225,8 @@ void SImage::findPoints() {
 			
 		}
 		
+		// - - - - - - - - - - - - - - - -
+		
 		//now, loop through all blobs pushing all points into the huge vector
 		for (int i = 0; i < contourFinder.nBlobs; i++) {
 			
@@ -223,24 +243,30 @@ void SImage::findPoints() {
 				
 				if (currentStyle == "Normal") {
 					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j]));
-					printf("did normal\n");
 				}
-				else if (currentStyle == "Lines") {
+				else if (currentStyle == "Horizontal Lines") {
 					ofPoint lineOffset = ofPoint(styleParameter, 0);
 					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j]));
 					initialPoints.push_back(SPoint(PEN_DOWN_POINT, 0));
 					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j] + lineOffset));
 					initialPoints.push_back(SPoint(PEN_UP_POINT, 0));
 				}
-				else if (currentStyle == "Squares") {
-					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j] + ofPoint(styleParameter, styleParameter)));
+				else if (currentStyle == "Vertical Lines") {
+					ofPoint lineOffset = ofPoint(0, styleParameter);
+					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j]));
 					initialPoints.push_back(SPoint(PEN_DOWN_POINT, 0));
-					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j] + ofPoint(styleParameter, -styleParameter)));
-					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j] + ofPoint(-styleParameter, -styleParameter)));
-					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j] + ofPoint(-styleParameter, styleParameter)));
-					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j] + ofPoint(styleParameter, styleParameter)));
+					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j] + lineOffset));
 					initialPoints.push_back(SPoint(PEN_UP_POINT, 0));
 				}
+//				else if (currentStyle == "Squares") {
+//					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j] + ofPoint(styleParameter, styleParameter)));
+//					initialPoints.push_back(SPoint(PEN_DOWN_POINT, 0));
+//					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j] + ofPoint(styleParameter, -styleParameter)));
+//					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j] + ofPoint(-styleParameter, -styleParameter)));
+//					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j] + ofPoint(-styleParameter, styleParameter)));
+//					initialPoints.push_back(SPoint(contourFinder.blobs[i].pts[j] + ofPoint(styleParameter, styleParameter)));
+//					initialPoints.push_back(SPoint(PEN_UP_POINT, 0));
+//				}
 			}
 			
 			//add last point...
@@ -370,10 +396,10 @@ void SImage::setStyle(string s) {
 	if (s == "Normal") {
 		enableStyleSlider(FALSE);
 	}
-	else if (s == "Lines") {
+	else if (s == "Vertical Lines") {
 		enableStyleSlider(TRUE);
 	}
-	else if (s == "Squares") {
+	else if (s == "Horizontal Lines") {
 		enableStyleSlider(TRUE);
 	}
 	

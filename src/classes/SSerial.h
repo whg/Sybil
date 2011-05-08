@@ -23,6 +23,7 @@ private:
 	ofSerial serial;
 	bool finished;	
 	int pc; //point counter
+	bool isSetup;
 	
 	SPreview* previewPtr;
 	
@@ -68,6 +69,8 @@ public:
 	
 	bool isFinished();
 	void setFinished(bool b);
+	
+	bool isConnected();
 	
 };
 

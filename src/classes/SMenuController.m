@@ -68,6 +68,28 @@
 	
 }
 
+- (void) enablePlot:(bool) b {
+	if (b) [plotMenu setEnabled:YES];
+	else [plotMenu setHidden:TRUE];
+	printf("set plotmenu = %i\n", b);
+}
+
+- (IBAction) changeLayoutToA4Landscape: (id) sender {
+	previewPtr->setLayout(A4LANDSCAPE);
+}
+
+- (IBAction) changeLayoutToA4Portrait: (id) sender {
+	previewPtr->setLayout(A4PORTRAIT);
+}
+
+- (IBAction) changeLayoutToA3Landscape: (id) sender {
+	previewPtr->setLayout(A3LANDSCAPE);
+}
+
+- (IBAction) changeLayoutToA3Portratit: (id) sender {
+	previewPtr->setLayout(A3PORTRAIT);
+}
+
 - (IBAction) cancelDrawing: (id) sender {
 
 	previewPtr->cancelDrawing();

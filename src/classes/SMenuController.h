@@ -7,16 +7,18 @@
 //
 
 #include "SPreview.h"
-
+#include "SConstants.h"
 #import <Cocoa/Cocoa.h>
 
 class SPreview;
 
 
 @interface SMenuController : NSObject {
+	layoutTypes layout;
 	SPreview* previewPtr;
 	IBOutlet NSMenuItem* previewMode;
 	IBOutlet NSMenuItem* terminalMode;
+	IBOutlet NSMenuItem* plotMenu;
 }
 
 - (IBAction) addText: (id) sender;
@@ -25,6 +27,14 @@ class SPreview;
 - (IBAction) changeToPreview: (id) sender;
 - (IBAction) changeToTerminal: (id) sender;
 - (IBAction) plotEverything: (id) sender;
+
+- (void) enablePlot: (bool) b;
+
+- (IBAction) changeLayoutToA4Landscape: (id) sender;
+- (IBAction) changeLayoutToA4Portrait: (id) sender;
+- (IBAction) changeLayoutToA3Landscape: (id) sender;
+- (IBAction) changeLayoutToA3Portratit: (id) sender;
+
 
 //this is for the progress window, i thought this was the best place to put it
 - (IBAction) cancelDrawing: (id) sender;

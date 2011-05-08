@@ -30,6 +30,7 @@ class SAudioClip;
 @class SItemController;
 class STerm;
 class SCommand;
+@class SMenuController;
 
 class SPreview : public ofBaseApp {
 	
@@ -42,14 +43,18 @@ private:
 	bool audioNeeded;
 	
 	viewModes mode;
+	layoutTypes layout;
 	
-	//this is the operating space
-	SPoint drawingArea;
-
+	
+	
+	SPoint currentWindowShape, currentDrawingArea;
+	
 	//pointers
 	STerm* terminal;
 	SCommand* commander;
 	SSerial* serial;
+	
+	SMenuController* menuController;
 	
 	//things for the progress window
 	unsigned int numPoints, pointsDone;
@@ -81,6 +86,7 @@ public:
 	void stoppedDrawing();
 	bool isCurrentlyDrawing();
 	
+	void setLayout(int layout);
 	void setViewMode(int m);
 			
 	//these are where all the items are stored...

@@ -43,8 +43,9 @@ void SPreview::setup(){
 	useProgressIndicator = false;
 	numPoints = 1;
 	audioNeeded = false;
-	drawingArea = SPoint(3850, 2800);
-		
+	
+	//set drawing areas...
+ 		
 	//instantiate serial
 	serial = new SSerial();
 	
@@ -54,13 +55,21 @@ void SPreview::setup(){
 	//instantiate terminal, passing commander pointer
 	terminal = new STerm(commander);
 	
+	setLayout(A3LANDSCAPE);
 	setViewMode(PREVIEW);
 	
 	//set up audio
 	//this is a very minimal mono setup
 	ofSoundStreamSetup(0,1,this, 44100, 256, 1);	
-
-		
+	
+	//init menuController, this is used for a few things here and there...
+	menuController = [[SMenuController alloc] init];
+														
+	
+	//now check to see if serial was set up...
+	//if not disable plotting...
+	[menuController enablePlot:serial->isConnected()];
+	
 	//set up cocoa part - do this last
 	NSApplicationMain(0, NULL);
 
@@ -98,12 +107,12 @@ void SPreview::draw(){
 		case PREVIEW:
 			
 			ofPushMatrix();
-			ofTranslate(-drawingArea.x/2.5, -drawingArea.y/2.5, ztrans);
+			ofTranslate(-currentDrawingArea.x/2.5, -currentDrawingArea.y/2.5, ztrans);
 			
 			//draw the drawing area...
 			ofNoFill();
 			ofSetColor(0, 0, 0);
-			ofRect(0, 0, drawingArea.x, drawingArea.y);
+			ofRect(0, 0, currentDrawingArea.x, currentDrawingArea.y);
 			
 			for (int i = 0; i < items.size(); i++) {
 				items[i]->draw();
@@ -167,7 +176,7 @@ void SPreview::keyPressed(int key){
 		
 	}
 
-	printf("key = %i\n", key);
+	printf("ztrans = %i\n", ztrans);
 	
 }
 
@@ -277,7 +286,7 @@ void SPreview::setViewMode(int m) {
 	switch (m) {
 		case PREVIEW:
 			mode = PREVIEW;
-			ofSetWindowShape(PREVIEW_WIDTH, PREVIEW_HEIGHT);
+			ofSetWindowShape(currentWindowShape.x, currentWindowShape.y);
 			ofSetWindowPosition(50, 50);
 			ofSetWindowTitle("Preview");
 			break;
@@ -289,6 +298,38 @@ void SPreview::setViewMode(int m) {
 			break;
 
 	}
+}
+
+void SPreview::setLayout(int layout) {
+
+	switch (layout) {
+		case A4PORTRAIT:
+			currentWindowShape = SPoint(PREVIEW_A4_PORTRAIT_WIDTH, PREVIEW_A4_PORTRAIT_HEIGHT);
+			currentDrawingArea = drawingAreaA4Portrait;
+			ztrans = ZTRANS_A4_PORTRAIT;
+			break;
+		case A4LANDSCAPE:
+			currentWindowShape = SPoint(PREVIEW_A4_LANDSCAPE_WIDTH, PREVIEW_A4_LANDSCAPE_HEIGHT);
+			currentDrawingArea = drawingAreaA4Landscape;
+			ztrans = ZTRANS_A4_LANDSCAPE;
+			break;
+		case A3PORTRAIT:
+			currentWindowShape = SPoint(PREVIEW_A3_PORTRAIT_WIDTH, PREVIEW_A3_PORTRAIT_HEIGHT);
+			currentDrawingArea = drawingAreaA3Portrait;
+			ztrans = ZTRANS_A3_PORTRAIT;
+			break;
+		case A3LANDSCAPE:
+			currentWindowShape = SPoint(PREVIEW_A3_LANDSCAPE_WIDTH, PREVIEW_A3_LANDSCAPE_HEIGHT);
+			currentDrawingArea = drawingAreaA3Landscape;
+			ztrans = ZTRANS_A3_LANDSCAPE;
+			break;
+
+		default:
+			break;
+	}
+	
+	//switch to preview if we are not already in it...
+	setViewMode(PREVIEW);
 }
 
 // - - - DRAWING - - -
@@ -320,12 +361,12 @@ bool SPreview::isCurrentlyDrawing() {
 }
 
 SPoint SPreview::getScalingVector() {
-	float factor = drawingArea.x/ofGetWidth();
+	float factor = currentDrawingArea.x/ofGetWidth();
 	return SPoint(factor, factor);
 }
 
 SPoint SPreview::getDrawingArea() {
-	return drawingArea;
+	return currentDrawingArea;
 }
 
 // - - -
@@ -335,19 +376,24 @@ SSerial* SPreview::getSerialConnection() {
 
 // - - - PLOT EVERYTHING - - -
 void SPreview::plotEverything() {
-
-	vector<SPoint> allPoints = vector<SPoint>();
 	
-	//go through all items and collect their points...
-	//5 points will get you a hat, 20 points a stereo
-	//and 100 points will get a huge cuddly toy
-	for (int i = 0; i < items.size(); i++) {
-		items[i]->giveAllPoints(allPoints);
-	}
+	//don't try and plot something if we don't have the plotter connected
+	if (serial->isConnected()) {
+
+		vector<SPoint> allPoints = vector<SPoint>();
 		
-	serial->sendMultipleMove(allPoints);
-	useProgressIndicator = true;
-	startedDrawing();
+		//go through all items and collect their points...
+		//5 points will get you a hat, 20 points a stereo
+		//and 100 points will get a huge cuddly toy
+		for (int i = 0; i < items.size(); i++) {
+			items[i]->giveAllPoints(allPoints);
+		}
+			
+		serial->sendMultipleMove(allPoints);
+		useProgressIndicator = true;
+		startedDrawing();
+		
+	}
 	
 }
 
@@ -401,14 +447,10 @@ void SPreview::showProgressWindow() {
 	NSButton* stopButton = [[NSButton alloc] initWithFrame:NSMakeRect(350, 5, 80, 30)];
 	[stopButton setBezelStyle:NSRoundedBezelStyle];
 	[stopButton setTitle:@"Cancel"];
-	
-	SMenuController* mc = [[SMenuController alloc] init];
-	
-	[stopButton setTarget:mc];
+		
+	[stopButton setTarget:menuController];
 	[stopButton setAction:@selector(cancelDrawing:)];
-	
-	[mc release];
-	
+		
 	[[progressWindow contentView] addSubview:stopButton];
 	[[progressWindow contentView] addSubview:errorLabel];
 	[[progressWindow contentView] addSubview:percentageLabel];

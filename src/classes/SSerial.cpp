@@ -11,19 +11,17 @@
 
 //constructor
 SSerial::SSerial() {
-	
-	serial.enumerateDevices();
-	
+		
 	//connect to serial port
 	//if(serial.setup("/dev/cu.usbserial-A600eI53", 28800)) {
 //		printf("serial connected\n");
 //	}
 	
-	if(serial.setup("/dev/cu.usbserial-A700eyPP", 9600)) {
-			printf("serial connected\n");
-		}
+//	if(serial.setup("/dev/cu.usbserial-A700eyPP", 9600)) {
+//			printf("serial connected\n");
+//	}
 	
-	
+	isSetup = serial.setup("/dev/cu.usbserial-A700eyPP", 9600);
 	
 	//init variables
 	finished = true;
@@ -373,4 +371,8 @@ bool SSerial::isFinished() {
 
 void SSerial::setFinished(bool b) {
 	finished = b;
+}
+
+bool SSerial::isConnected() {
+	return isSetup;
 }

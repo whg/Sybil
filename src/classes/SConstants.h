@@ -11,8 +11,20 @@
 #ifndef _SCONSTANTS
 #define _SCONSTANTS
 
-#define PREVIEW_WIDTH 770
-#define PREVIEW_HEIGHT 560
+#define PREVIEW_A4_PORTRAIT_WIDTH 400
+#define PREVIEW_A4_PORTRAIT_HEIGHT 560
+#define PREVIEW_A4_LANDSCAPE_WIDTH 560
+#define PREVIEW_A4_LANDSCAPE_HEIGHT 400
+
+#define PREVIEW_A3_PORTRAIT_WIDTH 560
+#define PREVIEW_A3_PORTRAIT_HEIGHT 770
+#define PREVIEW_A3_LANDSCAPE_WIDTH 770
+#define PREVIEW_A3_LANDSCAPE_HEIGHT 560
+
+#define ZTRANS_A4_PORTRAIT -1900
+#define ZTRANS_A4_LANDSCAPE -1350
+#define ZTRANS_A3_PORTRAIT -2600
+#define ZTRANS_A3_LANDSCAPE -1900
 
 #define TERMINAL_WIDTH 600
 #define TERMINAL_HEIGHT 400
@@ -51,6 +63,11 @@
 #define PEN_DOWN_POINT -2
 #define CHANGE_DELAY_POINT -3
 
+//this is the operating space
+const SPoint drawingAreaA4Landscape = SPoint(2850, 2000);
+const SPoint drawingAreaA4Portrait = SPoint(2000, 2850);
+const SPoint drawingAreaA3Landscape = SPoint(3850, 2800);
+const SPoint drawingAreaA3Portrait  = SPoint(2800, 3850);
 
 enum viewModes {
 	PREVIEW,
@@ -63,6 +80,13 @@ enum cursorTypes {
 	RESIZEX,
 	RESIZEY,
 	RESIZEBOTH
+};
+
+enum layoutTypes {
+	A4LANDSCAPE,
+	A4PORTRAIT,
+	A3LANDSCAPE,
+	A3PORTRAIT
 };
 
 

@@ -60,6 +60,7 @@
 		EE95D29D134A2F3C004A1263 /* SImageWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = EE95D29C134A2F3C004A1263 /* SImageWindow.xib */; };
 		EE95D2A0134A2F51004A1263 /* SImageController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE95D29F134A2F51004A1263 /* SImageController.m */; };
 		EE95D2B7134A3212004A1263 /* SItemController.m in Sources */ = {isa = PBXBuildFile; fileRef = EE95D2B6134A3212004A1263 /* SItemController.m */; };
+		EEB8644F1377257A00690BF2 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = EEB8644E1377257A00690BF2 /* icon.icns */; };
 		EEBB0FE112F8C45400855BED /* ofxMatrix3x3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEBB0FD412F8C45400855BED /* ofxMatrix3x3.cpp */; };
 		EEBB0FE212F8C45400855BED /* ofxMatrix4x4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEBB0FD612F8C45400855BED /* ofxMatrix4x4.cpp */; };
 		EEBB0FE312F8C45400855BED /* ofxQuaternion.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EEBB0FDB12F8C45400855BED /* ofxQuaternion.cpp */; };
@@ -126,7 +127,7 @@
 		E45BE9770E8CC7DD009D7055 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = /System/Library/Frameworks/CoreServices.framework; sourceTree = "<absolute>"; };
 		E45BE9790E8CC7DD009D7055 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
 		E45BE97A0E8CC7DD009D7055 /* QuickTime.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickTime.framework; path = /System/Library/Frameworks/QuickTime.framework; sourceTree = "<absolute>"; };
-		E4B69B5B0A3A1756003C02F2 /* SybilDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SybilDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4B69B5B0A3A1756003C02F2 /* Sybil.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sybil.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4C2421610CC549C004149E2 /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E4C2424410CC5A17004149E2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		E4C2424510CC5A17004149E2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -209,6 +210,7 @@
 		EE95D2B5134A3212004A1263 /* SItemController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SItemController.h; sourceTree = "<group>"; };
 		EE95D2B6134A3212004A1263 /* SItemController.m */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = SItemController.m; sourceTree = "<group>"; };
 		EEB771FA1350F59A00B10568 /* STypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STypes.h; sourceTree = "<group>"; };
+		EEB8644E1377257A00690BF2 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		EEBB0FD212F8C45400855BED /* install.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = install.xml; sourceTree = "<group>"; };
 		EEBB0FD412F8C45400855BED /* ofxMatrix3x3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxMatrix3x3.cpp; sourceTree = "<group>"; };
 		EEBB0FD512F8C45400855BED /* ofxMatrix3x3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxMatrix3x3.h; sourceTree = "<group>"; };
@@ -448,7 +450,7 @@
 				EE6671F81347693F00E906A6 /* classes */,
 				EE6672051347693F00E906A6 /* resources */,
 				EEBB0FD012F8C44500855BED /* addons */,
-				E4B69B5B0A3A1756003C02F2 /* SybilDebug.app */,
+				E4B69B5B0A3A1756003C02F2 /* Sybil.app */,
 				E45BE0360E8CC5DE009D7055 /* libs */,
 			);
 			sourceTree = "<group>";
@@ -566,6 +568,7 @@
 		EE6672051347693F00E906A6 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				EEB8644E1377257A00690BF2 /* icon.icns */,
 				EE6672061347693F00E906A6 /* MainMenu.nib */,
 				EE11C1EC1375DCD300043F38 /* SAudioClipWindow.xib */,
 				EE95D29C134A2F3C004A1263 /* SImageWindow.xib */,
@@ -758,7 +761,7 @@
 			);
 			name = Sybil;
 			productName = myOFApp;
-			productReference = E4B69B5B0A3A1756003C02F2 /* SybilDebug.app */;
+			productReference = E4B69B5B0A3A1756003C02F2 /* Sybil.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -813,6 +816,7 @@
 				EE95D24C134A1FA0004A1263 /* install.xml in Resources */,
 				EE95D29D134A2F3C004A1263 /* SImageWindow.xib in Resources */,
 				EE11C1ED1375DCD300043F38 /* SAudioClipWindow.xib in Resources */,
+				EEB8644F1377257A00690BF2 /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -913,6 +917,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				SDKROOT = /Developer/SDKs/MacOSX10.5.sdk;
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = ReleaseUniversal;
 		};
@@ -962,7 +967,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/../../../libs/rtAudio/lib/osx\"";
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)Universal";
-				SDKROOT = macosx;
+				SDKROOT = "";
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
@@ -1002,6 +1007,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -1040,6 +1046,7 @@
 				);
 				OTHER_LDFLAGS = "";
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Release;
 		};
@@ -1092,7 +1099,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)Debug";
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.6.sdk";
+				SDKROOT = "";
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
@@ -1144,7 +1151,7 @@
 				LIBRARY_SEARCH_PATHS_QUOTED_FOR_TARGET_6 = "\"$(SRCROOT)/../../../libs/rtAudio/lib/osx\"";
 				PREBINDING = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				SDKROOT = "";
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};

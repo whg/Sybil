@@ -8,6 +8,7 @@
  */
 
 #include "SSerial.h"
+#include "ofMain.h"
 
 //constructor
 SSerial::SSerial() {

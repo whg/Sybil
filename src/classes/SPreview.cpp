@@ -355,7 +355,7 @@ void SPreview::stoppedDrawing() {
 	}	
 	printf("stoppedDrawing() called\n");
 }
-
+ 
 bool SPreview::isCurrentlyDrawing() {
 	return isDrawing;
 }

@@ -19,6 +19,10 @@ class SPreview;
 	IBOutlet NSMenuItem* previewMode;
 	IBOutlet NSMenuItem* terminalMode;
 	IBOutlet NSMenuItem* plotMenu;
+	IBOutlet NSMenuItem* A4Landscape;
+	IBOutlet NSMenuItem* A4Portrait;
+	IBOutlet NSMenuItem* A3Landscape;
+	IBOutlet NSMenuItem* A3Portrait;
 }
 
 - (IBAction) addText: (id) sender;
@@ -28,13 +32,12 @@ class SPreview;
 - (IBAction) changeToTerminal: (id) sender;
 - (IBAction) plotEverything: (id) sender;
 
-- (void) enablePlot: (bool) b;
-
 - (IBAction) changeLayoutToA4Landscape: (id) sender;
 - (IBAction) changeLayoutToA4Portrait: (id) sender;
 - (IBAction) changeLayoutToA3Landscape: (id) sender;
-- (IBAction) changeLayoutToA3Portratit: (id) sender;
+- (IBAction) changeLayoutToA3Portrait: (id) sender;
 
+- (void) resetLayoutMenu;
 
 //this is for the progress window, i thought this was the best place to put it
 - (IBAction) cancelDrawing: (id) sender;

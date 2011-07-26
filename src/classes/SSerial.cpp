@@ -21,8 +21,10 @@ SSerial::SSerial() {
 //	if(serial.setup("/dev/cu.usbserial-A700eyPP", 9600)) {
 //			printf("serial connected\n");
 //	}
-	
-	isSetup = serial.setup("/dev/cu.usbserial-A700eyPP", 9600);
+
+//	isSetup = serial.setup("/dev/cu.usbserial-A600eI53", 28800);
+	isSetup = serial.setup("/dev/cu.usbserial-A600eI53", 9600);
+	//isSetup = serial.setup("/dev/cu.usbserial-A700eyPP", 9600);
 	
 	//init variables
 	finished = true;

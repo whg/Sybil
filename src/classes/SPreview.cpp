@@ -55,8 +55,9 @@ void SPreview::setup(){
 	//instantiate terminal, passing commander pointer
 	terminal = new STerm(commander);
 	
+	//set the default layout and view which is preview...
 	setLayout(A3LANDSCAPE);
-	setViewMode(PREVIEW);
+	setViewMode(TERMINAL);
 	
 	//set up audio
 	//this is a very minimal mono setup
@@ -65,11 +66,6 @@ void SPreview::setup(){
 	//init menuController, this is used for a few things here and there...
 	menuController = [[SMenuController alloc] init];
 														
-	
-	//now check to see if serial was set up...
-	//if not disable plotting...
-	[menuController enablePlot:serial->isConnected()];
-	
 	//set up cocoa part - do this last
 	NSApplicationMain(0, NULL);
 
@@ -92,7 +88,9 @@ void SPreview::update(){
 			terminal->iterateFile();
 		}
 		
-		updateProgressIndicator();
+		if (useProgressIndicator) {
+			updateProgressIndicator();
+		}
 	}
 	
 }
@@ -130,7 +128,7 @@ void SPreview::draw(){
 	}
 	
 	//ofSetColor(0, 0, 0);
-//	ofDrawBitmapString(ofToString(ofGetFrameRate(), 1), 400, 300);
+	//ofDrawBitmapString(ofToString(ofGetFrameRate(), 1), 400, 300);
 
 }
 
@@ -176,7 +174,7 @@ void SPreview::keyPressed(int key){
 		
 	}
 
-	printf("ztrans = %i\n", ztrans);
+	printf("ztrans = %i\n", key);
 	
 }
 
@@ -328,6 +326,8 @@ void SPreview::setLayout(int layout) {
 			break;
 	}
 	
+	currentLayout = layout;
+	
 	//switch to preview if we are not already in it...
 	setViewMode(PREVIEW);
 }
@@ -388,12 +388,29 @@ void SPreview::plotEverything() {
 		for (int i = 0; i < items.size(); i++) {
 			items[i]->giveAllPoints(allPoints);
 		}
-			
-		serial->sendMultipleMove(allPoints);
-		useProgressIndicator = true;
-		startedDrawing();
+		
+		changePointsToLayout(allPoints);
+		
+		if (checkPointsAreWithinBoundry(allPoints)) {
+			serial->sendMultipleMove(allPoints);
+			useProgressIndicator = true;
+			startedDrawing();
+		}
+		
+		//points were outside drawing area, plotter would try and kill itself...
+		else {
+			showProgressWindow();
+			[errorLabel setStringValue:@"ERROR: Points are outside drawing area"];
+		}
+
 		
 	}
+	
+	else {
+		showProgressWindow();
+		[errorLabel setStringValue:@"ERROR: Plotter not connected"];
+	}
+
 	
 }
 
@@ -407,6 +424,59 @@ void SPreview::cancelDrawing() {
 	[progressWindow close];
 }
 
+void SPreview::changePointsToLayout(vector<SPoint> &points) {
+	if (currentLayout == A3LANDSCAPE ||
+			currentLayout == A4LANDSCAPE) {
+		printf("did change\n");
+		//make y = x and x = (height - y)...		
+		for (int i = 0; i < points.size(); i++) {
+			
+			if (points[i].x != PEN_UP_POINT &&
+					points[i].x != PEN_DOWN_POINT &&
+					points[i].x != CHANGE_DELAY_POINT) {
+				SPoint temp = points[i];
+				points[i] = SPoint((currentDrawingArea.y - temp.y), temp.x);
+			}		
+		}
+	}
+}
+
+bool SPreview::checkPointsAreWithinBoundry(vector<SPoint> &points) {
+
+	return true;
+	
+	for (int i = 0; i < points.size(); i++) {
+		if (points[i].x < 0) {
+			if (points[i].x != PEN_UP_POINT && 
+					points[i].x != PEN_DOWN_POINT &&
+					points[i].x != CHANGE_DELAY_POINT) {
+				printf("a\n");
+				return false;
+			}
+		}
+		else if (points[i].x > currentDrawingArea.x) {
+			printf("point x = %i", points[i].x);
+			printf("b\n");
+			return false;
+		}
+		else if (points[i].y < 0) {
+			if (points[i].y != PEN_UP_POINT && 
+					points[i].y != PEN_DOWN_POINT &&
+					points[i].y != CHANGE_DELAY_POINT) {
+				printf("c\n");
+				return false;
+			}
+		}
+		else if (points[i].y > currentDrawingArea.y) {
+			printf("d\n");
+			return false;
+		}
+		
+	}//end for
+	
+	return true;
+}
+	
 /*
  - - - PROGRESS WINDOW - - -
  */
@@ -442,7 +512,7 @@ void SPreview::showProgressWindow() {
 	[errorLabel setDrawsBackground:FALSE];
 	[errorLabel setBezeled:FALSE];
 	[errorLabel setBordered:FALSE];
-	[errorLabel setStringValue:@"hello"];
+	[errorLabel setStringValue:@""];
 	
 	NSButton* stopButton = [[NSButton alloc] initWithFrame:NSMakeRect(350, 5, 80, 30)];
 	[stopButton setBezelStyle:NSRoundedBezelStyle];

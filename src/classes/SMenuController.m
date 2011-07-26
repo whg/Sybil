@@ -39,8 +39,6 @@
 		
 		previewPtr->addImageItem( [p UTF8String] );
 		
-		[u release];
-		[p release];
 	}
 	
 }
@@ -68,28 +66,45 @@
 	
 }
 
-- (void) enablePlot:(bool) b {
-	if (b) [plotMenu setEnabled:YES];
-	else [plotMenu setHidden:TRUE];
-	printf("set plotmenu = %i\n", b);
-}
-
 - (IBAction) changeLayoutToA4Landscape: (id) sender {
 	previewPtr->setLayout(A4LANDSCAPE);
+	
+	[self resetLayoutMenu];
+	[A4Landscape setState:NSOnState];
 }
 
 - (IBAction) changeLayoutToA4Portrait: (id) sender {
 	previewPtr->setLayout(A4PORTRAIT);
+	
+	[self resetLayoutMenu];
+	[A4Portrait setState:NSOnState];
 }
 
 - (IBAction) changeLayoutToA3Landscape: (id) sender {
 	previewPtr->setLayout(A3LANDSCAPE);
+	
+	[self resetLayoutMenu];
+	[A3Landscape setState:NSOnState];
 }
 
-- (IBAction) changeLayoutToA3Portratit: (id) sender {
+- (IBAction) changeLayoutToA3Portrait: (id) sender {
 	previewPtr->setLayout(A3PORTRAIT);
+	
+	[self resetLayoutMenu];
+	[A3Portrait setState:NSOnState];
 }
 
+
+- (void) resetLayoutMenu {
+	[A4Landscape setState:NSOffState];
+	[A4Portrait setState:NSOffState];
+	[A3Landscape setState:NSOffState];
+	[A3Portrait setState:NSOffState];
+}
+
+
+
+// this doesn't belong to the the menu... (progress window)...
 - (IBAction) cancelDrawing: (id) sender {
 
 	previewPtr->cancelDrawing();

@@ -36,6 +36,18 @@ class SPreview : public ofBaseApp {
 	
 private:
 	
+	void setup();
+	void update();
+	void draw();
+	
+	void keyPressed  (int key);
+	void keyReleased(int key);
+	void mouseMoved(int x, int y );
+	void mouseDragged(int x, int y, int button);
+	void mousePressed(int x, int y, int button);
+	void mouseReleased(int x, int y, int button);
+	void audioReceived(float* input, int bufferSize, int nChannels);
+	
 	int idc; //id counter
 	int fid; //focused id
 	bool isDrawing;
@@ -45,8 +57,6 @@ private:
 	viewModes mode;
 	layoutTypes layout;
 	
-	
-	
 	SPoint currentWindowShape, currentDrawingArea;
 	
 	//pointers
@@ -54,7 +64,11 @@ private:
 	SCommand* commander;
 	SSerial* serial;
 	
+	//these are where all the items are stored...
+	vector<SItem *> items;
+	
 	SMenuController* menuController;
+	int currentLayout;
 	
 	//things for the progress window
 	unsigned int numPoints, pointsDone;
@@ -66,18 +80,6 @@ private:
 public:
 	
 	~SPreview();
-
-	void setup();
-	void update();
-	void draw();
-
-	void keyPressed  (int key);
-	void keyReleased(int key);
-	void mouseMoved(int x, int y );
-	void mouseDragged(int x, int y, int button);
-	void mousePressed(int x, int y, int button);
-	void mouseReleased(int x, int y, int button);
-	void audioReceived(float* input, int bufferSize, int nChannels);
 	
 	void setFocus(int i);
 	int getFocus();
@@ -88,9 +90,6 @@ public:
 	
 	void setLayout(int layout);
 	void setViewMode(int m);
-			
-	//these are where all the items are stored...
-	vector<SItem *> items;
 	
 	void addTextItem();
 	void addImageItem(string file);
@@ -116,6 +115,9 @@ public:
 	void writeProgressErrorMessage(string message);
 	
 	void setAudioNeeded(bool b);
+	
+	void changePointsToLayout(vector<SPoint> &points);
+	bool checkPointsAreWithinBoundry(vector<SPoint> &points);
 };
 
 

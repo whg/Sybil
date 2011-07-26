@@ -1,0 +1,8 @@
+
+- - - ADD - - -
+
++ warning if there is no connection to plotter (rather than crashing when you try to plot)
+
+- - - BUGS - - -
+
++ sometimes can't delete text items

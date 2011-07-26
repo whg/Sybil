@@ -300,6 +300,22 @@ void STerm::keyPressed(int key) {
 		
 	}
 	
+	//control-a, beginning of line
+	else if (key == 1) {
+		prompt.x = 0;
+		prompt.index = 0;
+	}
+	
+	//control-e, end of line
+	else if (key == 5) {
+		prompt.index = lines[cl].length();
+		prompt.x = 0;
+		for (int i = 0; i < lines[cl].size(); i++) {
+			if (lines[cl].at(i) == ' ') prompt.x += spaceWidth;
+			else prompt.x += characterWidth;
+		}
+	}
+	
 	//all other keys...
 	//hopefully ofTrueTypeFont can draw them...
 	else if (key > 31) {

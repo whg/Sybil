@@ -22,7 +22,7 @@ SImage::SImage(int i, string file)
 	baseThreshold = 125; //roughly half 
 	numOf = 3; 
 	diff = 20;
-	minArea = 5;
+	minArea = 500;
 	doSmoothing = false;
 	smoothingRadius = 5;
 	skipPoints = 0;
@@ -63,7 +63,6 @@ SImage::~SImage() {
 	}
 	
 	printf("desconstructed from SImage\n");
-	[windowController release];
 }
 
 void SImage::loadImage(string path) {
@@ -191,39 +190,39 @@ void SImage::findPoints() {
 		//we always start at the first blob, then we move to the closest one to that,
 		//then the closest one to that, that hasn't already been done, etc...
 		
-		int insertPoint = 1;
-		for (int i = 0; i < contourFinder.blobs.size()-2; i++) {
-			
-			ofPoint startPoint = contourFinder.blobs[insertPoint-1].centroid;
-			
-			int nearest = 1; 
-			float dist = 9999; //a large number
-			
-			//find closest point
-			for (int j = insertPoint; j < contourFinder.blobs.size()-3; j++) {
-				float ndist = ofDist(startPoint.x, startPoint.y, 
-														 contourFinder.blobs[j].centroid.x, 
-														 contourFinder.blobs[j].centroid.y);
-				
-				//if the new distance (ndist) is less than the current dist, save the position, set the new nearest
-				if (ndist < dist) {
-					nearest = i;
-					dist = ndist;
-				}
-			}// end for
-			
-			//save and delete nearest from current position
-			ofxCvBlob tempBlob = contourFinder.blobs[nearest];
-			vector<ofxCvBlob>::iterator it = contourFinder.blobs.begin();
-			contourFinder.blobs.erase(it+nearest);
-			
-			//add to new position
-			it = contourFinder.blobs.begin();
-			contourFinder.blobs.insert(it+insertPoint, tempBlob);
-			
-			insertPoint++;
-			
-		}
+//		int insertPoint = 1;
+//		for (int i = 0; i < contourFinder.blobs.size()-2; i++) {
+//			
+//			ofPoint startPoint = contourFinder.blobs[insertPoint-1].centroid;
+//			
+//			int nearest = 1; 
+//			float dist = 9999; //a large number
+//			
+//			//find closest point
+//			for (int j = insertPoint; j < contourFinder.blobs.size()-3; j++) {
+//				float ndist = ofDist(startPoint.x, startPoint.y, 
+//														 contourFinder.blobs[j].centroid.x, 
+//														 contourFinder.blobs[j].centroid.y);
+//				
+//				//if the new distance (ndist) is less than the current dist, save the position, set the new nearest
+//				if (ndist < dist) {
+//					nearest = i;
+//					dist = ndist;
+//				}
+//			}// end for
+//			
+//			//save and delete nearest from current position
+//			ofxCvBlob tempBlob = contourFinder.blobs[nearest];
+//			vector<ofxCvBlob>::iterator it = contourFinder.blobs.begin();
+//			contourFinder.blobs.erase(it+nearest);
+//			
+//			//add to new position
+//			it = contourFinder.blobs.begin();
+//			contourFinder.blobs.insert(it+insertPoint, tempBlob);
+//			
+//			insertPoint++;
+//			
+//		}
 		
 		// - - - - - - - - - - - - - - - -
 		
@@ -415,8 +414,23 @@ void SImage::giveAllPoints(vector<SPoint> &p) {
 	
 	//push all your points into the vector provided...
 	for (int i = 0; i < points.size(); i++) {
-		points[i]+= pos;
-		p.push_back(points[i]);
+//		if (points[i].x != PEN_UP_POINT ||
+//				points[i].x != PEN_DOWN_POINT ||
+//				points[i].x != CHANGE_DELAY_POINT) {
+//			points[i]+= pos;
+//		}
+		
+		if (points[i].x == PEN_UP_POINT ||
+				points[i].x == PEN_DOWN_POINT) {
+			p.push_back(points[i]);
+		}
+		else {
+			p.push_back(points[i] + pos);
+		}
+
+		
+//		p.push_back(points[i]);
+		printf("from give all: x = %i, y = %i\n", points[i].x, points[i].y);
 	}
 	
 }

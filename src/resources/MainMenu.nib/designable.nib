@@ -12,7 +12,7 @@
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="81"/>
+			<integer value="1117"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -205,19 +205,19 @@
 										<string key="NSTitle">Page Layout</string>
 										<object class="NSMutableArray" key="NSMenuItems">
 											<bool key="EncodedWithXMLCoder">YES</bool>
-											<object class="NSMenuItem" id="510555341">
+											<object class="NSMenuItem" id="551285533">
 												<reference key="NSMenu" ref="376621998"/>
-												<string key="NSTitle">A4 Landscape</string>
-												<string key="NSKeyEquiv">l</string>
+												<string key="NSTitle">A4 Portrait</string>
+												<string key="NSKeyEquiv">;</string>
 												<int key="NSKeyEquivModMask">1048576</int>
 												<int key="NSMnemonicLoc">2147483647</int>
 												<reference key="NSOnImage" ref="353210768"/>
 												<reference key="NSMixedImage" ref="549394948"/>
 											</object>
-											<object class="NSMenuItem" id="551285533">
+											<object class="NSMenuItem" id="510555341">
 												<reference key="NSMenu" ref="376621998"/>
-												<string key="NSTitle">A4 Portrait</string>
-												<string key="NSKeyEquiv">;</string>
+												<string key="NSTitle">A4 Landscape</string>
+												<string key="NSKeyEquiv">l</string>
 												<int key="NSKeyEquivModMask">1048576</int>
 												<int key="NSMnemonicLoc">2147483647</int>
 												<reference key="NSOnImage" ref="353210768"/>
@@ -229,6 +229,7 @@
 												<string key="NSKeyEquiv">'</string>
 												<int key="NSKeyEquivModMask">1048576</int>
 												<int key="NSMnemonicLoc">2147483647</int>
+												<int key="NSState">1</int>
 												<reference key="NSOnImage" ref="353210768"/>
 												<reference key="NSMixedImage" ref="549394948"/>
 											</object>
@@ -1084,12 +1085,44 @@
 					<int key="connectionID">1144</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">changeLayoutToA3Portratit:</string>
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">A4Portrait</string>
+						<reference key="source" ref="212228131"/>
+						<reference key="destination" ref="551285533"/>
+					</object>
+					<int key="connectionID">1146</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">A4Landscape</string>
+						<reference key="source" ref="212228131"/>
+						<reference key="destination" ref="510555341"/>
+					</object>
+					<int key="connectionID">1147</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">A3Landscape</string>
+						<reference key="source" ref="212228131"/>
+						<reference key="destination" ref="485452221"/>
+					</object>
+					<int key="connectionID">1148</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">A3Portrait</string>
 						<reference key="source" ref="212228131"/>
 						<reference key="destination" ref="780691916"/>
 					</object>
-					<int key="connectionID">1145</int>
+					<int key="connectionID">1149</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">changeLayoutToA3Portrait:</string>
+						<reference key="source" ref="212228131"/>
+						<reference key="destination" ref="780691916"/>
+					</object>
+					<int key="connectionID">1150</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -1645,8 +1678,8 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="510555341"/>
-							<reference ref="551285533"/>
 							<reference ref="485452221"/>
+							<reference ref="551285533"/>
 							<reference ref="780691916"/>
 						</object>
 						<reference key="parent" ref="136980660"/>
@@ -1814,7 +1847,7 @@
 					<integer value="1"/>
 					<string>{{596, 852}, {216, 23}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{622, 603}, {116, 63}}</string>
+					<string>{{586, 607}, {116, 63}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1861,7 +1894,7 @@
 					<string>{74, 862}</string>
 					<string>{{11, 977}, {478, 20}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{668, 620}, {134, 43}}</string>
+					<string>{{632, 627}, {134, 43}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>{{475, 832}, {234, 43}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1940,7 +1973,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">1145</int>
+			<int key="maxID">1150</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1957,7 +1990,7 @@
 							<string>addText:</string>
 							<string>cancelDrawing:</string>
 							<string>changeLayoutToA3Landscape:</string>
-							<string>changeLayoutToA3Portratit:</string>
+							<string>changeLayoutToA3Portrait:</string>
 							<string>changeLayoutToA4Landscape:</string>
 							<string>changeLayoutToA4Portrait:</string>
 							<string>changeToPreview:</string>
@@ -1983,12 +2016,20 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>A3Landscape</string>
+							<string>A3Portrait</string>
+							<string>A4Landscape</string>
+							<string>A4Portrait</string>
 							<string>plotMenu</string>
 							<string>previewMode</string>
 							<string>terminalMode</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>NSMenuItem</string>
+							<string>NSMenuItem</string>
+							<string>NSMenuItem</string>
+							<string>NSMenuItem</string>
 							<string>NSMenuItem</string>
 							<string>NSMenuItem</string>
 							<string>NSMenuItem</string>
@@ -2278,10 +2319,6 @@
 			</object>
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
-		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.macosx</string>
-			<integer value="1060" key="NS.object.0"/>
-		</object>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.InterfaceBuilder3</string>
 			<integer value="3000" key="NS.object.0"/>

@@ -37,8 +37,6 @@ SText::SText(int i)
 }
 
 SText::~SText() {
-	[windowController release];
-
 	printf("stext deconstructed\n");
 	
 }

@@ -32,7 +32,6 @@ SAudioClip::SAudioClip(int i)
 }
 
 SAudioClip::~SAudioClip() {
-	[windowController release];
 }
 
 void SAudioClip::update() { }
@@ -100,8 +99,10 @@ void SAudioClip::setForDraw() {
 	
 	//insert a pen up at begining
 	points.insert(points.begin(), SPoint(PEN_UP_POINT, 0));
+	
 	//insert pen down when it got to first point
 	points.insert(points.begin()+2, SPoint(PEN_DOWN_POINT, 0));
+	
 	//add pen up at end
 	points.push_back(SPoint(PEN_UP_POINT, 0));
 	
